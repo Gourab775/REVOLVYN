@@ -182,13 +182,14 @@
 		}
 
 		.manifesto-label {
-			font-size: 10px;
-			letter-spacing: 4px;
+			font-size: 12px;
+			letter-spacing: 5px;
 			text-transform: uppercase;
-			color: var(--color-label, rgba(210, 230, 160, 0.55));
+			color: rgba(230, 245, 120, 1);
 			opacity: 0;
 			transform: translateY(20px);
-			text-shadow: 0 1px 12px rgba(0,0,0,0.5);
+			text-shadow: 0 0 20px rgba(230, 245, 120, 0.4), 0 1px 12px rgba(0,0,0,0.5);
+			font-weight: 600;
 		}
 
 		.manifesto h2 {
@@ -215,7 +216,7 @@
 
 		.pillars {
 			flex-direction: column;
-			gap: 20px;
+			gap: 32px;
 			min-height: 100vh;
 			padding: 40px 40px;
 		}
@@ -227,10 +228,12 @@
 		}
 
 		.pillars-header span {
-			font-size: 10px;
-			letter-spacing: 4px;
+			font-size: 12px;
+			letter-spacing: 5px;
 			text-transform: uppercase;
-			color: var(--color-label, rgba(210, 230, 160, 0.55));
+			color: rgba(230, 245, 120, 1);
+			text-shadow: 0 0 20px rgba(230, 245, 120, 0.4), 0 1px 12px rgba(0,0,0,0.5);
+			font-weight: 600;
 		}
 
 		.portfolio-grid {
@@ -296,7 +299,7 @@
 			cursor: pointer;
 			transition: all 0.4s;
 			text-decoration: none;
-			margin-top: 8px;
+			margin-top: 12px;
 		}
 
 		.portfolio-view-more:hover {
@@ -319,13 +322,14 @@
 		}
 
 		.stats-label {
-			font-size: 10px;
-			letter-spacing: 4px;
+			font-size: 12px;
+			letter-spacing: 5px;
 			text-transform: uppercase;
-			color: var(--color-label, rgba(210, 230, 160, 0.55));
+			color: rgba(230, 245, 120, 1);
 			opacity: 0;
 			transform: translateY(20px);
-			text-shadow: 0 1px 12px rgba(0,0,0,0.5);
+			text-shadow: 0 0 20px rgba(230, 245, 120, 0.4), 0 1px 12px rgba(0,0,0,0.5);
+			font-weight: 600;
 		}
 
 		.brands-grid {
@@ -742,7 +746,7 @@
 			top: 24px;
 			left: 0;
 			right: 0;
-			display: flex;
+			display: none;
 			justify-content: space-between;
 			align-items: center;
 			padding: 0 40px;
@@ -879,7 +883,7 @@
 			background: rgba(0, 0, 0, 0.85);
 			backdrop-filter: blur(24px);
 			z-index: 99;
-			display: flex;
+			display: none;
 			flex-direction: column;
 			align-items: center;
 			justify-content: center;
@@ -1066,7 +1070,7 @@
 
 		<section class="section cta-section" data-stage="5">
 			<h2 data-reveal>Step into<br>the <em>Journey</em></h2>
-			<p class="cta-sub" data-reveal data-delay="1">Join a growing collective of builders, dreamers, and stewards crafting a world worth inheriting.</p>
+			<!-- <p class="cta-sub" data-reveal data-delay="1">Join a growing collective of builders, dreamers, and stewards crafting a world worth inheriting.</p> -->
 			<a href="javascript:void(0)" class="cta-btn" data-reveal data-delay="2">Contact Us →</a>
 		</section>
 
