@@ -647,6 +647,71 @@
 
 		.nav-links a:hover { color: var(--color-accent, rgba(230, 245, 120, 0.95)); }
 
+		/* Hamburger button */
+		.nav-hamburger {
+			display: none;
+			flex-direction: column;
+			gap: 5px;
+			background: none;
+			border: none;
+			cursor: pointer;
+			padding: 6px;
+			pointer-events: auto;
+			z-index: 200;
+		}
+		.nav-hamburger span {
+			display: block;
+			width: 22px;
+			height: 2px;
+			background: var(--color-body, rgba(215, 230, 190, 0.7));
+			border-radius: 2px;
+			transition: all 0.3s ease;
+		}
+		.nav-hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+		.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+		.nav-hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+		/* Mobile overlay */
+		.nav-mobile-overlay {
+			display: none;
+			position: fixed;
+			top: 0; left: 0; right: 0; bottom: 0;
+			background: rgba(8, 12, 5, 0.95);
+			z-index: 99;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			gap: 32px;
+			opacity: 0;
+			pointer-events: none;
+			transition: opacity 0.3s ease;
+		}
+		.nav-mobile-overlay.open {
+			opacity: 1;
+			pointer-events: auto;
+		}
+		.nav-mobile-overlay a {
+			font-family: 'Inter', sans-serif;
+			font-size: 14px;
+			letter-spacing: 3px;
+			text-transform: uppercase;
+			color: var(--color-body, rgba(215, 230, 190, 0.7));
+			text-decoration: none;
+			transition: color 0.3s;
+			font-weight: 500;
+		}
+		.nav-mobile-overlay a:hover {
+			color: var(--color-accent, rgba(230, 245, 120, 0.95));
+		}
+
+		@media (max-width: 768px) {
+			.nav-float { padding: 0 20px; top: 16px; }
+			.nav-links { display: none; }
+			.nav-hamburger { display: flex; }
+			.nav-mobile-overlay { display: flex; }
+			.section { padding: 60px 20px; }
+		}
+
 		.progress-bar {
 			position: fixed;
 			top: 0; left: 0;
@@ -696,7 +761,16 @@
 			<a href="javascript:void(0)" data-nav="3">Brands</a>
 			<a href="javascript:void(0)" data-nav="5">Contact Us</a>
 		</div>
+		<button class="nav-hamburger" id="navHamburger" aria-label="Menu">
+			<span></span><span></span><span></span>
+		</button>
 	</nav>
+	<div class="nav-mobile-overlay" id="navMobileOverlay">
+		<a href="javascript:void(0)" data-nav-mobile="1">About Us</a>
+		<a href="javascript:void(0)" data-nav-mobile="2">Portfolio</a>
+		<a href="javascript:void(0)" data-nav-mobile="3">Brands</a>
+		<a href="javascript:void(0)" data-nav-mobile="5">Contact Us</a>
+	</div>
 
 	<div id="scroll-container">
 		<section class="section hero" id="heroSection" data-stage="0">
@@ -1477,6 +1551,28 @@
 				e.preventDefault();
 				const stageIdx = parseInt(link.dataset.nav);
 				const section = document.querySelector(`.section[data-stage="${stageIdx}"]`);
+				if (section) {
+					section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+				}
+			});
+		});
+
+		// ─── Mobile Hamburger Menu ─────────────────────────────────────────
+		const navHamburger = document.getElementById('navHamburger');
+		const navMobileOverlay = document.getElementById('navMobileOverlay');
+
+		navHamburger.addEventListener('click', () => {
+			navHamburger.classList.toggle('open');
+			navMobileOverlay.classList.toggle('open');
+		});
+
+		document.querySelectorAll('[data-nav-mobile]').forEach(link => {
+			link.addEventListener('click', (e) => {
+				e.preventDefault();
+				const stageIdx = parseInt(link.dataset.navMobile);
+				const section = document.querySelector(`.section[data-stage="${stageIdx}"]`);
+				navHamburger.classList.remove('open');
+				navMobileOverlay.classList.remove('open');
 				if (section) {
 					section.scrollIntoView({ behavior: 'smooth', block: 'start' });
 				}
