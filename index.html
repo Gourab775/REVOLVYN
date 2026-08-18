@@ -1650,6 +1650,7 @@
 					focalLengthU.value += (cam.fl - focalLengthU.value) * Math.min(1, dt * 6);
 					bokehScaleU.value += (cam.bk - bokehScaleU.value) * Math.min(1, dt * 6);
 				}
+			}
 
 			renderer.compute(computeUpdate);
 			postProcessing.render();
