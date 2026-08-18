@@ -102,77 +102,87 @@
 
 		/* Collage section */
 		.collage-section {
-			padding: 0 20px 80px;
+			padding: 0 16px 80px;
 		}
 		.collage {
 			display: grid;
-			grid-template-columns: repeat(4, 1fr);
-			gap: 6px;
-			max-width: 1400px; margin: 0 auto;
+			grid-template-columns: repeat(3, 1fr);
+			gap: 4px;
+			max-width: 1200px; margin: 0 auto;
 		}
 
-		/* Varying sizes for masonry feel */
+		/* Items */
 		.collage-item {
 			position: relative; overflow: hidden; cursor: pointer;
-			opacity: 0; transform: translateY(30px);
-			transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-						transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+			opacity: 0; transform: translateY(20px);
+			background: #0a0c08;
+			transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+						transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 		}
 		.collage-item.revealed { opacity: 1; transform: translateY(0); }
 
-		/* Span patterns for visual variety */
-		.collage-item:nth-child(4n+1) { grid-column: span 2; aspect-ratio: 16/10; }
-		.collage-item:nth-child(4n+2) { aspect-ratio: 3/4; }
-		.collage-item:nth-child(4n+3) { aspect-ratio: 4/3; }
-		.collage-item:nth-child(4n+4) { grid-column: span 2; aspect-ratio: 21/9; }
-
-		/* Every 8th item breaks pattern for editorial feel */
-		.collage-item:nth-child(8n+1) { grid-column: span 2; aspect-ratio: 2/1; }
-		.collage-item:nth-child(8n+5) { grid-column: span 2; aspect-ratio: 16/9; }
+		/* Row 1: hero wide + two squares */
+		.collage-item:nth-child(1) { grid-column: span 2; aspect-ratio: 2/1; }
+		.collage-item:nth-child(2) { aspect-ratio: 1; }
+		.collage-item:nth-child(3) { aspect-ratio: 1; }
+		/* Row 2: two portrait + one wide */
+		.collage-item:nth-child(4) { aspect-ratio: 3/4; }
+		.collage-item:nth-child(5) { grid-column: span 2; aspect-ratio: 16/9; }
+		/* Row 3: repeat pattern */
+		.collage-item:nth-child(6) { grid-column: span 2; aspect-ratio: 16/9; }
+		.collage-item:nth-child(7) { aspect-ratio: 1; }
+		.collage-item:nth-child(8) { aspect-ratio: 3/4; }
+		/* Row 4 */
+		.collage-item:nth-child(9) { aspect-ratio: 1; }
+		.collage-item:nth-child(10) { grid-column: span 2; aspect-ratio: 2/1; }
+		/* Row 5 */
+		.collage-item:nth-child(11) { grid-column: span 2; aspect-ratio: 16/9; }
+		.collage-item:nth-child(12) { aspect-ratio: 1; }
+		/* Row 6 */
+		.collage-item:nth-child(13) { aspect-ratio: 3/4; }
+		.collage-item:nth-child(14) { grid-column: span 2; aspect-ratio: 2/1; }
+		/* Default for rest: uniform 3-col */
+		.collage-item:nth-child(n+15) { aspect-ratio: 4/3; }
+		.collage-item:nth-child(3n+16) { grid-column: span 1; aspect-ratio: 3/4; }
+		.collage-item:nth-child(5n+17) { grid-column: span 2; aspect-ratio: 16/9; }
 
 		.collage-item video {
 			width: 100%; height: 100%; object-fit: cover;
-			transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-						filter 0.6s ease;
+			opacity: 0; transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease;
 			filter: brightness(0.85) saturate(0.9);
 		}
+		.collage-item video.loaded { opacity: 1; }
 		.collage-item:hover video {
-			transform: scale(1.06);
+			transform: scale(1.05);
 			filter: brightness(1) saturate(1.1);
 		}
 
 		/* Overlay */
 		.collage-overlay {
 			position: absolute; inset: 0;
-			background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 45%);
+			background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 40%);
 			display: flex; flex-direction: column; justify-content: flex-end;
-			padding: 24px; opacity: 0;
-			transition: opacity 0.4s ease;
+			padding: 20px; opacity: 0;
+			transition: opacity 0.35s ease;
 		}
 		.collage-item:hover .collage-overlay { opacity: 1; }
 		.collage-overlay h3 {
-			font-family: 'Playfair Display', serif; font-size: clamp(14px, 1.5vw, 20px);
-			color: rgba(248, 252, 240, 0.95); margin-bottom: 4px;
+			font-family: 'Playfair Display', serif; font-size: clamp(13px, 1.4vw, 18px);
+			color: rgba(248, 252, 240, 0.95); margin-bottom: 3px;
 		}
 		.collage-overlay span {
-			font-size: 10px; color: rgba(215, 230, 190, 0.5);
+			font-size: 9px; color: rgba(215, 230, 190, 0.5);
 			letter-spacing: 2px; text-transform: uppercase;
 		}
 		.collage-overlay .view-btn {
-			margin-top: 12px; display: inline-flex; align-items: center; gap: 8px;
-			font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+			margin-top: 10px; display: inline-flex; align-items: center; gap: 6px;
+			font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
 			color: rgba(230, 245, 120, 0.9); font-weight: 500;
 		}
 		.collage-overlay .view-btn::after {
 			content: '\2192'; transition: transform 0.3s;
 		}
 		.collage-item:hover .view-btn::after { transform: translateX(4px); }
-
-		/* Smooth video load-in */
-		.collage-item video {
-			opacity: 0; transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
-		}
-		.collage-item video.loaded { opacity: 1; }
 
 		/* CTA */
 		.portfolio-cta {
@@ -194,29 +204,32 @@
 
 		/* Mobile */
 		@media (max-width: 768px) {
-			.portfolio-hero { height: 40vh; min-height: 280px; }
-			.collage-section { padding: 0 10px 60px; }
+			.portfolio-hero { height: 35vh; min-height: 240px; }
+			.collage-section { padding: 0 8px 60px; }
 			.collage {
 				grid-template-columns: repeat(2, 1fr);
-				gap: 4px;
+				gap: 3px;
 			}
 			.collage-item:nth-child(n) {
 				grid-column: span 1 !important;
 				aspect-ratio: 1/1 !important;
 			}
 			.collage-item:nth-child(1),
-			.collage-item:nth-child(6),
-			.collage-item:nth-child(11),
-			.collage-item:nth-child(16),
+			.collage-item:nth-child(5),
+			.collage-item:nth-child(9),
+			.collage-item:nth-child(13),
+			.collage-item:nth-child(17),
 			.collage-item:nth-child(21),
-			.collage-item:nth-child(26),
-			.collage-item:nth-child(31),
-			.collage-item:nth-child(36),
-			.collage-item:nth-child(41) {
+			.collage-item:nth-child(25),
+			.collage-item:nth-child(29),
+			.collage-item:nth-child(33),
+			.collage-item:nth-child(37),
+			.collage-item:nth-child(41),
+			.collage-item:nth-child(45) {
 				grid-column: span 2 !important;
 				aspect-ratio: 16/9 !important;
 			}
-			.collage-overlay { padding: 16px; }
+			.collage-overlay { padding: 12px; }
 		}
 	</style>
 </head>
@@ -382,11 +395,15 @@
 			const item = document.createElement('div');
 			item.className = 'collage-item';
 			item.setAttribute('data-reveal', '');
-			item.setAttribute('data-delay', String(i % 12));
+			item.setAttribute('data-delay', String(Math.min(i, 14)));
 			item.onclick = () => smoothNavigate('contact.html');
 			const lbl = labels[i] || ["Project", "Creative"];
+			// Preload first 6 videos
+			const preload = i < 6 ? 'auto' : 'none';
+			const src = i < 6 ? url : '';
+			const dataSrc = i >= 6 ? url : '';
 			item.innerHTML = `
-				<video muted loop playsinline preload="none" data-src="${url}"></video>
+				<video muted loop playsinline preload="${preload}" ${src ? `src="${src}"` : ''} ${dataSrc ? `data-src="${dataSrc}"` : ''}></video>
 				<div class="collage-overlay">
 					<h3>${lbl[0]}</h3>
 					<span>${lbl[1]}</span>
@@ -396,24 +413,29 @@
 			collage.appendChild(item);
 		});
 
+		// Mark preloaded videos as loaded immediately
+		document.querySelectorAll('.collage-item:nth-child(-n+6) video').forEach(v => {
+			if (v.readyState >= 2) v.classList.add('loaded');
+			else v.addEventListener('canplay', () => v.classList.add('loaded'), { once: true });
+		});
+
 		// Lazy load videos with IntersectionObserver
 		const videoObserver = new IntersectionObserver((entries) => {
 			entries.forEach(entry => {
 				if (entry.isIntersecting) {
 					const video = entry.target;
-					if (!video.src) {
+					if (!video.src && video.dataset.src) {
 						video.src = video.dataset.src;
 						video.addEventListener('loadeddata', () => {
 							video.classList.add('loaded');
 							video.play().catch(() => {});
 						}, { once: true });
-						// Fallback: if loadeddata doesn't fire, show after 2s
-						setTimeout(() => { video.classList.add('loaded'); }, 2000);
+						setTimeout(() => { video.classList.add('loaded'); }, 1500);
 					}
 					videoObserver.unobserve(video);
 				}
 			});
-		}, { rootMargin: '200px 0px', threshold: 0.05 });
+		}, { rootMargin: '400px 0px', threshold: 0.01 });
 
 		// Reveal items on scroll
 		const revealObserver = new IntersectionObserver((entries) => {
