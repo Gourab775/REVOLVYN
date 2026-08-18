@@ -23,6 +23,7 @@
 			top: 0; left: 0;
 			width: 100vw; height: 100vh;
 			z-index: 0;
+			will-change: transform;
 		}
 
 		#scroll-container {
@@ -30,6 +31,7 @@
 			z-index: 1;
 			pointer-events: none;
 			will-change: transform;
+			contain: layout style;
 		}
 
 		.section {
@@ -253,6 +255,7 @@
 			transform: translateY(40px);
 			background: rgba(10, 18, 10, 0.55);
 			border: 1px solid rgba(140, 180, 120, 0.12);
+			contain: layout style paint;
 		}
 
 		/* Rectangle collage: 4col x 3row */
@@ -355,6 +358,7 @@
 			opacity: 0;
 			transform: translateY(20px);
 			animation: logoFloat 4s ease-in-out infinite;
+			contain: layout style;
 		}
 
 		.brand-logo-item:nth-child(2) { animation-delay: 0.5s; }
@@ -938,8 +942,10 @@
 			height: 2px;
 			background: rgba(230, 245, 120, 0.6);
 			z-index: 200;
-			width: 0;
-			transition: width 0.1s linear;
+			width: 100%;
+			transform-origin: left;
+			transform: scaleX(0);
+			will-change: transform;
 		}
 
 		.revealed {
@@ -947,6 +953,7 @@
 			transform: translateY(0) !important;
 			transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
 						transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+			will-change: opacity, transform;
 		}
 
 		.delay-1 { transition-delay: 0.1s !important; }
@@ -1126,7 +1133,9 @@
 		} from 'three/tsl';
 		import { dof } from 'three/addons/tsl/display/DepthOfFieldNode.js';
 
-		const BLADE_COUNT = 120000;
+		const isMobile = window.innerWidth < 768;
+		const isTablet = window.innerWidth >= 768 && window.innerWidth < 1200;
+		const BLADE_COUNT = isMobile ? 40000 : isTablet ? 70000 : 120000;
 		const FIELD_SIZE = 30;
 		const BACKGROUND_HEX = '#000000';
 		const GROUND_HEX = '#000000';
@@ -1170,13 +1179,13 @@
 		camera.position.set(0, 8, 18);
 		camera.lookAt(0, 0, 0);
 
-		const renderer = new THREE.WebGPURenderer({ antialias: true });
-		const isMobile = window.innerWidth < 768;
-		const maxDPR = window.innerWidth < 1200 ? 1.5 : Math.min(devicePixelRatio, 2);
+		const renderer = new THREE.WebGPURenderer({ antialias: !isMobile, powerPreference: isMobile ? 'low-power' : 'high-performance' });
+		const maxDPR = isMobile ? 1.0 : isTablet ? 1.5 : Math.min(devicePixelRatio, 2);
 		renderer.setPixelRatio(maxDPR);
 		renderer.setSize(innerWidth, innerHeight);
 		renderer.toneMapping = THREE.ACESFilmicToneMapping;
 		renderer.toneMappingExposure = 1.0;
+		renderer.sortObjects = false;
 		document.body.appendChild(renderer.domElement);
 		await renderer.init();
 
@@ -1313,7 +1322,7 @@
 
 		// ─── Blade Geometry ────────────────────────────────────────────────
 		function createBladeGeometry() {
-			const segs = 5, W = 0.055, H = 1.0;
+			const segs = isMobile ? 3 : 5, W = 0.055, H = 1.0;
 			const verts = [], norms = [], uvArr = [], idx = [];
 			for (let i = 0; i <= segs; i++) {
 				const t = i / segs, y = t * H, hw = W * 0.5 * (1.0 - t * 0.82);
@@ -1421,10 +1430,12 @@
 		// ─── Post Processing (DoF) ─────────────────────────────────────────
 		const postProcessing = new THREE.PostProcessing(renderer);
 		const scenePass = pass(scene, camera);
-		scenePass.setMRT(mrt({
-			output: output,
-			normal: transformedNormalView,
-		}));
+		if (!isMobile) {
+			scenePass.setMRT(mrt({
+				output: output,
+				normal: transformedNormalView,
+			}));
+		}
 		const sceneColor = scenePass.getTextureNode('output');
 		const sceneViewZ = scenePass.getViewZNode();
 		const dofOutput = dof(sceneColor, sceneViewZ, focusDistanceU, focalLengthU, bokehScaleU);
@@ -1448,15 +1459,19 @@
 		const mouseNDC = new THREE.Vector2();
 		const grassPlane = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
 		const hitPoint = new THREE.Vector3();
+		let _mouseRaf = null;
 
 		window.addEventListener('mousemove', (e) => {
-			mouseNDC.set((e.clientX / innerWidth) * 2 - 1, -(e.clientY / innerHeight) * 2 + 1);
-			raycaster.setFromCamera(mouseNDC, camera);
-			if (raycaster.ray.intersectPlane(grassPlane, hitPoint)) {
-				mouseWorld.value.copy(hitPoint);
-				// Compute distance from camera to mouse hit for auto-focus
-				mouseFocusDist = camera.position.distanceTo(hitPoint);
-			}
+			if (_mouseRaf) return;
+			_mouseRaf = requestAnimationFrame(() => {
+				_mouseRaf = null;
+				mouseNDC.set((e.clientX / innerWidth) * 2 - 1, -(e.clientY / innerHeight) * 2 + 1);
+				raycaster.setFromCamera(mouseNDC, camera);
+				if (raycaster.ray.intersectPlane(grassPlane, hitPoint)) {
+					mouseWorld.value.copy(hitPoint);
+					mouseFocusDist = camera.position.distanceTo(hitPoint);
+				}
+			});
 		});
 		window.addEventListener('mouseleave', () => mouseWorld.value.set(99999, 0, 99999));
 
@@ -1466,10 +1481,10 @@
 			resizeTimeout = setTimeout(() => {
 				camera.aspect = innerWidth / innerHeight;
 				camera.updateProjectionMatrix();
-				const dpr = window.innerWidth < 1200 ? 1.5 : Math.min(devicePixelRatio, 2);
+				const dpr = isMobile ? 1.0 : isTablet ? 1.5 : Math.min(devicePixelRatio, 2);
 				renderer.setPixelRatio(dpr);
 				renderer.setSize(innerWidth, innerHeight);
-			}, 100);
+			}, 200);
 		});
 
 		// ─── Settings Panel (keyboard S) ───────────────────────────────────
@@ -2447,7 +2462,7 @@
 		// Pre-warm the pipeline by rendering a couple of frames before showing
 		renderer.domElement.style.opacity = '0';
 		renderer.domElement.style.transition = 'opacity 0.4s ease';
-		for (let i = 0; i < 3; i++) {
+		for (let i = 0; i < (isMobile ? 1 : 3); i++) {
 			renderer.compute(computeUpdate);
 			postProcessing.render();
 			await new Promise(r => requestAnimationFrame(r));
@@ -2496,14 +2511,19 @@
 			if (_siteFooter) {
 				const footerTop = _siteFooter.getBoundingClientRect().top;
 				if (footerTop < window.innerHeight) {
-					renderer.domElement.style.transform = `translateY(-${window.innerHeight - footerTop}px)`;
-				} else {
+					const ty = -(window.innerHeight - footerTop);
+					if (renderer.domElement._lastTy !== ty) {
+						renderer.domElement.style.transform = `translateY(${ty}px)`;
+						renderer.domElement._lastTy = ty;
+					}
+				} else if (renderer.domElement._lastTy !== 0) {
 					renderer.domElement.style.transform = '';
+					renderer.domElement._lastTy = 0;
 				}
 			}
 
 			// Progress bar
-			progressBar.style.width = (currentScrollT * 100) + '%';
+			progressBar.style.transform = `scaleX(${currentScrollT})`;
 
 		// Nav always visible
 
