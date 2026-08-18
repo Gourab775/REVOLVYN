@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+	<title>Brands — REVOLVYN</title>
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
+		*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+		html, body {
+			width: 100%; min-height: 100%; background: #000;
+			overflow-x: hidden; font-family: 'Inter', system-ui, sans-serif;
+			color: #e8ece4; scrollbar-width: none; -ms-overflow-style: none;
+		}
+		html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; }
+		.nav-float {
+			position: fixed; top: 24px; left: 0; right: 0;
+			display: flex; justify-content: space-between; align-items: center;
+			padding: 0 40px; z-index: 100; pointer-events: none;
+		}
+		.nav-logo {
+			font-family: 'Playfair Display', serif; font-size: 18px;
+			color: rgba(245, 250, 230, 0.8); letter-spacing: 1px;
+			pointer-events: auto; cursor: pointer;
+		}
+		.nav-links { display: flex; gap: 28px; pointer-events: auto; }
+		.nav-links a {
+			font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+			color: rgba(215, 230, 190, 0.55); text-decoration: none;
+			transition: color 0.3s; font-weight: 500;
+		}
+		.nav-links a:hover, .nav-links a.active { color: rgba(230, 245, 120, 0.95); }
+		.nav-hamburger {
+			display: none; flex-direction: column; gap: 5px;
+			background: none; border: none; cursor: pointer;
+			padding: 6px; pointer-events: auto; z-index: 200;
+		}
+		.nav-hamburger span {
+			display: block; width: 22px; height: 2px;
+			background: rgba(215, 230, 190, 0.7); border-radius: 2px;
+			transition: all 0.3s ease;
+		}
+		.nav-hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+		.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+		.nav-hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+		.nav-mobile-overlay {
+			display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+			background: rgba(8, 12, 5, 0.95); z-index: 99;
+			flex-direction: column; align-items: center; justify-content: center;
+			gap: 32px; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+		}
+		.nav-mobile-overlay.open { opacity: 1; pointer-events: auto; }
+		.nav-mobile-overlay a {
+			font-size: 14px; letter-spacing: 3px; text-transform: uppercase;
+			color: rgba(215, 230, 190, 0.7); text-decoration: none;
+			transition: color 0.3s; font-weight: 500;
+		}
+		.nav-mobile-overlay a:hover { color: rgba(230, 245, 120, 0.95); }
+		@media (max-width: 768px) {
+			.nav-float { padding: 0 20px; top: 16px; }
+			.nav-links { display: none; }
+			.nav-hamburger { display: flex; }
+			.nav-mobile-overlay { display: flex; }
+		}
+
+		.page-hero {
+			position: relative; min-height: 60vh;
+			display: flex; flex-direction: column; align-items: center; justify-content: center;
+			text-align: center; padding: 120px 40px 60px;
+			background: radial-gradient(ellipse at 50% 80%, rgba(20, 40, 10, 0.5) 0%, #000 70%);
+		}
+		.page-hero h1 {
+			font-family: 'Playfair Display', serif; font-size: clamp(36px, 6vw, 64px);
+			color: rgba(248, 252, 240, 0.95); letter-spacing: 2px;
+			margin-bottom: 16px; opacity: 0; transform: translateY(30px);
+			transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+		}
+		.page-hero p {
+			font-size: 15px; color: rgba(215, 230, 190, 0.5); max-width: 520px;
+			line-height: 1.7; font-weight: 300; opacity: 0; transform: translateY(20px);
+			transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.15s;
+		}
+		.page-hero.revealed h1, .page-hero.revealed p { opacity: 1; transform: translateY(0); }
+
+		.page-content { max-width: 1100px; margin: 0 auto; padding: 80px 40px; }
+		.section-label {
+			font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+			color: rgba(210, 230, 160, 0.45); margin-bottom: 40px; font-weight: 500;
+		}
+
+		.brands-grid {
+			display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+			gap: 24px; margin-bottom: 60px;
+		}
+		.brand-card {
+			background: rgba(20, 30, 10, 0.3); border: 1px solid rgba(140, 180, 120, 0.08);
+			border-radius: 12px; padding: 32px; display: flex; flex-direction: column;
+			align-items: center; justify-content: center; gap: 16px;
+			min-height: 160px; transition: all 0.4s;
+			opacity: 0; transform: translateY(20px);
+		}
+		.brand-card.revealed { opacity: 1; transform: translateY(0); }
+		.brand-card:hover {
+			border-color: rgba(140, 180, 120, 0.2);
+			background: rgba(20, 30, 10, 0.5);
+		}
+		.brand-card img {
+			max-width: 140px; max-height: 60px; object-fit: contain;
+			filter: brightness(0.8) contrast(1.1);
+			transition: filter 0.3s;
+		}
+		.brand-card:hover img { filter: brightness(1) contrast(1); }
+		.brand-card-name {
+			font-size: 12px; letter-spacing: 1px; color: rgba(215, 230, 190, 0.4);
+			text-transform: uppercase;
+		}
+
+		.brands-stats {
+			display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px;
+			margin: 60px 0; padding: 40px 0;
+			border-top: 1px solid rgba(140, 180, 120, 0.08);
+			border-bottom: 1px solid rgba(140, 180, 120, 0.08);
+		}
+		.stat-item { text-align: center; }
+		.stat-number {
+			font-family: 'Playfair Display', serif; font-size: clamp(28px, 4vw, 42px);
+			color: rgba(230, 245, 120, 0.8); margin-bottom: 8px;
+		}
+		.stat-label {
+			font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+			color: rgba(215, 230, 190, 0.4);
+		}
+
+		.page-cta {
+			text-align: center; padding: 80px 40px;
+			background: radial-gradient(ellipse at 50% 50%, rgba(20, 40, 10, 0.3) 0%, #000 70%);
+		}
+		.page-cta h2 {
+			font-family: 'Playfair Display', serif; font-size: clamp(24px, 4vw, 40px);
+			color: rgba(248, 252, 240, 0.9); margin-bottom: 20px;
+		}
+		.page-cta a {
+			display: inline-block; padding: 14px 36px; border: 1px solid rgba(180, 220, 100, 0.3);
+			border-radius: 6px; color: rgba(200, 230, 130, 0.85); font-size: 12px;
+			letter-spacing: 2px; text-transform: uppercase; text-decoration: none;
+			transition: all 0.3s; font-weight: 500;
+		}
+		.page-cta a:hover {
+			background: rgba(180, 220, 100, 0.1);
+			border-color: rgba(180, 220, 100, 0.5);
+			color: rgba(230, 245, 120, 0.95);
+		}
+
+		.site-footer {
+			position: relative; z-index: 2;
+			border-top: 1px solid rgba(140, 180, 120, 0.08);
+			background: #000; padding: 60px 40px 40px;
+		}
+		.site-footer-inner {
+			max-width: 1100px; margin: 0 auto;
+			display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 40px;
+		}
+		.sf-brand { display: flex; flex-direction: column; gap: 14px; }
+		.sf-brand-name { font-family: 'Playfair Display', serif; font-size: 22px; color: rgba(240, 250, 220, 0.7); letter-spacing: 1px; }
+		.sf-brand-desc { font-size: 12px; line-height: 1.7; color: rgba(215, 230, 190, 0.4); max-width: 260px; }
+		.sf-col-title { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: rgba(210, 230, 160, 0.45); margin-bottom: 16px; font-weight: 500; }
+		.sf-col a { display: block; font-size: 12px; color: rgba(215, 230, 190, 0.5); text-decoration: none; margin-bottom: 10px; transition: color 0.3s; }
+		.sf-col a:hover { color: rgba(230, 245, 120, 0.9); }
+		.sf-bottom { max-width: 1100px; margin: 40px auto 0; padding-top: 24px; border-top: 1px solid rgba(140, 180, 120, 0.06); display: flex; justify-content: space-between; align-items: center; }
+		.sf-copy { font-size: 11px; color: rgba(215, 230, 190, 0.25); }
+		.sf-socials { display: flex; gap: 18px; }
+		.sf-socials a { font-size: 11px; color: rgba(215, 230, 190, 0.35); text-decoration: none; letter-spacing: 1px; text-transform: uppercase; }
+		.sf-socials a:hover { color: rgba(230, 245, 120, 0.8); }
+		@media (max-width: 768px) {
+			.site-footer-inner { grid-template-columns: 1fr; gap: 30px; }
+			.brands-grid { grid-template-columns: repeat(2, 1fr); }
+			.brands-stats { grid-template-columns: 1fr; gap: 24px; }
+			.page-content { padding: 60px 20px; }
+		}
+	</style>
+</head>
+<body>
+	<nav class="nav-float">
+		<div class="nav-logo" onclick="window.location.href='index.html'" style="cursor:pointer">REVOLVYN</div>
+		<div class="nav-links">
+			<a href="index.html">About Us</a>
+			<a href="portfolio.html">Portfolio</a>
+			<a href="brands.html" class="active">Brands</a>
+			<a href="services.html">Services</a>
+			<a href="contact.html">Contact Us</a>
+		</div>
+		<button class="nav-hamburger" id="navHamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+	</nav>
+	<div class="nav-mobile-overlay" id="navMobileOverlay">
+		<a href="index.html">About Us</a>
+		<a href="portfolio.html">Portfolio</a>
+		<a href="brands.html">Brands</a>
+		<a href="services.html">Services</a>
+		<a href="contact.html">Contact Us</a>
+	</div>
+
+	<div class="page-hero" data-reveal>
+		<h1>Brands We Work With</h1>
+		<p>320+ brands trust REVOLVYN to deliver high-impact campaigns and cinematic content that drives real results.</p>
+	</div>
+
+	<div class="page-content">
+		<div class="brands-stats" data-reveal>
+			<div class="stat-item"><div class="stat-number">320+</div><div class="stat-label">Brands Served</div></div>
+			<div class="stat-item"><div class="stat-number">4,500+</div><div class="stat-label">Ads Created</div></div>
+			<div class="stat-item"><div class="stat-number">110+</div><div class="stat-label">YouTubers</div></div>
+		</div>
+
+		<div class="section-label" data-reveal>Our Partners</div>
+		<div class="brands-grid">
+			<div class="brand-card" data-reveal data-delay="1"><img src="brand%20logos/Untitled%20design%20(1)-Photoroom.png" alt="Brand"><div class="brand-card-name">Brand Partner</div></div>
+			<div class="brand-card" data-reveal data-delay="2"><img src="brand%20logos/Untitled%20design%20(2)-Photoroom.png" alt="Brand"><div class="brand-card-name">Brand Partner</div></div>
+			<div class="brand-card" data-reveal data-delay="1"><img src="brand%20logos/Untitled%20design%20(6)-Photoroom.png" alt="Brand"><div class="brand-card-name">Brand Partner</div></div>
+			<div class="brand-card" data-reveal data-delay="2"><img src="brand%20logos/Untitled%20design%20(8)-Photoroom.png" alt="Brand"><div class="brand-card-name">Brand Partner</div></div>
+			<div class="brand-card" data-reveal data-delay="1"><img src="brand%20logos/Untitled%20design%20(10)-Photoroom.png" alt="Brand"><div class="brand-card-name">Brand Partner</div></div>
+		</div>
+	</div>
+
+	<div class="page-cta" data-reveal>
+		<h2>Want to grow with us?</h2>
+		<a href="contact.html">Partner With Us →</a>
+	</div>
+
+	<footer class="site-footer">
+		<div class="site-footer-inner">
+			<div class="sf-brand"><div class="sf-brand-name">REVOLVYN</div><p class="sf-brand-desc">From bold ideas to meaningful experiences, we turn creativity into impact.</p></div>
+			<div class="sf-col"><div class="sf-col-title">Explore</div><a href="index.html">About Us</a><a href="portfolio.html">Portfolio</a><a href="brands.html">Brands</a></div>
+			<div class="sf-col"><div class="sf-col-title">Resources</div><a href="#">Privacy Policy</a><a href="#">Refund Policy</a><a href="#">Blog</a></div>
+			<div class="sf-col"><div class="sf-col-title">Connect</div><a href="contact.html">Contact</a><a href="#">Newsletter</a><a href="#">Careers</a></div>
+		</div>
+		<div class="sf-bottom">
+			<span class="sf-copy">© 2026 REVOLVYN. All futures reserved.</span>
+			<div class="sf-socials"><a href="#">Instagram</a><a href="#">Facebook</a><a href="#">YouTube</a></div>
+		</div>
+	</footer>
+	<script>
+		const navHamburger = document.getElementById('navHamburger');
+		const navMobileOverlay = document.getElementById('navMobileOverlay');
+		navHamburger.addEventListener('click', () => { navHamburger.classList.toggle('open'); navMobileOverlay.classList.toggle('open'); });
+		navMobileOverlay.querySelectorAll('a').forEach(a => { a.addEventListener('click', () => { navHamburger.classList.remove('open'); navMobileOverlay.classList.remove('open'); }); });
+		const revealObserver = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.style.transitionDelay = `${(entry.target.dataset.delay || 0) * 0.15}s`; entry.target.classList.add('revealed'); revealObserver.unobserve(entry.target); } }); }, { threshold: 0.1 });
+		document.querySelectorAll('[data-reveal]').forEach(el => revealObserver.observe(el));
+	</script>
+</body>
+</html>

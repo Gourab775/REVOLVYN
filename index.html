@@ -16,7 +16,10 @@
 			overflow-x: hidden;
 			font-family: 'Inter', system-ui, sans-serif;
 			color: #e8ece4;
+			scrollbar-width: none;
+			-ms-overflow-style: none;
 		}
+		html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; }
 
 		canvas {
 			position: fixed;
@@ -754,12 +757,13 @@
 	<div class="progress-bar" id="progressBar"></div>
 
 	<nav class="nav-float" id="navFloat">
-		<div class="nav-logo">REVOLVYN</div>
+		<div class="nav-logo" onclick="window.location.href='index.html'" style="cursor:pointer">REVOLVYN</div>
 		<div class="nav-links">
 			<a href="javascript:void(0)" data-nav="1">About Us</a>
-			<a href="javascript:void(0)" data-nav="2">Portfolio</a>
-			<a href="javascript:void(0)" data-nav="3">Brands</a>
-			<a href="javascript:void(0)" data-nav="5">Contact Us</a>
+			<a href="portfolio.html">Portfolio</a>
+			<a href="brands.html">Brands</a>
+			<a href="services.html">Services</a>
+			<a href="contact.html">Contact Us</a>
 		</div>
 		<button class="nav-hamburger" id="navHamburger" aria-label="Menu">
 			<span></span><span></span><span></span>
@@ -767,9 +771,10 @@
 	</nav>
 	<div class="nav-mobile-overlay" id="navMobileOverlay">
 		<a href="javascript:void(0)" data-nav-mobile="1">About Us</a>
-		<a href="javascript:void(0)" data-nav-mobile="2">Portfolio</a>
-		<a href="javascript:void(0)" data-nav-mobile="3">Brands</a>
-		<a href="javascript:void(0)" data-nav-mobile="5">Contact Us</a>
+		<a href="portfolio.html">Portfolio</a>
+		<a href="brands.html">Brands</a>
+		<a href="services.html">Services</a>
+		<a href="contact.html">Contact Us</a>
 	</div>
 
 	<div id="scroll-container">
@@ -859,7 +864,8 @@
 		<div class="site-footer-inner">
 			<div class="sf-brand">
 				<div class="sf-brand-name">REVOLVYN</div>
-				<p class="sf-brand-desc">A sanctuary for sustainable minds building a regenerative future where technology meets the earth.</p>
+				<p class="sf-brand-desc">From bold ideas to meaningful experiences, we turn creativity into impact.
+Because the best work doesn’t just get seen — it gets remembered, felt, and shared..</p>
 			</div>
 			<div class="sf-col">
 				<div class="sf-col-title">Explore</div>
