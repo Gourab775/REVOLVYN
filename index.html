@@ -20,6 +20,13 @@
 			-ms-overflow-style: none;
 		}
 		html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; }
+		/* Page transition overlay */
+		.page-transition {
+			position: fixed; inset: 0; background: #000; z-index: 9999;
+			pointer-events: none; opacity: 0;
+			transition: opacity 0.4s ease;
+		}
+		.page-transition.active { opacity: 1; }
 
 		canvas {
 			position: fixed;
@@ -754,16 +761,17 @@
 </head>
 
 <body>
+	<div class="page-transition" id="pageTransition"></div>
 	<div class="progress-bar" id="progressBar"></div>
 
 	<nav class="nav-float" id="navFloat">
 		<div class="nav-logo" onclick="window.location.href='index.html'" style="cursor:pointer">REVOLVYN</div>
 		<div class="nav-links">
 			<a href="javascript:void(0)" data-nav="1">About Us</a>
-			<a href="portfolio.html">Portfolio</a>
-			<a href="brands.html">Brands</a>
-			<a href="services.html">Services</a>
-			<a href="contact.html">Contact Us</a>
+			<a href="portfolio.html" onclick="smoothNavigate(event, 'portfolio.html')">Portfolio</a>
+			<a href="brands.html" onclick="smoothNavigate(event, 'brands.html')">Brands</a>
+			<a href="services.html" onclick="smoothNavigate(event, 'services.html')">Services</a>
+			<a href="contact.html" onclick="smoothNavigate(event, 'contact.html')">Contact Us</a>
 		</div>
 		<button class="nav-hamburger" id="navHamburger" aria-label="Menu">
 			<span></span><span></span><span></span>
@@ -771,10 +779,10 @@
 	</nav>
 	<div class="nav-mobile-overlay" id="navMobileOverlay">
 		<a href="javascript:void(0)" data-nav-mobile="1">About Us</a>
-		<a href="portfolio.html">Portfolio</a>
-		<a href="brands.html">Brands</a>
-		<a href="services.html">Services</a>
-		<a href="contact.html">Contact Us</a>
+		<a href="portfolio.html" onclick="smoothNavigate(event, 'portfolio.html')">Portfolio</a>
+		<a href="brands.html" onclick="smoothNavigate(event, 'brands.html')">Brands</a>
+		<a href="services.html" onclick="smoothNavigate(event, 'services.html')">Services</a>
+		<a href="contact.html" onclick="smoothNavigate(event, 'contact.html')">Contact Us</a>
 	</div>
 
 	<div id="scroll-container">
@@ -908,6 +916,14 @@ Because the best work doesn’t just get seen — it gets remembered, felt, and 
 			pass, mrt, output, transformedNormalView,
 		} from 'three/tsl';
 		import { dof } from 'three/addons/tsl/display/DepthOfFieldNode.js';
+
+		const transition = document.getElementById('pageTransition');
+		function smoothNavigate(e, url) {
+			if (e && e.preventDefault) e.preventDefault();
+			if (!url && typeof e === 'string') url = e;
+			transition.classList.add('active');
+			setTimeout(() => { window.location.href = url; }, 400);
+		}
 
 		const BLADE_COUNT = 120000;
 		const FIELD_SIZE = 30;

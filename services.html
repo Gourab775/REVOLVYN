@@ -13,6 +13,13 @@
 			color: #e8ece4; scrollbar-width: none; -ms-overflow-style: none;
 		}
 		html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; }
+		/* Page transition overlay */
+		.page-transition {
+			position: fixed; inset: 0; background: #000; z-index: 9999;
+			pointer-events: none; opacity: 0;
+			transition: opacity 0.4s ease;
+		}
+		.page-transition.active { opacity: 1; }
 		.nav-float { position: fixed; top: 24px; left: 0; right: 0; display: flex; justify-content: space-between; align-items: center; padding: 0 40px; z-index: 100; pointer-events: none; }
 		.nav-logo { font-family: 'Playfair Display', serif; font-size: 18px; color: rgba(245, 250, 230, 0.8); letter-spacing: 1px; pointer-events: auto; cursor: pointer; }
 		.nav-links { display: flex; gap: 28px; pointer-events: auto; }
@@ -82,23 +89,24 @@
 	</style>
 </head>
 <body>
+	<div class="page-transition" id="pageTransition"></div>
 	<nav class="nav-float">
-		<div class="nav-logo" onclick="window.location.href='index.html'" style="cursor:pointer">REVOLVYN</div>
+		<div class="nav-logo" onclick="smoothNavigate(event, 'index.html')" style="cursor:pointer">REVOLVYN</div>
 		<div class="nav-links">
-			<a href="index.html">About Us</a>
-			<a href="portfolio.html">Portfolio</a>
-			<a href="brands.html">Brands</a>
+			<a href="index.html" onclick="smoothNavigate(event, 'index.html')">About Us</a>
+			<a href="portfolio.html" onclick="smoothNavigate(event, 'portfolio.html')">Portfolio</a>
+			<a href="brands.html" onclick="smoothNavigate(event, 'brands.html')">Brands</a>
 			<a href="services.html" class="active">Services</a>
-			<a href="contact.html">Contact Us</a>
+			<a href="contact.html" onclick="smoothNavigate(event, 'contact.html')">Contact Us</a>
 		</div>
 		<button class="nav-hamburger" id="navHamburger" aria-label="Menu"><span></span><span></span><span></span></button>
 	</nav>
 	<div class="nav-mobile-overlay" id="navMobileOverlay">
-		<a href="index.html">About Us</a>
-		<a href="portfolio.html">Portfolio</a>
-		<a href="brands.html">Brands</a>
+		<a href="index.html" onclick="smoothNavigate(event, 'index.html')">About Us</a>
+		<a href="portfolio.html" onclick="smoothNavigate(event, 'portfolio.html')">Portfolio</a>
+		<a href="brands.html" onclick="smoothNavigate(event, 'brands.html')">Brands</a>
 		<a href="services.html">Services</a>
-		<a href="contact.html">Contact Us</a>
+		<a href="contact.html" onclick="smoothNavigate(event, 'contact.html')">Contact Us</a>
 	</div>
 
 	<div class="page-hero" data-reveal>
@@ -164,6 +172,13 @@
 		</div>
 	</footer>
 	<script>
+		const transition = document.getElementById('pageTransition');
+		function smoothNavigate(e, url) {
+			if (e && e.preventDefault) e.preventDefault();
+			if (!url && typeof e === 'string') url = e;
+			transition.classList.add('active');
+			setTimeout(() => { window.location.href = url; }, 400);
+		}
 		const navHamburger = document.getElementById('navHamburger');
 		const navMobileOverlay = document.getElementById('navMobileOverlay');
 		navHamburger.addEventListener('click', () => { navHamburger.classList.toggle('open'); navMobileOverlay.classList.toggle('open'); });
