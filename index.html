@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
@@ -274,15 +274,11 @@
 			grid-row: 3;
 		}
 
-		@media (max-width: 768px) {
-			.portfolio-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 110px; max-width: 460px; gap: 4px; }
-			.portfolio-item:nth-child(1) { grid-column: 1 / 3; grid-row: 1; }
-			.portfolio-item:nth-child(2) { grid-column: 1; grid-row: 2 / 4; }
-			.portfolio-item:nth-child(3) { grid-column: 1 / 3; grid-row: 3; }
-			.portfolio-item:nth-child(4) { grid-column: 2; grid-row: 2 / 4; }
-			.portfolio-item:nth-child(5) { grid-column: 1 / 3; grid-row: 4; }
-			.portfolio-item:nth-child(6) { grid-column: 1; grid-row: 5; }
-			.portfolio-placeholder { grid-column: 2; grid-row: 5; }
+		.portfolio-item video {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			display: block;
 		}
 
 		.portfolio-view-more {
@@ -530,14 +526,6 @@
 			gap: 40px;
 		}
 
-		@media (max-width: 768px) {
-			.site-footer-inner { grid-template-columns: 1fr 1fr; gap: 30px; }
-		}
-
-		@media (max-width: 480px) {
-			.site-footer-inner { grid-template-columns: 1fr; }
-		}
-
 		.sf-brand {
 			display: flex;
 			flex-direction: column;
@@ -614,136 +602,6 @@
 
 		.sf-socials a:hover { color: var(--color-accent, rgba(230, 245, 120, 0.9)); }
 
-		/* ── Settings Panel (hidden) ── */
-		.settings-panel {
-			display: none;
-			position: fixed;
-			top: 50%;
-			right: 24px;
-			transform: translateY(-50%) translateX(12px) scale(0.95);
-			width: 340px;
-			max-height: 85vh;
-			overflow-y: auto;
-			background: rgba(8, 16, 8, 0.88);
-			backdrop-filter: blur(20px);
-			border: 1px solid rgba(140, 180, 120, 0.15);
-			border-radius: 16px;
-			padding: 24px 22px;
-			z-index: 300;
-			pointer-events: auto;
-			opacity: 0;
-			visibility: hidden;
-			transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-		}
-		.settings-panel.open {
-			opacity: 1;
-			transform: translateY(-50%) translateX(0) scale(1);
-			visibility: visible;
-		}
-		.settings-panel::-webkit-scrollbar { width: 4px; }
-		.settings-panel::-webkit-scrollbar-track { background: transparent; }
-		.settings-panel::-webkit-scrollbar-thumb { background: rgba(140, 180, 120, 0.2); border-radius: 2px; }
-
-		.sp-section { margin-bottom: 18px; }
-		.sp-section-title {
-			font-size: 9px;
-			letter-spacing: 3px;
-			text-transform: uppercase;
-			color: rgba(180, 210, 140, 0.4);
-			margin-bottom: 12px;
-			padding-bottom: 6px;
-			border-bottom: 1px solid rgba(140, 180, 120, 0.08);
-		}
-		.sp-row {
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			margin-bottom: 2px;
-		}
-		.sp-label {
-			font-size: 11px;
-			color: rgba(200, 215, 185, 0.55);
-			font-weight: 400;
-		}
-		.sp-val {
-			font-size: 10px;
-			color: rgba(200, 220, 140, 0.5);
-			min-width: 32px;
-			text-align: right;
-			font-variant-numeric: tabular-nums;
-		}
-		.sp-slider {
-			width: 100%;
-			margin-top: 0;
-			margin-bottom: 12px;
-			-webkit-appearance: none;
-			appearance: none;
-			height: 3px;
-			border-radius: 2px;
-			background: rgba(140, 180, 120, 0.12);
-			outline: none;
-		}
-		.sp-slider::-webkit-slider-thumb {
-			-webkit-appearance: none;
-			width: 12px;
-			height: 12px;
-			border-radius: 50%;
-			background: rgba(180, 210, 140, 0.6);
-			cursor: pointer;
-			transition: background 0.2s;
-		}
-		.sp-slider::-webkit-slider-thumb:hover {
-			background: rgba(200, 220, 140, 0.9);
-		}
-		.sp-toggle-row {
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			margin-bottom: 10px;
-		}
-		.sp-toggle {
-			position: relative;
-			width: 36px;
-			height: 20px;
-			border-radius: 10px;
-			background: rgba(140, 180, 120, 0.15);
-			cursor: pointer;
-			transition: background 0.3s;
-		}
-		.sp-toggle.active { background: rgba(120, 180, 80, 0.5); }
-		.sp-toggle::after {
-			content: '';
-			position: absolute;
-			top: 3px;
-			left: 3px;
-			width: 14px;
-			height: 14px;
-			border-radius: 50%;
-			background: rgba(200, 220, 160, 0.7);
-			transition: transform 0.3s;
-		}
-		.sp-toggle.active::after { transform: translateX(16px); }
-
-		.sp-color-row {
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			margin-bottom: 10px;
-		}
-		.sp-color-input {
-			-webkit-appearance: none;
-			appearance: none;
-			width: 32px;
-			height: 20px;
-			border: 1px solid rgba(140, 180, 120, 0.2);
-			border-radius: 4px;
-			background: none;
-			cursor: pointer;
-			padding: 0;
-		}
-		.sp-color-input::-webkit-color-swatch-wrapper { padding: 0; }
-		.sp-color-input::-webkit-color-swatch { border: none; border-radius: 3px; }
-
 		/* ── Nav (floating) ── */
 		.nav-float {
 			position: fixed;
@@ -788,153 +646,6 @@
 		}
 
 		.nav-links a:hover { color: var(--color-accent, rgba(230, 245, 120, 0.95)); }
-
-		/* Hamburger button */
-		.nav-hamburger {
-			display: none;
-			pointer-events: auto;
-			width: 36px;
-			height: 36px;
-			background: rgba(15, 25, 15, 0.4);
-			backdrop-filter: blur(12px);
-			border: 1px solid rgba(140, 180, 120, 0.15);
-			border-radius: 8px;
-			cursor: pointer;
-			position: relative;
-			flex-shrink: 0;
-			transition: background 0.3s, border-color 0.3s;
-		}
-
-		.nav-hamburger:hover {
-			background: rgba(40, 65, 40, 0.5);
-			border-color: rgba(140, 180, 120, 0.3);
-		}
-
-		.nav-hamburger span {
-			position: absolute;
-			left: 50%;
-			transform: translateX(-50%);
-			width: 16px;
-			height: 1.5px;
-			background: var(--color-body, rgba(215, 230, 190, 0.7));
-			border-radius: 1px;
-			transition: transform 0.3s, opacity 0.3s;
-		}
-
-		.nav-hamburger span:nth-child(1) { top: 10px; }
-		.nav-hamburger span:nth-child(2) { top: 17px; }
-		.nav-hamburger span:nth-child(3) { top: 24px; }
-
-		.nav-hamburger.open span:nth-child(1) {
-			transform: translateX(-50%) translateY(7px) rotate(45deg);
-		}
-		.nav-hamburger.open span:nth-child(2) {
-			opacity: 0;
-			transform: translateX(-50%);
-		}
-		.nav-hamburger.open span:nth-child(3) {
-			transform: translateX(-50%) translateY(-7px) rotate(-45deg);
-		}
-
-		/* Settings gear button (hidden) */
-		.settings-gear {
-			display: none !important;
-			position: fixed;
-			bottom: 20px;
-			right: 20px;
-			z-index: 200;
-			width: 32px;
-			height: 32px;
-			border-radius: 50%;
-			background: rgba(15, 25, 15, 0.45);
-			backdrop-filter: blur(12px);
-			border: 1px solid rgba(140, 180, 120, 0.15);
-			cursor: pointer;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			transition: background 0.3s, border-color 0.3s, transform 0.3s;
-			pointer-events: auto;
-			opacity: 0.5;
-		}
-		.settings-gear:hover {
-			opacity: 1;
-			background: rgba(40, 65, 40, 0.5);
-			border-color: rgba(140, 180, 120, 0.3);
-			transform: rotate(30deg);
-		}
-		.settings-gear.active {
-			opacity: 1;
-			border-color: rgba(180, 210, 140, 0.4);
-		}
-		.settings-gear svg {
-			width: 16px;
-			height: 16px;
-			fill: none;
-			stroke: rgba(200, 220, 160, 0.6);
-			stroke-width: 1.5;
-			stroke-linecap: round;
-			stroke-linejoin: round;
-		}
-
-		/* Mobile overlay menu */
-		.nav-mobile-overlay {
-			position: fixed;
-			top: 0;
-			right: 0;
-			width: 100%;
-			height: 100vh;
-			background: rgba(0, 0, 0, 0.85);
-			backdrop-filter: blur(24px);
-			z-index: 99;
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			justify-content: center;
-			gap: 32px;
-			opacity: 0;
-			visibility: hidden;
-			transition: opacity 0.35s ease, visibility 0.35s;
-			pointer-events: none;
-		}
-
-		.nav-mobile-overlay.open {
-			opacity: 1;
-			visibility: visible;
-			pointer-events: auto;
-		}
-
-		.nav-mobile-overlay a {
-			font-size: 14px;
-			letter-spacing: 3px;
-			text-transform: uppercase;
-			color: var(--color-body, rgba(215, 230, 190, 0.65));
-			text-decoration: none;
-			transition: color 0.3s, transform 0.3s;
-			font-weight: 500;
-			transform: translateY(10px);
-			opacity: 0;
-		}
-
-		.nav-mobile-overlay.open a {
-			opacity: 1;
-			transform: translateY(0);
-		}
-
-		.nav-mobile-overlay.open a:nth-child(1) { transition-delay: 0.06s; }
-		.nav-mobile-overlay.open a:nth-child(2) { transition-delay: 0.12s; }
-		.nav-mobile-overlay.open a:nth-child(3) { transition-delay: 0.18s; }
-		.nav-mobile-overlay.open a:nth-child(4) { transition-delay: 0.24s; }
-
-		.nav-mobile-overlay a:hover {
-			color: var(--color-accent, rgba(230, 245, 120, 0.95));
-		}
-
-		@media (max-width: 768px) {
-			.nav-links { display: none; }
-			.nav-hamburger { display: block; }
-			.nav-float { padding: 0 24px; }
-		}
 
 		.progress-bar {
 			position: fixed;
@@ -985,22 +696,7 @@
 			<a href="javascript:void(0)" data-nav="3">Brands</a>
 			<a href="javascript:void(0)" data-nav="5">Contact Us</a>
 		</div>
-		<button class="nav-hamburger" id="navHamburger" aria-label="Menu">
-			<span></span><span></span><span></span>
-		</button>
 	</nav>
-
-	<div class="nav-mobile-overlay" id="navMobileOverlay">
-		<a href="javascript:void(0)" data-nav-mobile="1">About Us</a>
-		<a href="javascript:void(0)" data-nav-mobile="2">Portfolio</a>
-		<a href="javascript:void(0)" data-nav-mobile="3">Brands</a>
-		<a href="javascript:void(0)" data-nav-mobile="5">Contact Us</a>
-	</div>
-
-	<button class="settings-gear" id="settingsGear" aria-label="Settings">
-		<svg viewBox="0 0 24 24"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1Z"/></svg>
-	</button>
-	<div class="settings-panel" id="settingsPanel"></div>
 
 	<div id="scroll-container">
 		<section class="section hero" id="heroSection" data-stage="0">
@@ -1133,9 +829,7 @@
 		} from 'three/tsl';
 		import { dof } from 'three/addons/tsl/display/DepthOfFieldNode.js';
 
-		const isMobile = window.innerWidth < 768;
-		const isTablet = window.innerWidth >= 768 && window.innerWidth < 1200;
-		const BLADE_COUNT = isMobile ? 40000 : isTablet ? 70000 : 120000;
+		const BLADE_COUNT = 120000;
 		const FIELD_SIZE = 30;
 		const BACKGROUND_HEX = '#000000';
 		const GROUND_HEX = '#000000';
@@ -1179,8 +873,8 @@
 		camera.position.set(0, 8, 18);
 		camera.lookAt(0, 0, 0);
 
-		const renderer = new THREE.WebGPURenderer({ antialias: !isMobile, powerPreference: isMobile ? 'low-power' : 'high-performance' });
-		const maxDPR = isMobile ? 1.0 : isTablet ? 1.5 : Math.min(devicePixelRatio, 2);
+		const renderer = new THREE.WebGPURenderer({ antialias: true, powerPreference: 'high-performance' });
+		const maxDPR = Math.min(devicePixelRatio, 2);
 		renderer.setPixelRatio(maxDPR);
 		renderer.setSize(innerWidth, innerHeight);
 		renderer.toneMapping = THREE.ACESFilmicToneMapping;
@@ -1322,7 +1016,7 @@
 
 		// ─── Blade Geometry ────────────────────────────────────────────────
 		function createBladeGeometry() {
-			const segs = isMobile ? 3 : 5, W = 0.055, H = 1.0;
+			const segs = 5, W = 0.055, H = 1.0;
 			const verts = [], norms = [], uvArr = [], idx = [];
 			for (let i = 0; i <= segs; i++) {
 				const t = i / segs, y = t * H, hw = W * 0.5 * (1.0 - t * 0.82);
@@ -1430,19 +1124,16 @@
 		// ─── Post Processing (DoF) ─────────────────────────────────────────
 		const postProcessing = new THREE.PostProcessing(renderer);
 		const scenePass = pass(scene, camera);
-		if (!isMobile) {
-			scenePass.setMRT(mrt({
-				output: output,
-				normal: transformedNormalView,
-			}));
-		}
+		scenePass.setMRT(mrt({
+			output: output,
+			normal: transformedNormalView,
+		}));
 		const sceneColor = scenePass.getTextureNode('output');
 		const sceneViewZ = scenePass.getViewZNode();
 		const dofOutput = dof(sceneColor, sceneViewZ, focusDistanceU, focalLengthU, bokehScaleU);
 
-		// Start with DoF ON (except mobile)
-		postProcessing.outputNode = isMobile ? sceneColor : dofOutput;
-		if (isMobile) dofEnabled = false;
+		// Start with DoF ON
+		postProcessing.outputNode = dofOutput;
 		postProcessing.needsUpdate = true;
 
 		function rebuildPipeline() {
@@ -1481,656 +1172,17 @@
 			resizeTimeout = setTimeout(() => {
 				camera.aspect = innerWidth / innerHeight;
 				camera.updateProjectionMatrix();
-				const dpr = isMobile ? 1.0 : isTablet ? 1.5 : Math.min(devicePixelRatio, 2);
+				const dpr = Math.min(devicePixelRatio, 2);
 				renderer.setPixelRatio(dpr);
 				renderer.setSize(innerWidth, innerHeight);
 			}, 200);
 		});
 
-		// ─── Settings Panel (keyboard S) ───────────────────────────────────
-		const settingsPanel = document.getElementById('settingsPanel');
-		let settingsOpen = false;
-
-		const settingsGear = document.getElementById('settingsGear');
-
-		function toggleSettings() {
-			settingsOpen = !settingsOpen;
-			settingsPanel.classList.toggle('open', settingsOpen);
-			settingsGear.classList.toggle('active', settingsOpen);
-		}
-
-		settingsGear.addEventListener('click', toggleSettings);
-
-		window.addEventListener('keydown', (e) => {
-			if (e.key === 's' || e.key === 'S') {
-				// Don't toggle if user is typing in an input
-				if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
-				toggleSettings();
-			}
-		});
-
-		function buildSettings() {
-				// Color pickers (global scene colors not driven per-stage)
-			const colorControls = [
-				{ label: 'Background', u: backgroundColor, extra: (hex) => {
-					scene.background.set(hex);
-				}},
-				{ label: 'Ground', u: groundColor },
-			];
-
-			let html = '';
-
-			// Scene colors (global, not per-stage)
-			html += `<div class="sp-section"><div class="sp-section-title">Global Colors</div>`;
-			colorControls.forEach((c, idx) => {
-				const id = `sp_color_${idx}`;
-				const hex = '#' + c.u.value.getHexString();
-				html += `<div class="sp-color-row"><span class="sp-label">${c.label}</span><input type="color" class="sp-color-input" id="${id}" value="${hex}"></div>`;
-			});
-			html += `</div>`;
-
-			// Sky Gradient
-			html += `<div class="sp-section"><div class="sp-section-title">Sky Gradient</div>`;
-			const skyControls = [
-				{ label: 'Top (Zenith)', key: 'top' },
-				{ label: 'Mid High', key: 'midHigh' },
-				{ label: 'Mid Low', key: 'midLow' },
-				{ label: 'Horizon', key: 'horizon' },
-			];
-			skyControls.forEach((c, idx) => {
-				const id = `sp_sky_${idx}`;
-				const hex = '#' + skyColors[c.key].getHexString();
-				html += `<div class="sp-color-row"><span class="sp-label">${c.label}</span><input type="color" class="sp-color-input" id="${id}" value="${hex}"></div>`;
-			});
-			html += `</div>`;
-
-			// Camera Path Editor — one stage per section
-			html += `<div class="sp-section"><div class="sp-section-title">Camera Path</div>`;
-			// Mode toggle: Scroll / Edit
-			html += `<div style="display:flex;gap:6px;margin-bottom:12px;">`;
-			html += `<button id="modeScrollBtn" style="flex:1;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;padding:7px 0;border:1px solid rgba(140,180,120,0.3);border-radius:6px;background:rgba(120,180,80,0.25);color:rgba(200,220,140,0.9);cursor:pointer;transition:all 0.3s;font-weight:500;">⏵ Scroll</button>`;
-			html += `<button id="modeEditBtn" style="flex:1;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;padding:7px 0;border:1px solid rgba(140,180,120,0.12);border-radius:6px;background:rgba(140,180,120,0.06);color:rgba(180,210,140,0.4);cursor:pointer;transition:all 0.3s;font-weight:500;">✎ Edit</button>`;
-			html += `</div>`;
-			html += `<div id="modeHint" style="font-size:10px;color:rgba(180,210,140,0.3);margin-bottom:10px;line-height:1.5;">Scroll mode — camera follows scroll position naturally.</div>`;
-			html += `<div style="display:flex;justify-content:flex-end;margin-bottom:10px;"><button id="copyPathBtn" style="font-size:9px;letter-spacing:1px;text-transform:uppercase;padding:4px 10px;border:1px solid rgba(140,180,120,0.2);border-radius:4px;background:rgba(140,180,120,0.08);color:rgba(180,210,140,0.5);cursor:pointer;transition:all 0.3s;white-space:nowrap;">Copy JSON</button></div>`;
-			cameraPath.forEach((kf, i) => {
-				const name = stageNames[i] || `Stage ${i}`;
-				html += `<div class="cp-stage" id="cp_stage_${i}" data-stage="${i}" style="margin-bottom:8px;border:1px solid rgba(140,180,120,0.08);border-radius:8px;overflow:hidden;cursor:pointer;transition:opacity 0.3s;">`;
-				html += `<div class="cp-header" data-stage="${i}" style="display:flex;justify-content:space-between;align-items:center;padding:8px 10px;background:rgba(140,180,120,0.04);transition:background 0.2s;">`;
-				html += `<span class="sp-label" style="color:rgba(180,210,140,0.5);font-weight:500;pointer-events:none;">${name}</span>`;
-				html += `<span style="font-size:9px;color:rgba(180,210,140,0.25);pointer-events:none;" id="cp_${i}_arrow">▸</span>`;
-				html += `</div>`;
-				html += `<div class="cp-controls" id="cp_${i}_controls" style="display:none;padding:6px 10px 10px;">`;
-				// Camera position/look
-				html += `<div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(180,210,140,0.3);margin-bottom:8px;">Camera</div>`;
-				html += `<div class="sp-row"><span class="sp-label">Pos X</span><span class="sp-val" id="cp_${i}_px_v">${kf[1].toFixed(1)}</span></div>`;
-				html += `<input type="range" class="sp-slider" id="cp_${i}_px" min="-10" max="10" step="0.1" value="${kf[1]}">`;
-				html += `<div class="sp-row"><span class="sp-label">Pos Y</span><span class="sp-val" id="cp_${i}_py_v">${kf[2].toFixed(1)}</span></div>`;
-				html += `<input type="range" class="sp-slider" id="cp_${i}_py" min="0.1" max="15" step="0.1" value="${kf[2]}">`;
-				html += `<div class="sp-row"><span class="sp-label">Pos Z</span><span class="sp-val" id="cp_${i}_pz_v">${kf[3].toFixed(1)}</span></div>`;
-				html += `<input type="range" class="sp-slider" id="cp_${i}_pz" min="0" max="25" step="0.1" value="${kf[3]}">`;
-				html += `<div class="sp-row"><span class="sp-label">Look X</span><span class="sp-val" id="cp_${i}_lx_v">${kf[4].toFixed(1)}</span></div>`;
-				html += `<input type="range" class="sp-slider" id="cp_${i}_lx" min="-5" max="5" step="0.1" value="${kf[4]}">`;
-				html += `<div class="sp-row"><span class="sp-label">Look Y</span><span class="sp-val" id="cp_${i}_ly_v">${kf[5].toFixed(1)}</span></div>`;
-				html += `<input type="range" class="sp-slider" id="cp_${i}_ly" min="-2" max="3" step="0.1" value="${kf[5]}">`;
-				html += `<div class="sp-row"><span class="sp-label">Look Z</span><span class="sp-val" id="cp_${i}_lz_v">${kf[6].toFixed(1)}</span></div>`;
-				html += `<input type="range" class="sp-slider" id="cp_${i}_lz" min="-10" max="10" step="0.1" value="${kf[6]}">`;
-				html += `<div style="height:1px;background:rgba(140,180,120,0.08);margin:8px 0;"></div>`;
-				// DoF
-				html += `<div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(180,210,140,0.3);margin-bottom:8px;">Depth of Field</div>`;
-				html += `<div class="sp-toggle-row"><span class="sp-label">DoF Enabled</span><div class="sp-toggle ${kf[9] ? 'active' : ''}" id="cp_${i}_dof"></div></div>`;
-				html += `<div id="cp_${i}_dof_controls" style="${kf[9] ? '' : 'opacity:0.3;pointer-events:none;'}">`;
-				html += `<div class="sp-toggle-row"><span class="sp-label">Auto Focus</span><div class="sp-toggle ${kf[8] ? 'active' : ''}" id="cp_${i}_af"></div></div>`;
-				html += `<div id="cp_${i}_manual_focus" style="${kf[8] ? 'opacity:0.3;pointer-events:none;' : ''}">`;
-				html += `<div class="sp-row"><span class="sp-label">Focus Dist</span><span class="sp-val" id="cp_${i}_fd_v">${kf[7].toFixed(1)}</span></div>`;
-				html += `<input type="range" class="sp-slider" id="cp_${i}_fd" min="0.3" max="40" step="0.1" value="${kf[7]}">`;
-				html += `</div>`;
-				html += `<div id="cp_${i}_af_settings" style="${kf[8] ? '' : 'opacity:0.3;pointer-events:none;'}">`;
-				html += `<div class="sp-row"><span class="sp-label">AF Speed</span><span class="sp-val" id="cp_${i}_afspd_v">${kf[12].toFixed(1)}</span></div>`;
-				html += `<input type="range" class="sp-slider" id="cp_${i}_afspd" min="0.5" max="20" step="0.5" value="${kf[12]}">`;
-				html += `<div class="sp-row"><span class="sp-label">AF Min</span><span class="sp-val" id="cp_${i}_afmin_v">${kf[13].toFixed(1)}</span></div>`;
-				html += `<input type="range" class="sp-slider" id="cp_${i}_afmin" min="0.1" max="10" step="0.1" value="${kf[13]}">`;
-				html += `<div class="sp-row"><span class="sp-label">AF Max</span><span class="sp-val" id="cp_${i}_afmax_v">${kf[14].toFixed(1)}</span></div>`;
-				html += `<input type="range" class="sp-slider" id="cp_${i}_afmax" min="1" max="50" step="0.5" value="${kf[14]}">`;
-				html += `</div>`;
-				html += `<div class="sp-row"><span class="sp-label">Focal Length</span><span class="sp-val" id="cp_${i}_fl_v">${kf[10].toFixed(1)}</span></div>`;
-				html += `<input type="range" class="sp-slider" id="cp_${i}_fl" min="0.1" max="20" step="0.1" value="${kf[10]}">`;
-				html += `<div class="sp-row"><span class="sp-label">Bokeh Scale</span><span class="sp-val" id="cp_${i}_bk_v">${kf[11].toFixed(1)}</span></div>`;
-				html += `<input type="range" class="sp-slider" id="cp_${i}_bk" min="0" max="40" step="0.5" value="${kf[11]}">`;
-				html += `</div>`;
-				html += `<div style="height:1px;background:rgba(140,180,120,0.08);margin:8px 0;"></div>`;
-				// Per-stage params grouped
-				const sp = stageParams[i];
-				const groups = {};
-				stageParamKeys.forEach(k => {
-					const d = stageParamDefs[k];
-					if (!groups[d.group]) groups[d.group] = [];
-					groups[d.group].push({ key: k, ...d, val: sp[k] });
-				});
-				// Group color channels into combined color pickers + individual sliders
-				Object.keys(groups).forEach(grp => {
-					html += `<div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(180,210,140,0.3);margin:8px 0 6px;">Stage ${grp}</div>`;
-					// Find color groups for combined pickers
-					const colorGroupsMap = {};
-					groups[grp].forEach(c => {
-						if (c.isColor) {
-							if (!colorGroupsMap[c.isColor]) colorGroupsMap[c.isColor] = [];
-							colorGroupsMap[c.isColor].push(c);
-						}
-					});
-					// Render combined color pickers first
-					const renderedColorKeys = new Set();
-					Object.keys(colorGroupsMap).forEach(colorName => {
-						const channels = colorGroupsMap[colorName];
-						const rCh = channels.find(c => c.ch === 'r');
-						const gCh = channels.find(c => c.ch === 'g');
-						const bCh = channels.find(c => c.ch === 'b');
-						if (rCh && gCh && bCh) {
-							const r = Math.round(rCh.val * 255), g = Math.round(gCh.val * 255), b = Math.round(bCh.val * 255);
-							const hex = '#' + [r,g,b].map(v => v.toString(16).padStart(2,'0')).join('');
-							const cpId = `sp_stage_${i}_cpick_${colorName}`;
-							const shortLabel = colorName.replace('Color','').replace(/([A-Z])/g,' $1').trim();
-							html += `<div class="sp-color-row"><span class="sp-label">${shortLabel}</span><input type="color" class="sp-color-input" id="${cpId}" value="${hex}"></div>`;
-							channels.forEach(c => renderedColorKeys.add(c.key));
-						}
-					});
-					// Now render all sliders (including color channel sliders for fine-tuning)
-					groups[grp].forEach(c => {
-						const sid = `sp_stage_${i}_${c.key}`;
-						html += `<div class="sp-row"><span class="sp-label">${c.label}</span><span class="sp-val" id="${sid}_v">${c.val.toFixed(2)}</span></div>`;
-						html += `<input type="range" class="sp-slider" id="${sid}" min="${c.min}" max="${c.max}" step="${c.step}" value="${c.val}">`;
-					});
-				});
-				html += `</div>`;
-				html += `</div>`;
-			});
-			html += `</div>`;
-
-			// Typography Colors
-			html += `<div class="sp-section"><div class="sp-section-title">Typography Colors</div>`;
-			const typoColors = [
-				{ label: 'Heading', cssVar: '--color-heading', defaultVal: '#f8fcf0' },
-				{ label: 'Accent / Emphasis', cssVar: '--color-accent', defaultVal: '#e6f578' },
-				{ label: 'Body Text', cssVar: '--color-body', defaultVal: '#d7e6be' },
-				{ label: 'Labels / Caps', cssVar: '--color-label', defaultVal: '#d2e6a0' },
-			];
-			typoColors.forEach((tc, idx) => {
-				const id = `sp_typo_${idx}`;
-				// Read current computed value or use default
-				const current = getComputedStyle(document.documentElement).getPropertyValue(tc.cssVar).trim() || tc.defaultVal;
-				html += `<div class="sp-color-row"><span class="sp-label">${tc.label}</span><input type="color" class="sp-color-input" id="${id}" value="${tc.defaultVal}"></div>`;
-			});
-			html += `</div>`;
-
-			// Global Rendering
-			html += `<div class="sp-section"><div class="sp-section-title">Rendering</div>`;
-			html += `<div class="sp-toggle-row"><span class="sp-label">Depth of Field</span><div class="sp-toggle ${globalDofEnabled ? 'active' : ''}" id="globalDofToggle"></div></div>`;
-			html += `</div>`;
-
-			// Debug
-			html += `<div class="sp-section"><div class="sp-section-title">Debug</div>`;
-			html += `<div class="sp-toggle-row"><span class="sp-label">FPS Counter</span><div class="sp-toggle" id="fpsToggle"></div></div>`;
-			html += `</div>`;
-
-			settingsPanel.innerHTML = html;
-
-			// Wire sky gradient pickers
-			skyControls.forEach((c, idx) => {
-				const id = `sp_sky_${idx}`;
-				const input = document.getElementById(id);
-				input.addEventListener('input', () => {
-					skyColors[c.key].set(input.value);
-					scene.background = buildSkyTexture();
-				});
-			});
-
-			// Wire color pickers
-			colorControls.forEach((c, idx) => {
-				const id = `sp_color_${idx}`;
-				const input = document.getElementById(id);
-				input.addEventListener('input', () => {
-					c.u.value.set(input.value);
-					if (c.extra) c.extra(input.value);
-				});
-			});
-
-			// Camera path editor wiring
-			let activeStage = -1;
-			let cameraOverride = -1;
-			let editorMode = 'scroll'; // 'scroll' or 'edit'
-
-			const modeScrollBtn = document.getElementById('modeScrollBtn');
-			const modeEditBtn = document.getElementById('modeEditBtn');
-			const modeHint = document.getElementById('modeHint');
-
-			function setMode(mode) {
-				editorMode = mode;
-				if (mode === 'scroll') {
-					modeScrollBtn.style.background = 'rgba(120,180,80,0.25)';
-					modeScrollBtn.style.borderColor = 'rgba(140,180,120,0.3)';
-					modeScrollBtn.style.color = 'rgba(200,220,140,0.9)';
-					modeEditBtn.style.background = 'rgba(140,180,120,0.06)';
-					modeEditBtn.style.borderColor = 'rgba(140,180,120,0.12)';
-					modeEditBtn.style.color = 'rgba(180,210,140,0.4)';
-					modeHint.textContent = 'Scroll mode — camera follows scroll position naturally.';
-					// Collapse any open stage and release override
-					if (activeStage >= 0) {
-						const prevControls = document.getElementById(`cp_${activeStage}_controls`);
-						const prevArrow = document.getElementById(`cp_${activeStage}_arrow`);
-						const prevStage = document.getElementById(`cp_stage_${activeStage}`);
-						if (prevControls) prevControls.style.display = 'none';
-						if (prevArrow) prevArrow.textContent = '▸';
-						if (prevStage) prevStage.style.borderColor = 'rgba(140,180,120,0.08)';
-					}
-					activeStage = -1;
-					cameraOverride = -1;
-					// Dim all stage headers
-					cameraPath.forEach((_, j) => {
-						const el = document.getElementById(`cp_stage_${j}`);
-						if (el) { el.style.opacity = '0.5'; el.style.pointerEvents = 'none'; }
-					});
-				} else {
-					modeEditBtn.style.background = 'rgba(120,180,80,0.25)';
-					modeEditBtn.style.borderColor = 'rgba(140,180,120,0.3)';
-					modeEditBtn.style.color = 'rgba(200,220,140,0.9)';
-					modeScrollBtn.style.background = 'rgba(140,180,120,0.06)';
-					modeScrollBtn.style.borderColor = 'rgba(140,180,120,0.12)';
-					modeScrollBtn.style.color = 'rgba(180,210,140,0.4)';
-					modeHint.textContent = 'Edit mode — click a stage to lock camera & tweak values. Switch to Scroll to preview transitions.';
-					// Enable all stage headers
-					cameraPath.forEach((_, j) => {
-						const el = document.getElementById(`cp_stage_${j}`);
-						if (el) { el.style.opacity = '1'; el.style.pointerEvents = 'auto'; }
-					});
-					// Auto-select first stage (or re-select previously active)
-					const startStage = activeStage >= 0 ? activeStage : 0;
-					selectStage(startStage);
-				}
-			}
-
-			modeScrollBtn.addEventListener('click', () => setMode('scroll'));
-			modeEditBtn.addEventListener('click', () => setMode('edit'));
-
-			let expandedStage = -1;
-
-			function selectStage(i) {
-				// Deselect previous highlight
-				if (activeStage >= 0 && activeStage !== i) {
-					const prevStage = document.getElementById(`cp_stage_${activeStage}`);
-					if (prevStage) prevStage.style.borderColor = 'rgba(140,180,120,0.08)';
-					// Collapse previous if it was expanded
-					if (expandedStage === activeStage) {
-						const prevControls = document.getElementById(`cp_${activeStage}_controls`);
-						const prevArrow = document.getElementById(`cp_${activeStage}_arrow`);
-						if (prevControls) prevControls.style.display = 'none';
-						if (prevArrow) prevArrow.textContent = '▸';
-						expandedStage = -1;
-					}
-				}
-				// Highlight selected (but don't expand)
-				const stageEl = document.getElementById(`cp_stage_${i}`);
-				if (stageEl) stageEl.style.borderColor = 'rgba(180,210,140,0.35)';
-				activeStage = i;
-				cameraOverride = i;
-				modeHint.textContent = `Editing: ${stageNames[i]} — click again to expand controls.`;
-				scrollToStage(i);
-				// Force scroll position to match keyframe so scroll and edit mode are consistent
-				currentScrollT = cameraPath[i][0];
-				targetScrollT = cameraPath[i][0];
-
-				// Force-apply this stage's params to uniforms immediately so preview is correct
-				const kf = cameraPath[i];
-				const sp = stageParams[i];
-				camera.position.set(kf[1], kf[2], kf[3]);
-				lookTarget.set(kf[4], kf[5], kf[6]);
-				camera.lookAt(lookTarget);
-				// Apply all per-stage params to uniforms right now
-				fogStart.value = sp.fogStart;
-				fogEnd.value = sp.fogEnd;
-				fogIntensity.value = sp.fogIntensity;
-				fogColor.value.setRGB(sp.fogR, sp.fogG, sp.fogB);
-				if (scene.fog) scene.fog.color.setRGB(sp.fogR, sp.fogG, sp.fogB);
-				grassDensity.value = sp.grassDensity;
-				bladeWidth.value = sp.bladeWidth;
-				bladeTipWidth.value = sp.bladeTipWidth;
-				bladeHeight.value = sp.bladeHeight;
-				bladeHeightVariation.value = sp.bladeHeightVar;
-				bladeLean.value = sp.bladeLean;
-				_baseWindSpeed = sp.windSpeed;
-				_baseWindAmp = sp.windAmplitude;
-				windSpeed.value = sp.windSpeed;
-				windAmplitude.value = sp.windAmplitude;
-				noiseAmplitude.value = sp.noiseAmp;
-				noiseFrequency.value = sp.noiseFreq;
-				noise2Amplitude.value = sp.noise2Amp;
-				noise2Frequency.value = sp.noise2Freq;
-				mouseRadius.value = sp.mouseRadius;
-				mouseStrength.value = sp.mouseStrength;
-				outerRadius.value = sp.outerRadius;
-				outerStrength.value = sp.outerStrength;
-				bladeBaseColor.value.setRGB(sp.bladeBaseR, sp.bladeBaseG, sp.bladeBaseB);
-				bladeTipColor.value.setRGB(sp.bladeTipR, sp.bladeTipG, sp.bladeTipB);
-				goldenTipColor.value.setRGB(sp.goldenTipR, sp.goldenTipG, sp.goldenTipB);
-				greenTipColor.value.setRGB(sp.greenTipR, sp.greenTipG, sp.greenTipB);
-				midColor.value.setRGB(sp.midR, sp.midG, sp.midB);
-				bladeColorVariation.value = sp.colorVar;
-				camSphereRadius.value = sp.camSphereRadius;
-				camSphereStrength.value = sp.camSphereStrength;
-				// DoF
-				const shouldDof = !!kf[9];
-				if (shouldDof !== dofEnabled) {
-					dofEnabled = shouldDof;
-					rebuildPipeline();
-				}
-				if (dofEnabled) {
-					focusDistanceU.value = kf[7];
-					focalLengthU.value = kf[10];
-					bokehScaleU.value = kf[11];
-				}
-			}
-
-			// Initialize — start in scroll mode, stages dimmed
-			setMode('scroll');
-
-			function scrollToStage(stageIndex) {
-				const section = document.querySelector(`.section[data-stage="${stageIndex}"]`);
-				if (section) {
-					section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-				}
-			}
-
-			cameraPath.forEach((kf, i) => {
-				const header = document.querySelector(`#cp_stage_${i} .cp-header`);
-				const controls = document.getElementById(`cp_${i}_controls`);
-				const arrow = document.getElementById(`cp_${i}_arrow`);
-				const stageEl = document.getElementById(`cp_stage_${i}`);
-
-				header.addEventListener('click', () => {
-					// Only respond in edit mode
-					if (editorMode !== 'edit') return;
-
-					if (activeStage === i) {
-						// Already selected — toggle expand/collapse
-						const controls = document.getElementById(`cp_${i}_controls`);
-						const arrow = document.getElementById(`cp_${i}_arrow`);
-						if (expandedStage === i) {
-							// Collapse
-							if (controls) controls.style.display = 'none';
-							if (arrow) arrow.textContent = '▸';
-							expandedStage = -1;
-							modeHint.textContent = `Editing: ${stageNames[i]} — click again to expand controls.`;
-						} else {
-							// Expand
-							if (controls) controls.style.display = 'block';
-							if (arrow) arrow.textContent = '▾';
-							expandedStage = i;
-							modeHint.textContent = `Editing: ${stageNames[i]} — changes apply in real-time.`;
-						}
-						return;
-					}
-
-					selectStage(i);
-				});
-
-				// Wire all 6 sliders (posX, posY, posZ, lookX, lookY, lookZ)
-				const fields = [
-					{ key: 'px', idx: 1 },
-					{ key: 'py', idx: 2 },
-					{ key: 'pz', idx: 3 },
-					{ key: 'lx', idx: 4 },
-					{ key: 'ly', idx: 5 },
-					{ key: 'lz', idx: 6 },
-				];
-
-				fields.forEach(f => {
-					const slider = document.getElementById(`cp_${i}_${f.key}`);
-					const valEl = document.getElementById(`cp_${i}_${f.key}_v`);
-					slider.addEventListener('input', () => {
-						kf[f.idx] = parseFloat(slider.value);
-						valEl.textContent = kf[f.idx].toFixed(1);
-					});
-				});
-
-				// DoF enabled toggle per stage
-				const dofToggleEl = document.getElementById(`cp_${i}_dof`);
-				const dofControlsEl = document.getElementById(`cp_${i}_dof_controls`);
-				dofToggleEl.addEventListener('click', () => {
-					kf[9] = kf[9] ? 0 : 1;
-					dofToggleEl.classList.toggle('active', !!kf[9]);
-					dofControlsEl.style.opacity = kf[9] ? '1' : '0.3';
-					dofControlsEl.style.pointerEvents = kf[9] ? 'auto' : 'none';
-				});
-
-				// Focus distance slider
-				const fdSlider = document.getElementById(`cp_${i}_fd`);
-				const fdVal = document.getElementById(`cp_${i}_fd_v`);
-				fdSlider.addEventListener('input', () => {
-					kf[7] = parseFloat(fdSlider.value);
-					fdVal.textContent = kf[7].toFixed(1);
-				});
-
-				// Auto focus toggle per stage
-				const afToggle = document.getElementById(`cp_${i}_af`);
-				const manualFocusEl = document.getElementById(`cp_${i}_manual_focus`);
-				const afSettingsEl = document.getElementById(`cp_${i}_af_settings`);
-				afToggle.addEventListener('click', () => {
-					kf[8] = kf[8] ? 0 : 1;
-					afToggle.classList.toggle('active', !!kf[8]);
-					manualFocusEl.style.opacity = kf[8] ? '0.3' : '1';
-					manualFocusEl.style.pointerEvents = kf[8] ? 'none' : 'auto';
-					afSettingsEl.style.opacity = kf[8] ? '1' : '0.3';
-					afSettingsEl.style.pointerEvents = kf[8] ? 'auto' : 'none';
-				});
-
-				// AF Speed slider
-				const afspdSlider = document.getElementById(`cp_${i}_afspd`);
-				const afspdVal = document.getElementById(`cp_${i}_afspd_v`);
-				afspdSlider.addEventListener('input', () => {
-					kf[12] = parseFloat(afspdSlider.value);
-					afspdVal.textContent = kf[12].toFixed(1);
-				});
-
-				// AF Min slider
-				const afminSlider = document.getElementById(`cp_${i}_afmin`);
-				const afminVal = document.getElementById(`cp_${i}_afmin_v`);
-				afminSlider.addEventListener('input', () => {
-					kf[13] = parseFloat(afminSlider.value);
-					afminVal.textContent = kf[13].toFixed(1);
-				});
-
-				// AF Max slider
-				const afmaxSlider = document.getElementById(`cp_${i}_afmax`);
-				const afmaxVal = document.getElementById(`cp_${i}_afmax_v`);
-				afmaxSlider.addEventListener('input', () => {
-					kf[14] = parseFloat(afmaxSlider.value);
-					afmaxVal.textContent = kf[14].toFixed(1);
-				});
-
-				// Focal Length slider
-				const flSlider = document.getElementById(`cp_${i}_fl`);
-				const flVal = document.getElementById(`cp_${i}_fl_v`);
-				flSlider.addEventListener('input', () => {
-					kf[10] = parseFloat(flSlider.value);
-					flVal.textContent = kf[10].toFixed(1);
-				});
-
-				// Bokeh Scale slider
-				const bkSlider = document.getElementById(`cp_${i}_bk`);
-				const bkVal = document.getElementById(`cp_${i}_bk_v`);
-				bkSlider.addEventListener('input', () => {
-					kf[11] = parseFloat(bkSlider.value);
-					bkVal.textContent = kf[11].toFixed(1);
-				});
-
-				// Wire per-stage param sliders
-				stageParamKeys.forEach(k => {
-					const sid = `sp_stage_${i}_${k}`;
-					const slider = document.getElementById(sid);
-					const valEl = document.getElementById(`${sid}_v`);
-					if (slider && valEl) {
-						slider.addEventListener('input', () => {
-							const v = parseFloat(slider.value);
-							stageParams[i][k] = v;
-							valEl.textContent = v.toFixed(2);
-							// Update the combined color picker if this is a color channel
-							const d = stageParamDefs[k];
-							if (d.isColor && d.ch) {
-								updateStageColorPicker(i, d.isColor);
-							}
-						});
-					}
-				});
-
-				// Wire combined color pickers for this stage
-				const stageColorGroups = {};
-				stageParamKeys.forEach(k => {
-					const d = stageParamDefs[k];
-					if (d.isColor) {
-						if (!stageColorGroups[d.isColor]) stageColorGroups[d.isColor] = [];
-						stageColorGroups[d.isColor].push(k);
-					}
-				});
-				Object.keys(stageColorGroups).forEach(colorName => {
-					const cpId = `sp_stage_${i}_cpick_${colorName}`;
-					const cpEl = document.getElementById(cpId);
-					if (cpEl) {
-						cpEl.addEventListener('input', () => {
-							const hex = cpEl.value;
-							const r = parseInt(hex.substr(1,2),16)/255;
-							const g = parseInt(hex.substr(3,2),16)/255;
-							const b = parseInt(hex.substr(5,2),16)/255;
-							// Find the R/G/B keys for this color
-							stageColorGroups[colorName].forEach(k => {
-								const d = stageParamDefs[k];
-								if (d.ch === 'r') stageParams[i][k] = r;
-								if (d.ch === 'g') stageParams[i][k] = g;
-								if (d.ch === 'b') stageParams[i][k] = b;
-								// Update associated slider + value display
-								const sid = `sp_stage_${i}_${k}`;
-								const sl = document.getElementById(sid);
-								const vl = document.getElementById(`${sid}_v`);
-								if (sl) sl.value = stageParams[i][k];
-								if (vl) vl.textContent = stageParams[i][k].toFixed(2);
-							});
-						});
-					}
-				});
-			});
-
-			// Helper: update a combined color picker from individual channel sliders
-			function updateStageColorPicker(stageIdx, colorName) {
-				const cpId = `sp_stage_${stageIdx}_cpick_${colorName}`;
-				const cpEl = document.getElementById(cpId);
-				if (!cpEl) return;
-				// Find the R/G/B keys
-				let r = 0, g = 0, b = 0;
-				stageParamKeys.forEach(k => {
-					const d = stageParamDefs[k];
-					if (d.isColor === colorName) {
-						if (d.ch === 'r') r = stageParams[stageIdx][k];
-						if (d.ch === 'g') g = stageParams[stageIdx][k];
-						if (d.ch === 'b') b = stageParams[stageIdx][k];
-					}
-				});
-				const hex = '#' + [r,g,b].map(v => Math.round(Math.min(1,Math.max(0,v))*255).toString(16).padStart(2,'0')).join('');
-				cpEl.value = hex;
-			}
-
-			// Expose camera override for animate loop — only active in edit mode
-			window._getCameraOverride = () => (editorMode === 'edit' ? cameraOverride : -1);
-			window._getEditorMode = () => editorMode;
-
-			// Copy Path JSON button
-			const copyPathBtn = document.getElementById('copyPathBtn');
-			copyPathBtn.addEventListener('mouseenter', () => {
-				copyPathBtn.style.background = 'rgba(140,180,120,0.2)';
-				copyPathBtn.style.borderColor = 'rgba(180,210,140,0.4)';
-				copyPathBtn.style.color = 'rgba(200,220,140,0.8)';
-			});
-			copyPathBtn.addEventListener('mouseleave', () => {
-				copyPathBtn.style.background = 'rgba(140,180,120,0.08)';
-				copyPathBtn.style.borderColor = 'rgba(140,180,120,0.2)';
-				copyPathBtn.style.color = 'rgba(180,210,140,0.5)';
-			});
-			copyPathBtn.addEventListener('click', () => {
-				const json = JSON.stringify(cameraPath.map((kf, i) => ({
-					stage: stageNames[i],
-					scroll: kf[0],
-					pos: { x: kf[1], y: kf[2], z: kf[3] },
-					look: { x: kf[4], y: kf[5], z: kf[6] },
-					focusDist: kf[7],
-					autoFocus: !!kf[8],
-					dofEnabled: !!kf[9],
-					focalLength: kf[10],
-					bokehScale: kf[11],
-					afSpeed: kf[12],
-					afMin: kf[13],
-					afMax: kf[14],
-					params: stageParams[i],
-				})), null, 2);
-				navigator.clipboard.writeText(json).then(() => {
-					const orig = copyPathBtn.textContent;
-					copyPathBtn.textContent = 'Copied!';
-					copyPathBtn.style.color = 'rgba(180,220,100,0.9)';
-					setTimeout(() => {
-						copyPathBtn.textContent = orig;
-						copyPathBtn.style.color = 'rgba(180,210,140,0.5)';
-					}, 1500);
-				}).catch(() => {
-					// Fallback: select text in a textarea
-					const ta = document.createElement('textarea');
-					ta.value = json;
-					document.body.appendChild(ta);
-					ta.select();
-					document.execCommand('copy');
-					document.body.removeChild(ta);
-					const orig = copyPathBtn.textContent;
-					copyPathBtn.textContent = 'Copied!';
-					setTimeout(() => { copyPathBtn.textContent = orig; }, 1500);
-				});
-			});
-
-			// Wire typography color pickers
-			typoColors.forEach((tc, idx) => {
-				const id = `sp_typo_${idx}`;
-				const input = document.getElementById(id);
-				input.addEventListener('input', () => {
-					document.documentElement.style.setProperty(tc.cssVar, input.value);
-				});
-			});
-
-			// Global DoF toggle
-			const globalDofToggle = document.getElementById('globalDofToggle');
-			globalDofToggle.addEventListener('click', () => {
-				globalDofEnabled = !globalDofEnabled;
-				globalDofToggle.classList.toggle('active', globalDofEnabled);
-				if (!globalDofEnabled) {
-					dofEnabled = false;
-					rebuildPipeline();
-				}
-			});
-
-			// FPS toggle
-			const fpsToggle = document.getElementById('fpsToggle');
-			fpsToggle.addEventListener('click', () => {
-				fpsEnabled = !fpsEnabled;
-				fpsToggle.classList.toggle('active', fpsEnabled);
-				if (fpsOverlay) fpsOverlay.style.display = fpsEnabled ? 'block' : 'none';
-			});
-		}
-
-		// ─── FPS Overlay ───────────────────────────────────────────────────
-		let fpsEnabled = false;
-		let fpsOverlay = document.createElement('div');
-		fpsOverlay.style.cssText = 'position:fixed;top:10px;left:10px;z-index:400;font:12px/1 "Inter",monospace;color:rgba(180,210,140,0.6);background:rgba(0,0,0,0.4);padding:5px 10px;border-radius:6px;pointer-events:none;display:none;';
-		document.body.appendChild(fpsOverlay);
-		let fpsFrames = 0, fpsLast = performance.now();
-
 		// ─── Wind Button ───────────────────────────────────────────────────
 		let windBurst = 0;
 		let _baseWindSpeed = 1.3;
 		let _baseWindAmp = 0.21;
-		let globalDofEnabled = !isMobile;
+		let globalDofEnabled = true;
 
 		// ─── Scroll-Driven Camera (one keyframe per section) ───────────────
 		// [scrollProgress, posX, posY, posZ, lookX, lookY, lookZ]
@@ -2431,38 +1483,13 @@
 			});
 		});
 
-		// ─── Mobile Hamburger Menu ─────────────────────────────────────────
-		const navHamburger = document.getElementById('navHamburger');
-		const navMobileOverlay = document.getElementById('navMobileOverlay');
-
-		navHamburger.addEventListener('click', () => {
-			navHamburger.classList.toggle('open');
-			navMobileOverlay.classList.toggle('open');
-		});
-
-		document.querySelectorAll('[data-nav-mobile]').forEach(link => {
-			link.addEventListener('click', (e) => {
-				e.preventDefault();
-				const stageIdx = parseInt(link.dataset.navMobile);
-				const section = document.querySelector(`.section[data-stage="${stageIdx}"]`);
-				navHamburger.classList.remove('open');
-				navMobileOverlay.classList.remove('open');
-				if (section) {
-					section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-				}
-			});
-		});
-
-		// ─── Build settings now that cameraPath is defined ─────────────────
-		buildSettings();
-
 		// ─── Boot ──────────────────────────────────────────────────────────
 		await renderer.computeAsync(computeInit);
 
 		// Pre-warm the pipeline by rendering a couple of frames before showing
 		renderer.domElement.style.opacity = '0';
 		renderer.domElement.style.transition = 'opacity 0.4s ease';
-		for (let i = 0; i < (isMobile ? 1 : 3); i++) {
+		for (let i = 0; i < 3; i++) {
 			renderer.compute(computeUpdate);
 			postProcessing.render();
 			await new Promise(r => requestAnimationFrame(r));
@@ -2487,22 +1514,7 @@
 			// Smooth scroll interpolation
 			currentScrollT += (targetScrollT - currentScrollT) * Math.min(1, dt * 6);
 
-			// If a camera path stage is being edited, snap to that keyframe directly
-			const override = window._getCameraOverride ? window._getCameraOverride() : -1;
-			let cam;
-			if (override >= 0 && override < cameraPath.length) {
-				const kf = cameraPath[override];
-				cam = {
-					px: kf[1], py: kf[2], pz: kf[3],
-					lx: kf[4], ly: kf[5], lz: kf[6],
-					fd: kf[7], af: kf[8], dofOn: kf[9],
-					fl: kf[10], bk: kf[11],
-					afSpd: kf[12], afMin: kf[13], afMax: kf[14],
-					params: stageParams[override],
-				};
-			} else {
-				cam = lerpCam(currentScrollT);
-			}
+			const cam = lerpCam(currentScrollT);
 			camera.position.set(cam.px, cam.py, cam.pz);
 			lookTarget.set(cam.lx, cam.ly, cam.lz);
 			camera.lookAt(lookTarget);
@@ -2638,25 +1650,6 @@
 					focalLengthU.value += (cam.fl - focalLengthU.value) * Math.min(1, dt * 6);
 					bokehScaleU.value += (cam.bk - bokehScaleU.value) * Math.min(1, dt * 6);
 				}
-
-				// Update the active stage's focus distance display if in auto mode
-				const ovr = window._getCameraOverride ? window._getCameraOverride() : -1;
-				if (ovr >= 0 && cameraPath[ovr][8] && dofEnabled) {
-					const fdEl = document.getElementById(`cp_${ovr}_fd_v`);
-					if (fdEl) fdEl.textContent = focusDistanceU.value.toFixed(1);
-				}
-			}
-
-			// FPS counter
-			fpsFrames++;
-			const fpsNow = performance.now();
-			if (fpsNow - fpsLast >= 500) {
-				if (fpsEnabled && fpsOverlay) {
-					fpsOverlay.textContent = (fpsFrames / ((fpsNow - fpsLast) / 1000)).toFixed(0) + ' FPS';
-				}
-				fpsFrames = 0;
-				fpsLast = fpsNow;
-			}
 
 			renderer.compute(computeUpdate);
 			postProcessing.render();
