@@ -147,13 +147,13 @@
 			</div>
 
 			<div class="contact-form-wrap" data-reveal>
-				<form onsubmit="event.preventDefault(); this.querySelector('button').textContent='Message Sent ✓'; this.querySelector('button').style.borderColor='rgba(120,200,80,0.5)'; this.querySelector('button').style.color='rgba(120,200,80,0.9)';">
-					<div class="form-group"><label>Your Name</label><input type="text" placeholder="Your Name" required></div>
-					<div class="form-group"><label>Email Address</label><input type="email" placeholder="example@gmail.com" required></div>
+				<form id="contactForm">
+					<div class="form-group"><label>Your Name</label><input type="text" id="cfName" placeholder="Your Name" required></div>
+					<div class="form-group"><label>Email Address</label><input type="email" id="cfEmail" placeholder="example@gmail.com" required></div>
 					<div class="form-group"><label>I'm Interested In</label>
-						<select required><option value="">Select a service...</option><option>Growth Consulting</option><option>Performance Marketing(Meta)</option><option>Influencer Marketing</option><option>SEO & Website</option><option>Content Production</option><option>Social Media Management</option><option>AI Content Production</option><option> Full-Service Package</option></select>
+						<select id="cfService" required><option value="">Select a service...</option><option>Growth Consulting</option><option>Performance Marketing(Meta)</option><option>Influencer Marketing</option><option>SEO & Website</option><option>Content Production</option><option>Social Media Management</option><option>AI Content Production</option><option>Full-Service Package</option></select>
 					</div>
-					<div class="form-group"><label>Project Details</label><textarea placeholder="Tell us about your project, goals, and timeline..."></textarea></div>
+					<div class="form-group"><label>Project Details</label><textarea id="cfMessage" placeholder="Tell us about your project, goals, and timeline..."></textarea></div>
 					<button type="submit" class="form-submit">Send Message →</button>
 				</form>
 			</div>
@@ -190,6 +190,45 @@
 		navMobileOverlay.querySelectorAll('a').forEach(a => { a.addEventListener('click', () => { navHamburger.classList.remove('open'); navMobileOverlay.classList.remove('open'); }); });
 		const revealObserver = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.style.transitionDelay = `${(entry.target.dataset.delay || 0) * 0.15}s`; entry.target.classList.add('revealed'); revealObserver.unobserve(entry.target); } }); }, { threshold: 0.1 });
 		document.querySelectorAll('[data-reveal]').forEach(el => revealObserver.observe(el));
+
+		document.getElementById('contactForm').addEventListener('submit', function(e) {
+			e.preventDefault();
+			const name = document.getElementById('cfName').value.trim();
+			const email = document.getElementById('cfEmail').value.trim();
+			const service = document.getElementById('cfService').value;
+			const message = document.getElementById('cfMessage').value.trim();
+			const btn = this.querySelector('button');
+
+			if (!name || !email || !service) return;
+
+			const subject = encodeURIComponent('New Inquiry from ' + name);
+			const body = encodeURIComponent(
+				'Name: ' + name + '\n' +
+				'Email: ' + email + '\n' +
+				'Service: ' + service + '\n' +
+				'Details: ' + (message || 'N/A')
+			);
+			const wpText = encodeURIComponent(
+				'*New Inquiry*\n\n' +
+				'Name: ' + name + '\n' +
+				'Email: ' + email + '\n' +
+				'Service: ' + service + '\n' +
+				'Details: ' + (message || 'N/A')
+			);
+
+			// Open email
+			window.open('mailto:revolvynmedia@gmail.com?subject=' + subject + '&body=' + body, '_blank');
+
+			// Open WhatsApp
+			setTimeout(() => {
+				window.open('https://wa.me/919123011730?text=' + wpText, '_blank');
+			}, 500);
+
+			btn.textContent = 'Message Sent ✓';
+			btn.style.borderColor = 'rgba(120,200,80,0.5)';
+			btn.style.color = 'rgba(120,200,80,0.9)';
+			btn.disabled = true;
+		});
 	</script>
 </body>
 </html>
