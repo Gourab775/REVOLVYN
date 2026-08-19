@@ -14,14 +14,12 @@
 		}
 		html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; }
 
-		/* Page transition */
 		.page-transition {
 			position: fixed; inset: 0; background: #000; z-index: 9999;
 			pointer-events: none; opacity: 0; transition: opacity 0.4s ease;
 		}
 		.page-transition.active { opacity: 1; }
 
-		/* Nav */
 		.nav-float {
 			position: fixed; top: 0; left: 0; right: 0;
 			display: flex; justify-content: space-between; align-items: center;
@@ -73,7 +71,6 @@
 			.nav-mobile-overlay { display: flex; }
 		}
 
-		/* Hero */
 		.portfolio-hero {
 			position: relative; width: 100%; height: 50vh; min-height: 360px;
 			display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -100,7 +97,6 @@
 			margin: 24px auto 0;
 		}
 
-		/* Theme sections */
 		.theme-section {
 			padding: 0 40px 60px;
 			max-width: 1400px; margin: 0 auto;
@@ -128,42 +124,37 @@
 			letter-spacing: 2px; text-transform: uppercase; white-space: nowrap;
 		}
 
-		/* Collage grid */
 		.collage-grid {
 			display: grid;
-			grid-template-columns: repeat(12, 1fr);
-			gap: 12px;
+			grid-template-columns: repeat(3, 1fr);
+			gap: 10px;
 		}
 
-		/* Collage items */
 		.collage-item {
 			position: relative; overflow: hidden; cursor: pointer;
 			opacity: 0; transform: translateY(24px);
-			background: #0a0c08; border-radius: 6px;
+			background: #0a0c08; border-radius: 10px;
 			transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
 						transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 		}
 		.collage-item.revealed { opacity: 1; transform: translateY(0); }
 
-		/* Layout patterns - repeating 6-item cycle */
-		/* Pattern A: span-6 + span-6 (two halves) */
-		/* Pattern B: span-4 + span-4 + span-4 (thirds) */
-		/* Pattern C: span-8 + span-4 (hero + sidebar) */
-		/* Pattern D: span-4 + span-8 (sidebar + hero) */
-		/* Pattern E: span-12 (full width) */
+		/* Landscape items - natural 16:9 */
+		.collage-item[data-orient="landscape"] {
+			grid-column: span 2;
+			aspect-ratio: 16/9;
+		}
+		/* Portrait items - natural 9:16 */
+		.collage-item[data-orient="portrait"] {
+			grid-column: span 1;
+			aspect-ratio: 9/16;
+		}
+		/* Last item in a row if odd count - take full width landscape */
+		.collage-item.odd-last {
+			grid-column: span 3;
+			aspect-ratio: 21/9;
+		}
 
-		/* Default: uniform 4-column */
-		.collage-item { grid-column: span 4; aspect-ratio: 4/3; }
-
-		/* Every 5th item pattern */
-		.collage-item:nth-child(6n+1) { grid-column: span 6; aspect-ratio: 16/9; }
-		.collage-item:nth-child(6n+2) { grid-column: span 6; aspect-ratio: 16/9; }
-		.collage-item:nth-child(6n+3) { grid-column: span 4; aspect-ratio: 1; }
-		.collage-item:nth-child(6n+4) { grid-column: span 4; aspect-ratio: 1; }
-		.collage-item:nth-child(6n+5) { grid-column: span 4; aspect-ratio: 1; }
-		.collage-item:nth-child(6n+6) { grid-column: span 12; aspect-ratio: 21/9; }
-
-		/* Video element */
 		.collage-item video {
 			width: 100%; height: 100%; object-fit: cover;
 			opacity: 0; transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease;
@@ -175,43 +166,32 @@
 			filter: brightness(1) saturate(1.1);
 		}
 
-		/* Overlay */
+		/* Hover overlay - just brand name */
 		.collage-overlay {
 			position: absolute; inset: 0;
-			background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.1) 35%, transparent 50%);
+			background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 40%, transparent 55%);
 			display: flex; flex-direction: column; justify-content: flex-end;
-			padding: 24px; opacity: 0;
+			padding: 20px; opacity: 0;
 			transition: opacity 0.35s ease;
 		}
 		.collage-item:hover .collage-overlay { opacity: 1; }
-		.collage-overlay .brand-tag {
-			display: inline-block; align-self: flex-start;
-			padding: 4px 10px; margin-bottom: 10px;
-			background: rgba(230, 245, 120, 0.12); border: 1px solid rgba(230, 245, 120, 0.2);
-			border-radius: 20px;
-			font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
-			color: rgba(230, 245, 120, 0.9); font-weight: 500;
+		.collage-overlay .brand-name {
+			font-family: 'Playfair Display', serif;
+			font-size: clamp(18px, 2.2vw, 28px);
+			color: rgba(248, 252, 240, 0.95);
+			line-height: 1.2;
 		}
-		.collage-overlay h3 {
-			font-family: 'Playfair Display', serif; font-size: clamp(16px, 2vw, 24px);
-			color: rgba(248, 252, 240, 0.95); margin-bottom: 4px; line-height: 1.2;
-		}
-		.collage-overlay .desc {
-			font-size: 12px; color: rgba(215, 230, 190, 0.55);
-			line-height: 1.5; max-width: 400px;
-			display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
-		}
-		.collage-overlay .view-btn {
-			margin-top: 14px; display: inline-flex; align-items: center; gap: 6px;
+		.collage-overlay .view-hint {
+			margin-top: 8px;
 			font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
-			color: rgba(230, 245, 120, 0.9); font-weight: 500;
+			color: rgba(230, 245, 120, 0.7); font-weight: 500;
+			display: inline-flex; align-items: center; gap: 6px;
 		}
-		.collage-overlay .view-btn::after {
+		.collage-overlay .view-hint::after {
 			content: '\2192'; transition: transform 0.3s;
 		}
-		.collage-item:hover .view-btn::after { transform: translateX(4px); }
+		.collage-item:hover .view-hint::after { transform: translateX(4px); }
 
-		/* CTA */
 		.portfolio-cta {
 			text-align: center; padding: 40px 20px 100px;
 		}
@@ -229,22 +209,29 @@
 			color: rgba(230, 245, 120, 0.95);
 		}
 
-		/* Mobile */
 		@media (max-width: 768px) {
 			.portfolio-hero { height: 35vh; min-height: 240px; }
-			.theme-section { padding: 0 16px 48px; }
+			.theme-section { padding: 0 12px 48px; }
 			.theme-header { margin-bottom: 20px; padding-bottom: 12px; }
 			.collage-grid {
 				grid-template-columns: repeat(2, 1fr);
-				gap: 8px;
+				gap: 6px;
 			}
-			.collage-item { grid-column: span 1 !important; aspect-ratio: 1/1 !important; }
-			.collage-item:nth-child(4n+1) {
-				grid-column: span 2 !important;
-				aspect-ratio: 16/9 !important;
+			.collage-item { border-radius: 8px; }
+			.collage-item[data-orient="landscape"] {
+				grid-column: span 2;
+				aspect-ratio: 16/9;
 			}
-			.collage-overlay { padding: 14px; }
-			.collage-overlay .desc { display: none; }
+			.collage-item[data-orient="portrait"] {
+				grid-column: span 1;
+				aspect-ratio: 9/16;
+			}
+			.collage-item.odd-last {
+				grid-column: span 2;
+				aspect-ratio: 16/9;
+			}
+			.collage-overlay { padding: 12px; }
+			.collage-overlay .brand-name { font-size: 16px; }
 		}
 	</style>
 </head>
@@ -305,49 +292,37 @@
 		});
 
 		const projects = [
-			{ brand: "EATFESTO", title: "EatFesto", desc: "A food and dining-focused brand. Visual showcase of food, lifestyle, and appetite-driven brand storytelling.", video: "https://video.wixstatic.com/video/4c7a69_50273e50f63d448e818bd9122e3fc5e1/720p/mp4/file.mp4", theme: "food" },
-			{ brand: "TEZZO", title: "Tezzo", desc: "A modern lifestyle-oriented brand showcasing a contemporary visual approach designed around strong branding.", video: "https://video.wixstatic.com/video/4c7a69_e9c69930b4f74394a7a24aaa079c9e50/720p/mp4/file.mp4", theme: "lifestyle" },
-			{ brand: "NIKE", title: "Nike", desc: "Globally recognized sportswear and lifestyle brand known for performance, innovation, and culture-driven storytelling.", video: "https://video.wixstatic.com/video/4c7a69_e0893a64f65d45c288100d58ed3ac6e7/720p/mp4/file.mp4", theme: "luxury" },
-			{ brand: "PROSKIRE", title: "Proskire", desc: "A performance and lifestyle-focused brand highlighting dynamic visual style suited to active, modern audiences.", video: "https://video.wixstatic.com/video/4c7a69_ae60f198c15a4dabbec575bb07569699/720p/mp4/file.mp4", theme: "lifestyle" },
-			{ brand: "RELANCE", title: "Relance", desc: "A contemporary consumer brand with a focus on modern visual communication and lifestyle-led storytelling.", video: "https://video.wixstatic.com/video/4c7a69_85112fcc1b354ceba8e9b7400194de5a/720p/mp4/file.mp4", theme: "lifestyle" },
-			{ brand: "KERASTASE", title: "Kérastase", desc: "A premium professional haircare brand known for luxury beauty, advanced haircare, and sophisticated brand communication.", video: "https://video.wixstatic.com/video/4c7a69_6e02f73ac2854749902a919538d625f4/720p/mp4/file.mp4", theme: "beauty" },
-			{ brand: "MEDICINE MAMA", title: "Medicine Mama", desc: "A natural beauty and skincare brand focused on plant-based, wellness-oriented personal care and clean beauty.", video: "https://video.wixstatic.com/video/4c7a69_dc3f7913414e4dbe8f3bc3cdd7f07116/480p/mp4/file.mp4", theme: "beauty" },
-			{ brand: "KORA ORGANIC", title: "KORA Organics", desc: "A skincare and wellness brand founded around clean, organic beauty and mindful self-care.", video: "https://video.wixstatic.com/video/4c7a69_f41b341b60e34a8193adb23bb5b7f217/480p/mp4/file.mp4", theme: "beauty" },
-			{ brand: "DIOR", title: "Dior", desc: "A globally renowned luxury fashion and beauty house recognized for elegance, craftsmanship, and iconic visual identity.", video: "https://video.wixstatic.com/video/4c7a69_14a8db37650e4e048c74550cdc0850bd/360p/mp4/file.mp4", theme: "luxury" },
-			{ brand: "CARATLANE", title: "CaratLane", desc: "A modern jewelry brand known for making fine jewelry accessible through contemporary designs and digital-first storytelling.", video: "https://video.wixstatic.com/video/4c7a69_13620f51b0ed46c5914c8523b4a77218/720p/mp4/file.mp4", theme: "luxury" },
-			{ brand: "INSTA360", title: "Insta360", desc: "An action camera and imaging technology brand known for immersive 360-degree cameras and creative capture.", video: "https://video.wixstatic.com/video/4c7a69_a9f35c5bc14746b1af9e2afae93f07e3/360p/mp4/file.mp4", theme: "tech" },
-			{ brand: "NOTHING", title: "Nothing Phone", desc: "A consumer technology brand recognized for distinctive industrial design, transparent aesthetics, and culture-driven approach.", video: "https://video.wixstatic.com/video/4c7a69_0e60df56daa74e448177aac81ff654ce/720p/mp4/file.mp4", theme: "tech" },
-			{ brand: "NOTHING", title: "Nothing — Campaign 2", desc: "Additional Nothing brand content showcasing the brand's distinctive visual language and product-focused storytelling.", video: "https://video.wixstatic.com/video/4c7a69_498dc7119da64efc845ed771d89eb7e6/720p/mp4/file.mp4", theme: "tech" },
-			{ brand: "NOTHING", title: "Nothing — Campaign 3", desc: "Another Nothing campaign focused on contemporary technology, product presentation, and visually distinctive brand storytelling.", video: "https://video.wixstatic.com/video/4c7a69_c76738c35e5a4911887b00f07fb6a36d/720p/mp4/file.mp4", theme: "tech" },
-			{ brand: "CAFE", title: "Cafe Project", desc: "Cafe-focused content designed around food, atmosphere, lifestyle, and visual storytelling for hospitality.", video: "https://video.wixstatic.com/video/4c7a69_18626112b3fe48be90065fd2d94d93dd/720p/mp4/file.mp4", theme: "food" },
-			{ brand: "MISA", title: "Misa", desc: "A contemporary lifestyle and beauty-oriented brand positioned around refined aesthetics and modern lifestyle storytelling.", video: "https://video.wixstatic.com/video/4c7a69_ab5372c0df9d40f0acac2dc6f1791108/1080p/mp4/file.mp4", theme: "beauty" },
-			{ brand: "HELLSKIN", title: "Hellskin", desc: "A bold, modern beauty and skincare brand with contemporary, expressive visual direction and product-led storytelling.", video: "https://video.wixstatic.com/video/4c7a69_422c79f20d984ac3a13abaed654f6738/1080p/mp4/file.mp4", theme: "beauty" },
-			{ brand: "GENRAGE", title: "Genrage", desc: "A contemporary youth and lifestyle-focused brand highlighting energetic creative direction and culture-driven storytelling.", video: "https://video.wixstatic.com/video/4c7a69_3a6051a870504c6eaf51a3547ca471ce/1080p/mp4/file.mp4", theme: "lifestyle" },
-			{ brand: "SAT PROFESSOR", title: "SAT Professor", desc: "An education-focused brand associated with SAT preparation, turning educational messaging into engaging, accessible content.", video: "https://video.wixstatic.com/video/4c7a69_4aceff66cfd24ababafb1f6e47495261/1080p/mp4/file.mp4", theme: "education" },
-			{ brand: "VANESA", title: "Vanesa", desc: "A contemporary beauty and lifestyle brand positioned around polished visual storytelling and beauty aesthetics.", video: "https://video.wixstatic.com/video/4c7a69_04fe62bfdee4460da9398f023d851bfa/720p/mp4/file.mp4", theme: "beauty" },
-			{ brand: "HOICHOI", title: "Hoichoi", desc: "A leading Bengali-language streaming entertainment platform known for original series, films, and digital entertainment.", video: "https://video.wixstatic.com/video/4c7a69_bf4f28780ad642aeb01cb61516c362e3/1080p/mp4/file.mp4", theme: "entertainment" },
-			{ brand: "TRADECFD", title: "TradeCFD", desc: "A financial trading-oriented brand demonstrating how performance-focused messaging translates into engaging digital content.", video: "https://video.wixstatic.com/video/4c7a69_2a2f300c4ea4418291a3633bf79a8ccd/720p/mp4/file.mp4", theme: "finance" },
-			{ brand: "BYTBOTS", title: "BytBots", desc: "A technology and digital-focused brand highlighting modern tech communication and visually engaging content.", video: "https://video.wixstatic.com/video/4c7a69_729787cbdd9d43b5874bcfa720b60ef6/1080p/mp4/file.mp4", theme: "tech" },
-			{ brand: "INDULEKHA", title: "Indulekha", desc: "A beauty and haircare brand known for traditional Indian-inspired wellness and personal-care products.", video: "https://video.wixstatic.com/video/4c7a69_920b8839a3fa4fa6bf1917ca8a44b414/720p/mp4/file.mp4", theme: "beauty" },
-			{ brand: "ARMANI", title: "Giorgio Armani", desc: "A globally recognized luxury fashion and lifestyle house known for refined design, understated elegance, and premium craftsmanship.", video: "https://video.wixstatic.com/video/4c7a69_a66586e5154d4a4ba6f5ce1e11b80694/720p/mp4/file.mp4", theme: "luxury" },
-			{ brand: "PROJECT", title: "Client Campaign 1", desc: "Additional client campaign video showcasing creative direction and brand storytelling.", video: "https://video.wixstatic.com/video/4c7a69_0abcdc24eaed4b3e95a67da99aa1a2b0/1080p/mp4/file.mp4", theme: "lifestyle" },
-			{ brand: "PROJECT", title: "Client Campaign 2", desc: "Additional client campaign video with dynamic visual approach and engaging content.", video: "https://video.wixstatic.com/video/4c7a69_c46cfd63cd96443badd9a27a0665fdff/1080p/mp4/file.mp4", theme: "lifestyle" },
-			{ brand: "PROJECT", title: "Client Campaign 3", desc: "Additional client campaign video demonstrating creative content production.", video: "https://video.wixstatic.com/video/4c7a69_b378be38f16a4a48885fc3ef997da7c6/720p/mp4/file.mp4", theme: "lifestyle" },
-			{ brand: "PROJECT", title: "Client Campaign 4", desc: "Additional client campaign video with compelling visual narrative.", video: "https://video.wixstatic.com/video/4c7a69_52ab300a0f5d4f3eb2e022531b7f5f26/720p/mp4/file.mp4", theme: "lifestyle" }
+			{ brand: "NIKE", title: "Nike", desc: "Globally recognized sportswear and lifestyle brand known for performance, innovation, and culture-driven storytelling.", video: "https://video.wixstatic.com/video/4c7a69_e0893a64f65d45c288100d58ed3ac6e7/720p/mp4/file.mp4", theme: "luxury", orient: "landscape" },
+			{ brand: "DIOR", title: "Dior", desc: "A globally renowned luxury fashion and beauty house recognized for elegance, craftsmanship, and iconic visual identity.", video: "https://video.wixstatic.com/video/4c7a69_14a8db37650e4e048c74550cdc0850bd/360p/mp4/file.mp4", theme: "luxury", orient: "portrait" },
+			{ brand: "ARMANI", title: "Giorgio Armani", desc: "A globally recognized luxury fashion and lifestyle house known for refined design, understated elegance, and premium craftsmanship.", video: "https://video.wixstatic.com/video/4c7a69_a66586e5154d4a4ba6f5ce1e11b80694/720p/mp4/file.mp4", theme: "luxury", orient: "landscape" },
+			{ brand: "KERASTASE", title: "Kérastase", desc: "A premium professional haircare brand known for luxury beauty, advanced haircare, and sophisticated brand communication.", video: "https://video.wixstatic.com/video/4c7a69_6e02f73ac2854749902a919538d625f4/720p/mp4/file.mp4", theme: "beauty", orient: "landscape" },
+			{ brand: "CARATLANE", title: "CaratLane", desc: "A modern jewelry brand known for making fine jewelry accessible through contemporary designs and digital-first storytelling.", video: "https://video.wixstatic.com/video/4c7a69_13620f51b0ed46c5914c8523b4a77218/720p/mp4/file.mp4", theme: "luxury", orient: "portrait" },
+			{ brand: "MEDICINE MAMA", title: "Medicine Mama", desc: "A natural beauty and skincare brand focused on plant-based, wellness-oriented personal care and clean beauty.", video: "https://video.wixstatic.com/video/4c7a69_dc3f7913414e4dbe8f3bc3cdd7f07116/480p/mp4/file.mp4", theme: "beauty", orient: "portrait" },
+			{ brand: "KORA ORGANIC", title: "KORA Organics", desc: "A skincare and wellness brand founded around clean, organic beauty and mindful self-care.", video: "https://video.wixstatic.com/video/4c7a69_f41b341b60e34a8193adb23bb5b7f217/480p/mp4/file.mp4", theme: "beauty", orient: "portrait" },
+			{ brand: "MISA", title: "Misa", desc: "A contemporary lifestyle and beauty-oriented brand positioned around refined aesthetics and modern lifestyle storytelling.", video: "https://video.wixstatic.com/video/4c7a69_ab5372c0df9d40f0acac2dc6f1791108/1080p/mp4/file.mp4", theme: "beauty", orient: "portrait" },
+			{ brand: "HELLSKIN", title: "Hellskin", desc: "A bold, modern beauty and skincare brand with contemporary, expressive visual direction and product-led storytelling.", video: "https://video.wixstatic.com/video/4c7a69_422c79f20d984ac3a13abaed654f6738/1080p/mp4/file.mp4", theme: "beauty", orient: "portrait" },
+			{ brand: "VANESA", title: "Vanesa", desc: "A contemporary beauty and lifestyle brand positioned around polished visual storytelling and beauty aesthetics.", video: "https://video.wixstatic.com/video/4c7a69_04fe62bfdee4460da9398f023d851bfa/720p/mp4/file.mp4", theme: "beauty", orient: "landscape" },
+			{ brand: "INDULEKHA", title: "Indulekha", desc: "A beauty and haircare brand known for traditional Indian-inspired wellness and personal-care products.", video: "https://video.wixstatic.com/video/4c7a69_920b8839a3fa4fa6bf1917ca8a44b414/720p/mp4/file.mp4", theme: "beauty", orient: "portrait" },
+			{ brand: "INSTA360", title: "Insta360", desc: "An action camera and imaging technology brand known for immersive 360-degree cameras and creative capture.", video: "https://video.wixstatic.com/video/4c7a69_a9f35c5bc14746b1af9e2afae93f07e3/360p/mp4/file.mp4", theme: "tech", orient: "landscape" },
+			{ brand: "NOTHING", title: "Nothing Phone", desc: "A consumer technology brand recognized for distinctive industrial design, transparent aesthetics, and culture-driven approach.", video: "https://video.wixstatic.com/video/4c7a69_0e60df56daa74e448177aac81ff654ce/720p/mp4/file.mp4", theme: "tech", orient: "landscape" },
+			{ brand: "NOTHING", title: "Nothing — Campaign 2", desc: "Additional Nothing brand content showcasing the brand's distinctive visual language and product-focused storytelling.", video: "https://video.wixstatic.com/video/4c7a69_498dc7119da64efc845ed771d89eb7e6/720p/mp4/file.mp4", theme: "tech", orient: "landscape" },
+			{ brand: "NOTHING", title: "Nothing — Campaign 3", desc: "Another Nothing campaign focused on contemporary technology, product presentation, and visually distinctive brand storytelling.", video: "https://video.wixstatic.com/video/4c7a69_c76738c35e5a4911887b00f07fb6a36d/720p/mp4/file.mp4", theme: "tech", orient: "landscape" },
+			{ brand: "BYTBOTS", title: "BytBots", desc: "A technology and digital-focused brand highlighting modern tech communication and visually engaging content.", video: "https://video.wixstatic.com/video/4c7a69_729787cbdd9d43b5874bcfa720b60ef6/1080p/mp4/file.mp4", theme: "tech", orient: "landscape" },
+			{ brand: "TEZZO", title: "Tezzo", desc: "A modern lifestyle-oriented brand showcasing a contemporary visual approach designed around strong branding.", video: "https://video.wixstatic.com/video/4c7a69_e9c69930b4f74394a7a24aaa079c9e50/720p/mp4/file.mp4", theme: "lifestyle", orient: "landscape" },
+			{ brand: "PROSKIRE", title: "Proskire", desc: "A performance and lifestyle-focused brand highlighting dynamic visual style suited to active, modern audiences.", video: "https://video.wixstatic.com/video/4c7a69_ae60f198c15a4dabbec575bb07569699/720p/mp4/file.mp4", theme: "lifestyle", orient: "landscape" },
+			{ brand: "RELANCE", title: "Relance", desc: "A contemporary consumer brand with a focus on modern visual communication and lifestyle-led storytelling.", video: "https://video.wixstatic.com/video/4c7a69_85112fcc1b354ceba8e9b7400194de5a/720p/mp4/file.mp4", theme: "lifestyle", orient: "landscape" },
+			{ brand: "GENRAGE", title: "Genrage", desc: "A contemporary youth and lifestyle-focused brand highlighting energetic creative direction and culture-driven storytelling.", video: "https://video.wixstatic.com/video/4c7a69_3a6051a870504c6eaf51a3547ca471ce/1080p/mp4/file.mp4", theme: "lifestyle", orient: "portrait" },
+			{ brand: "EATFESTO", title: "EatFesto", desc: "A food and dining-focused brand. Visual showcase of food, lifestyle, and appetite-driven brand storytelling.", video: "https://video.wixstatic.com/video/4c7a69_50273e50f63d448e818bd9122e3fc5e1/720p/mp4/file.mp4", theme: "food", orient: "landscape" },
+			{ brand: "CAFE", title: "Cafe Project", desc: "Cafe-focused content designed around food, atmosphere, lifestyle, and visual storytelling for hospitality.", video: "https://video.wixstatic.com/video/4c7a69_18626112b3fe48be90065fd2d94d93dd/720p/mp4/file.mp4", theme: "food", orient: "landscape" },
+			{ brand: "HOICHOI", title: "Hoichoi", desc: "A leading Bengali-language streaming entertainment platform known for original series, films, and digital entertainment.", video: "https://video.wixstatic.com/video/4c7a69_bf4f28780ad642aeb01cb61516c362e3/1080p/mp4/file.mp4", theme: "entertainment", orient: "landscape" },
+			{ brand: "SAT PROFESSOR", title: "SAT Professor", desc: "An education-focused brand associated with SAT preparation, turning educational messaging into engaging, accessible content.", video: "https://video.wixstatic.com/video/4c7a69_4aceff66cfd24ababafb1f6e47495261/1080p/mp4/file.mp4", theme: "education", orient: "landscape" },
+			{ brand: "TRADECFD", title: "TradeCFD", desc: "A financial trading-oriented brand demonstrating how performance-focused messaging translates into engaging digital content.", video: "https://video.wixstatic.com/video/4c7a69_2a2f300c4ea4418291a3633bf79a8ccd/720p/mp4/file.mp4", theme: "finance", orient: "landscape" },
+			{ brand: "PROJECT", title: "Client Campaign 1", desc: "Additional client campaign video showcasing creative direction and brand storytelling.", video: "https://video.wixstatic.com/video/4c7a69_0abcdc24eaed4b3e95a67da99aa1a2b0/1080p/mp4/file.mp4", theme: "lifestyle", orient: "portrait" },
+			{ brand: "PROJECT", title: "Client Campaign 2", desc: "Additional client campaign video with dynamic visual approach and engaging content.", video: "https://video.wixstatic.com/video/4c7a69_c46cfd63cd96443badd9a27a0665fdff/1080p/mp4/file.mp4", theme: "lifestyle", orient: "portrait" },
+			{ brand: "PROJECT", title: "Client Campaign 3", desc: "Additional client campaign video demonstrating creative content production.", video: "https://video.wixstatic.com/video/4c7a69_b378be38f16a4a48885fc3ef997da7c6/720p/mp4/file.mp4", theme: "lifestyle", orient: "landscape" },
+			{ brand: "PROJECT", title: "Client Campaign 4", desc: "Additional client campaign video with compelling visual narrative.", video: "https://video.wixstatic.com/video/4c7a69_52ab300a0f5d4f3eb2e022531b7f5f26/720p/mp4/file.mp4", theme: "lifestyle", orient: "landscape" }
 		];
 
-		const themes = [
-			{ id: "luxury", name: "Luxury & Fashion", count: 0 },
-			{ id: "beauty", name: "Beauty & Skincare", count: 0 },
-			{ id: "tech", name: "Tech & Innovation", count: 0 },
-			{ id: "lifestyle", name: "Lifestyle & Performance", count: 0 },
-			{ id: "food", name: "Food & Hospitality", count: 0 },
-			{ id: "entertainment", name: "Entertainment & Culture", count: 0 },
-			{ id: "education", name: "Education & Finance", count: 0 },
-			{ id: "finance", name: "Education & Finance", count: 0 }
-		];
-
-		// Merge education + finance into one section
 		const mergedThemes = [
 			{ id: "luxury", name: "Luxury & Fashion", filter: "luxury" },
 			{ id: "beauty", name: "Beauty & Skincare", filter: "beauty" },
@@ -369,38 +344,44 @@
 
 			const section = document.createElement('div');
 			section.className = 'theme-section';
-			section.setAttribute('data-reveal-section', '');
 
 			const grid = document.createElement('div');
 			grid.className = 'collage-grid';
 
-			filtered.forEach((project) => {
+			filtered.forEach((project, i) => {
 				const item = document.createElement('div');
 				item.className = 'collage-item';
+				item.setAttribute('data-orient', project.orient);
 				item.setAttribute('data-reveal', '');
-				item.setAttribute('data-delay', String(Math.min(globalIndex % 12, 8)));
+				item.setAttribute('data-delay', String(Math.min(i, 6)));
+
+				// Mark last item if odd count in this theme section
+				const isLast = i === filtered.length - 1;
+				const isOdd = filtered.length % 2 !== 0;
+				if (isLast && isOdd && filtered.length > 1) {
+					item.classList.add('odd-last');
+				}
 
 				const params = new URLSearchParams({
 					brand: project.brand,
 					title: project.title,
 					desc: project.desc,
 					video: project.video,
+					orient: project.orient,
 					index: String(globalIndex)
 				}).toString();
 
 				item.onclick = () => smoothNavigate('video.html?' + params);
 
-				const preload = globalIndex < 4 ? 'auto' : 'none';
-				const srcAttr = globalIndex < 4 ? `src="${project.video}"` : '';
-				const dataSrcAttr = globalIndex >= 4 ? `data-src="${project.video}"` : '';
+				const preload = globalIndex < 3 ? 'auto' : 'none';
+				const srcAttr = globalIndex < 3 ? `src="${project.video}"` : '';
+				const dataSrcAttr = globalIndex >= 3 ? `data-src="${project.video}"` : '';
 
 				item.innerHTML = `
 					<video muted loop playsinline preload="${preload}" ${srcAttr} ${dataSrcAttr}></video>
 					<div class="collage-overlay">
-						<div class="brand-tag">${project.brand}</div>
-						<h3>${project.title}</h3>
-						<div class="desc">${project.desc}</div>
-						<div class="view-btn">View Project</div>
+						<div class="brand-name">${project.brand}</div>
+						<div class="view-hint">View Project</div>
 					</div>
 				`;
 				grid.appendChild(item);
@@ -418,13 +399,13 @@
 			container.appendChild(section);
 		});
 
-		// Mark preloaded videos as loaded
-		document.querySelectorAll('.collage-item:nth-child(-n+4) video').forEach(v => {
+		// Mark preloaded videos
+		document.querySelectorAll('.collage-item:nth-child(-n+3) video').forEach(v => {
 			if (v.readyState >= 2) v.classList.add('loaded');
 			else v.addEventListener('canplay', () => v.classList.add('loaded'), { once: true });
 		});
 
-		// Lazy load videos
+		// Lazy load
 		const videoObserver = new IntersectionObserver((entries) => {
 			entries.forEach(entry => {
 				if (entry.isIntersecting) {

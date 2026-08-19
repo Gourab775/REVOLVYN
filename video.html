@@ -14,14 +14,12 @@
 		}
 		html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; }
 
-		/* Page transition */
 		.page-transition {
 			position: fixed; inset: 0; background: #000; z-index: 9999;
 			pointer-events: none; opacity: 0; transition: opacity 0.4s ease;
 		}
 		.page-transition.active { opacity: 1; }
 
-		/* Nav */
 		.nav-float {
 			position: fixed; top: 0; left: 0; right: 0;
 			display: flex; justify-content: space-between; align-items: center;
@@ -73,14 +71,13 @@
 			.nav-mobile-overlay { display: flex; }
 		}
 
-		/* Back button */
 		.back-btn {
 			position: fixed; top: 80px; left: 40px; z-index: 90;
 			display: inline-flex; align-items: center; gap: 8px;
 			font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
 			color: rgba(215, 230, 190, 0.5); text-decoration: none;
 			transition: color 0.3s; font-weight: 500;
-			pointer-events: auto;
+			pointer-events: auto; cursor: pointer;
 		}
 		.back-btn:hover { color: rgba(230, 245, 120, 0.95); }
 		.back-btn svg {
@@ -91,24 +88,39 @@
 			.back-btn { top: 70px; left: 16px; }
 		}
 
-		/* Video hero */
+		/* Video hero - landscape mode */
 		.video-hero {
 			position: relative; width: 100%; height: 70vh; min-height: 400px;
 			display: flex; align-items: center; justify-content: center;
 			overflow: hidden; background: #000;
 		}
 		.video-hero video {
-			width: 100%; height: 100%; object-fit: cover;
+			width: 100%; height: 100%; object-fit: contain;
 			opacity: 0; transition: opacity 0.8s ease;
+			background: #000;
 		}
 		.video-hero video.loaded { opacity: 1; }
 		.video-hero::after {
 			content: ''; position: absolute; inset: 0;
-			background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, transparent 20%, transparent 70%, rgba(0,0,0,0.9) 100%);
+			background: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, transparent 15%, transparent 80%, rgba(0,0,0,0.9) 100%);
 			pointer-events: none;
 		}
 
-		/* Play button overlay */
+		/* Portrait video hero - taller, narrower */
+		.video-hero.portrait-mode {
+			height: 85vh; min-height: 500px;
+		}
+		.video-hero.portrait-mode video {
+			max-width: 420px;
+			border-radius: 12px;
+		}
+
+		/* Landscape video - rounded corners */
+		.video-hero.landscape-mode video {
+			border-radius: 10px;
+			max-width: 1100px;
+		}
+
 		.play-overlay {
 			position: absolute; inset: 0; display: flex;
 			align-items: center; justify-content: center; z-index: 5;
@@ -131,9 +143,8 @@
 			transform: scale(1.08);
 		}
 
-		/* Project info */
 		.project-info {
-			max-width: 900px; margin: -80px auto 0; padding: 0 40px;
+			max-width: 900px; margin: -60px auto 0; padding: 0 40px;
 			position: relative; z-index: 10;
 		}
 		.project-info .brand-tag {
@@ -160,7 +171,6 @@
 			max-width: 600px;
 		}
 
-		/* Project details grid */
 		.project-details {
 			max-width: 900px; margin: 48px auto 0; padding: 0 40px;
 			display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
@@ -179,12 +189,10 @@
 			color: rgba(245, 250, 230, 0.9);
 		}
 
-		/* Navigation arrows */
 		.project-nav {
-			max-width: 900px; margin: 60px auto 0; padding: 0 40px;
+			max-width: 900px; margin: 60px auto 0; padding: 32px 40px 80px;
 			display: flex; justify-content: space-between; align-items: center;
 			border-top: 1px solid rgba(230, 245, 120, 0.08);
-			padding-top: 32px; padding-bottom: 80px;
 		}
 		.nav-link {
 			display: flex; align-items: center; gap: 10px;
@@ -207,7 +215,6 @@
 		}
 		.nav-link:hover .nav-brand { color: rgba(230, 245, 120, 0.95); }
 
-		/* CTA */
 		.project-cta {
 			text-align: center; padding: 20px 20px 100px;
 		}
@@ -225,10 +232,12 @@
 			color: rgba(230, 245, 120, 0.95);
 		}
 
-		/* Mobile */
 		@media (max-width: 768px) {
 			.video-hero { height: 50vh; min-height: 280px; }
-			.project-info { margin-top: -40px; padding: 0 20px; }
+			.video-hero.portrait-mode { height: 65vh; min-height: 350px; }
+			.video-hero.portrait-mode video { max-width: 280px; border-radius: 10px; }
+			.video-hero.landscape-mode video { border-radius: 8px; }
+			.project-info { margin-top: -30px; padding: 0 20px; }
 			.project-details { grid-template-columns: 1fr; gap: 20px; padding: 0 20px; margin-top: 32px; }
 			.project-nav { padding: 24px 20px 60px; margin-top: 40px; }
 		}
@@ -330,35 +339,35 @@
 		});
 
 		const allProjects = [
-			{ brand: "EATFESTO", title: "EatFesto", desc: "A food and dining-focused brand. Visual showcase of food, lifestyle, and appetite-driven brand storytelling.", video: "https://video.wixstatic.com/video/4c7a69_50273e50f63d448e818bd9122e3fc5e1/720p/mp4/file.mp4", category: "Food & Beverage", services: "Brand Film" },
-			{ brand: "TEZZO", title: "Tezzo", desc: "A modern lifestyle-oriented brand showcasing a contemporary visual approach designed around strong branding.", video: "https://video.wixstatic.com/video/4c7a69_e9c69930b4f74394a7a24aaa079c9e50/720p/mp4/file.mp4", category: "Lifestyle", services: "Brand Story" },
-			{ brand: "NIKE", title: "Nike", desc: "Globally recognized sportswear and lifestyle brand known for performance, innovation, and culture-driven storytelling.", video: "https://video.wixstatic.com/video/4c7a69_e0893a64f65d45c288100d58ed3ac6e7/720p/mp4/file.mp4", category: "Sportswear", services: "Ad Film" },
-			{ brand: "PROSKIRE", title: "Proskire", desc: "A performance and lifestyle-focused brand highlighting dynamic visual style suited to active, modern audiences.", video: "https://video.wixstatic.com/video/4c7a69_ae60f198c15a4dabbec575bb07569699/720p/mp4/file.mp4", category: "Performance", services: "Content Creation" },
-			{ brand: "RELANCE", title: "Relance", desc: "A contemporary consumer brand with a focus on modern visual communication and lifestyle-led storytelling.", video: "https://video.wixstatic.com/video/4c7a69_85112fcc1b354ceba8e9b7400194de5a/720p/mp4/file.mp4", category: "Consumer Brand", services: "Brand Campaign" },
-			{ brand: "KERASTASE", title: "Kérastase", desc: "A premium professional haircare brand known for luxury beauty, advanced haircare, and sophisticated brand communication.", video: "https://video.wixstatic.com/video/4c7a69_6e02f73ac2854749902a919538d625f4/720p/mp4/file.mp4", category: "Beauty", services: "Premium Film" },
-			{ brand: "MEDICINE MAMA", title: "Medicine Mama", desc: "A natural beauty and skincare brand focused on plant-based, wellness-oriented personal care and clean beauty.", video: "https://video.wixstatic.com/video/4c7a69_dc3f7913414e4dbe8f3bc3cdd7f07116/480p/mp4/file.mp4", category: "Skincare", services: "Brand Story" },
-			{ brand: "KORA ORGANIC", title: "KORA Organics", desc: "A skincare and wellness brand founded around clean, organic beauty and mindful self-care.", video: "https://video.wixstatic.com/video/4c7a69_f41b341b60e34a8193adb23bb5b7f217/480p/mp4/file.mp4", category: "Organic Beauty", services: "Content Creation" },
-			{ brand: "DIOR", title: "Dior", desc: "A globally renowned luxury fashion and beauty house recognized for elegance, craftsmanship, and iconic visual identity.", video: "https://video.wixstatic.com/video/4c7a69_14a8db37650e4e048c74550cdc0850bd/360p/mp4/file.mp4", category: "Luxury Fashion", services: "Ad Film" },
-			{ brand: "CARATLANE", title: "CaratLane", desc: "A modern jewelry brand known for making fine jewelry accessible through contemporary designs and digital-first storytelling.", video: "https://video.wixstatic.com/video/4c7a69_13620f51b0ed46c5914c8523b4a77218/720p/mp4/file.mp4", category: "Jewelry", services: "Brand Film" },
-			{ brand: "INSTA360", title: "Insta360", desc: "An action camera and imaging technology brand known for immersive 360-degree cameras and creative capture.", video: "https://video.wixstatic.com/video/4c7a69_a9f35c5bc14746b1af9e2afae93f07e3/360p/mp4/file.mp4", category: "Technology", services: "Product Launch" },
-			{ brand: "NOTHING", title: "Nothing Phone", desc: "A consumer technology brand recognized for distinctive industrial design, transparent aesthetics, and culture-driven approach.", video: "https://video.wixstatic.com/video/4c7a69_0e60df56daa74e448177aac81ff654ce/720p/mp4/file.mp4", category: "Technology", services: "Campaign Film" },
-			{ brand: "NOTHING", title: "Nothing — Campaign 2", desc: "Additional Nothing brand content showcasing the brand's distinctive visual language and product-focused storytelling.", video: "https://video.wixstatic.com/video/4c7a69_498dc7119da64efc845ed771d89eb7e6/720p/mp4/file.mp4", category: "Technology", services: "Content Creation" },
-			{ brand: "NOTHING", title: "Nothing — Campaign 3", desc: "Another Nothing campaign focused on contemporary technology, product presentation, and visually distinctive brand storytelling.", video: "https://video.wixstatic.com/video/4c7a69_c76738c35e5a4911887b00f07fb6a36d/720p/mp4/file.mp4", category: "Technology", services: "Brand Campaign" },
-			{ brand: "CAFE", title: "Cafe Project", desc: "Cafe-focused content designed around food, atmosphere, lifestyle, and visual storytelling for hospitality.", video: "https://video.wixstatic.com/video/4c7a69_18626112b3fe48be90065fd2d94d93dd/720p/mp4/file.mp4", category: "Hospitality", services: "Brand Film" },
-			{ brand: "MISA", title: "Misa", desc: "A contemporary lifestyle and beauty-oriented brand positioned around refined aesthetics and modern lifestyle storytelling.", video: "https://video.wixstatic.com/video/4c7a69_ab5372c0df9d40f0acac2dc6f1791108/1080p/mp4/file.mp4", category: "Beauty", services: "Content Creation" },
-			{ brand: "HELLSKIN", title: "Hellskin", desc: "A bold, modern beauty and skincare brand with contemporary, expressive visual direction and product-led storytelling.", video: "https://video.wixstatic.com/video/4c7a69_422c79f20d984ac3a13abaed654f6738/1080p/mp4/file.mp4", category: "Skincare", services: "Ad Film" },
-			{ brand: "GENRAGE", title: "Genrage", desc: "A contemporary youth and lifestyle-focused brand highlighting energetic creative direction and culture-driven storytelling.", video: "https://video.wixstatic.com/video/4c7a69_3a6051a870504c6eaf51a3547ca471ce/1080p/mp4/file.mp4", category: "Youth Culture", services: "Brand Campaign" },
-			{ brand: "SAT PROFESSOR", title: "SAT Professor", desc: "An education-focused brand associated with SAT preparation, turning educational messaging into engaging, accessible content.", video: "https://video.wixstatic.com/video/4c7a69_4aceff66cfd24ababafb1f6e47495261/1080p/mp4/file.mp4", category: "Education", services: "Content Creation" },
-			{ brand: "VANESA", title: "Vanesa", desc: "A contemporary beauty and lifestyle brand positioned around polished visual storytelling and beauty aesthetics.", video: "https://video.wixstatic.com/video/4c7a69_04fe62bfdee4460da9398f023d851bfa/720p/mp4/file.mp4", category: "Beauty", services: "Brand Film" },
-			{ brand: "HOICHOI", title: "Hoichoi", desc: "A leading Bengali-language streaming entertainment platform known for original series, films, and digital entertainment.", video: "https://video.wixstatic.com/video/4c7a69_bf4f28780ad642aeb01cb61516c362e3/1080p/mp4/file.mp4", category: "Entertainment", services: "Campaign Film" },
-			{ brand: "TRADECFD", title: "TradeCFD", desc: "A financial trading-oriented brand demonstrating how performance-focused messaging translates into engaging digital content.", video: "https://video.wixstatic.com/video/4c7a69_2a2f300c4ea4418291a3633bf79a8ccd/720p/mp4/file.mp4", category: "Finance", services: "Ad Film" },
-			{ brand: "BYTBOTS", title: "BytBots", desc: "A technology and digital-focused brand highlighting modern tech communication and visually engaging content.", video: "https://video.wixstatic.com/video/4c7a69_729787cbdd9d43b5874bcfa720b60ef6/1080p/mp4/file.mp4", category: "Technology", services: "Content Creation" },
-			{ brand: "INDULEKHA", title: "Indulekha", desc: "A beauty and haircare brand known for traditional Indian-inspired wellness and personal-care products.", video: "https://video.wixstatic.com/video/4c7a69_920b8839a3fa4fa6bf1917ca8a44b414/720p/mp4/file.mp4", category: "Haircare", services: "Brand Story" },
-			{ brand: "ARMANI", title: "Giorgio Armani", desc: "A globally recognized luxury fashion and lifestyle house known for refined design, understated elegance, and premium craftsmanship.", video: "https://video.wixstatic.com/video/4c7a69_a66586e5154d4a4ba6f5ce1e11b80694/720p/mp4/file.mp4", category: "Luxury Fashion", services: "Premium Film" },
-			{ brand: "PROJECT", title: "Client Campaign 1", desc: "Additional client campaign video showcasing creative direction and brand storytelling.", video: "https://video.wixstatic.com/video/4c7a69_0abcdc24eaed4b3e95a67da99aa1a2b0/1080p/mp4/file.mp4", category: "Brand Campaign", services: "Content Creation" },
-			{ brand: "PROJECT", title: "Client Campaign 2", desc: "Additional client campaign video with dynamic visual approach and engaging content.", video: "https://video.wixstatic.com/video/4c7a69_c46cfd63cd96443badd9a27a0665fdff/1080p/mp4/file.mp4", category: "Brand Campaign", services: "Ad Film" },
-			{ brand: "PROJECT", title: "Client Campaign 3", desc: "Additional client campaign video demonstrating creative content production.", video: "https://video.wixstatic.com/video/4c7a69_b378be38f16a4a48885fc3ef997da7c6/720p/mp4/file.mp4", category: "Brand Campaign", services: "Brand Film" },
-			{ brand: "PROJECT", title: "Client Campaign 4", desc: "Additional client campaign video with compelling visual narrative.", video: "https://video.wixstatic.com/video/4c7a69_52ab300a0f5d4f3eb2e022531b7f5f26/720p/mp4/file.mp4", category: "Brand Campaign", services: "Content Creation" }
+			{ brand: "NIKE", title: "Nike", desc: "Globally recognized sportswear and lifestyle brand known for performance, innovation, and culture-driven storytelling.", video: "https://video.wixstatic.com/video/4c7a69_e0893a64f65d45c288100d58ed3ac6e7/720p/mp4/file.mp4", orient: "landscape", category: "Sportswear", services: "Ad Film" },
+			{ brand: "DIOR", title: "Dior", desc: "A globally renowned luxury fashion and beauty house recognized for elegance, craftsmanship, and iconic visual identity.", video: "https://video.wixstatic.com/video/4c7a69_14a8db37650e4e048c74550cdc0850bd/360p/mp4/file.mp4", orient: "portrait", category: "Luxury Fashion", services: "Ad Film" },
+			{ brand: "ARMANI", title: "Giorgio Armani", desc: "A globally recognized luxury fashion and lifestyle house known for refined design, understated elegance, and premium craftsmanship.", video: "https://video.wixstatic.com/video/4c7a69_a66586e5154d4a4ba6f5ce1e11b80694/720p/mp4/file.mp4", orient: "landscape", category: "Luxury Fashion", services: "Premium Film" },
+			{ brand: "KERASTASE", title: "Kérastase", desc: "A premium professional haircare brand known for luxury beauty, advanced haircare, and sophisticated brand communication.", video: "https://video.wixstatic.com/video/4c7a69_6e02f73ac2854749902a919538d625f4/720p/mp4/file.mp4", orient: "landscape", category: "Beauty", services: "Premium Film" },
+			{ brand: "CARATLANE", title: "CaratLane", desc: "A modern jewelry brand known for making fine jewelry accessible through contemporary designs and digital-first storytelling.", video: "https://video.wixstatic.com/video/4c7a69_13620f51b0ed46c5914c8523b4a77218/720p/mp4/file.mp4", orient: "portrait", category: "Jewelry", services: "Brand Film" },
+			{ brand: "MEDICINE MAMA", title: "Medicine Mama", desc: "A natural beauty and skincare brand focused on plant-based, wellness-oriented personal care and clean beauty.", video: "https://video.wixstatic.com/video/4c7a69_dc3f7913414e4dbe8f3bc3cdd7f07116/480p/mp4/file.mp4", orient: "portrait", category: "Skincare", services: "Brand Story" },
+			{ brand: "KORA ORGANIC", title: "KORA Organics", desc: "A skincare and wellness brand founded around clean, organic beauty and mindful self-care.", video: "https://video.wixstatic.com/video/4c7a69_f41b341b60e34a8193adb23bb5b7f217/480p/mp4/file.mp4", orient: "portrait", category: "Organic Beauty", services: "Content Creation" },
+			{ brand: "MISA", title: "Misa", desc: "A contemporary lifestyle and beauty-oriented brand positioned around refined aesthetics and modern lifestyle storytelling.", video: "https://video.wixstatic.com/video/4c7a69_ab5372c0df9d40f0acac2dc6f1791108/1080p/mp4/file.mp4", orient: "portrait", category: "Beauty", services: "Content Creation" },
+			{ brand: "HELLSKIN", title: "Hellskin", desc: "A bold, modern beauty and skincare brand with contemporary, expressive visual direction and product-led storytelling.", video: "https://video.wixstatic.com/video/4c7a69_422c79f20d984ac3a13abaed654f6738/1080p/mp4/file.mp4", orient: "portrait", category: "Skincare", services: "Ad Film" },
+			{ brand: "VANESA", title: "Vanesa", desc: "A contemporary beauty and lifestyle brand positioned around polished visual storytelling and beauty aesthetics.", video: "https://video.wixstatic.com/video/4c7a69_04fe62bfdee4460da9398f023d851bfa/720p/mp4/file.mp4", orient: "landscape", category: "Beauty", services: "Brand Film" },
+			{ brand: "INDULEKHA", title: "Indulekha", desc: "A beauty and haircare brand known for traditional Indian-inspired wellness and personal-care products.", video: "https://video.wixstatic.com/video/4c7a69_920b8839a3fa4fa6bf1917ca8a44b414/720p/mp4/file.mp4", orient: "portrait", category: "Haircare", services: "Brand Story" },
+			{ brand: "INSTA360", title: "Insta360", desc: "An action camera and imaging technology brand known for immersive 360-degree cameras and creative capture.", video: "https://video.wixstatic.com/video/4c7a69_a9f35c5bc14746b1af9e2afae93f07e3/360p/mp4/file.mp4", orient: "landscape", category: "Technology", services: "Product Launch" },
+			{ brand: "NOTHING", title: "Nothing Phone", desc: "A consumer technology brand recognized for distinctive industrial design, transparent aesthetics, and culture-driven approach.", video: "https://video.wixstatic.com/video/4c7a69_0e60df56daa74e448177aac81ff654ce/720p/mp4/file.mp4", orient: "landscape", category: "Technology", services: "Campaign Film" },
+			{ brand: "NOTHING", title: "Nothing — Campaign 2", desc: "Additional Nothing brand content showcasing the brand's distinctive visual language and product-focused storytelling.", video: "https://video.wixstatic.com/video/4c7a69_498dc7119da64efc845ed771d89eb7e6/720p/mp4/file.mp4", orient: "landscape", category: "Technology", services: "Content Creation" },
+			{ brand: "NOTHING", title: "Nothing — Campaign 3", desc: "Another Nothing campaign focused on contemporary technology, product presentation, and visually distinctive brand storytelling.", video: "https://video.wixstatic.com/video/4c7a69_c76738c35e5a4911887b00f07fb6a36d/720p/mp4/file.mp4", orient: "landscape", category: "Technology", services: "Brand Campaign" },
+			{ brand: "BYTBOTS", title: "BytBots", desc: "A technology and digital-focused brand highlighting modern tech communication and visually engaging content.", video: "https://video.wixstatic.com/video/4c7a69_729787cbdd9d43b5874bcfa720b60ef6/1080p/mp4/file.mp4", orient: "landscape", category: "Technology", services: "Content Creation" },
+			{ brand: "TEZZO", title: "Tezzo", desc: "A modern lifestyle-oriented brand showcasing a contemporary visual approach designed around strong branding.", video: "https://video.wixstatic.com/video/4c7a69_e9c69930b4f74394a7a24aaa079c9e50/720p/mp4/file.mp4", orient: "landscape", category: "Lifestyle", services: "Brand Story" },
+			{ brand: "PROSKIRE", title: "Proskire", desc: "A performance and lifestyle-focused brand highlighting dynamic visual style suited to active, modern audiences.", video: "https://video.wixstatic.com/video/4c7a69_ae60f198c15a4dabbec575bb07569699/720p/mp4/file.mp4", orient: "landscape", category: "Performance", services: "Content Creation" },
+			{ brand: "RELANCE", title: "Relance", desc: "A contemporary consumer brand with a focus on modern visual communication and lifestyle-led storytelling.", video: "https://video.wixstatic.com/video/4c7a69_85112fcc1b354ceba8e9b7400194de5a/720p/mp4/file.mp4", orient: "landscape", category: "Consumer Brand", services: "Brand Campaign" },
+			{ brand: "GENRAGE", title: "Genrage", desc: "A contemporary youth and lifestyle-focused brand highlighting energetic creative direction and culture-driven storytelling.", video: "https://video.wixstatic.com/video/4c7a69_3a6051a870504c6eaf51a3547ca471ce/1080p/mp4/file.mp4", orient: "portrait", category: "Youth Culture", services: "Brand Campaign" },
+			{ brand: "EATFESTO", title: "EatFesto", desc: "A food and dining-focused brand. Visual showcase of food, lifestyle, and appetite-driven brand storytelling.", video: "https://video.wixstatic.com/video/4c7a69_50273e50f63d448e818bd9122e3fc5e1/720p/mp4/file.mp4", orient: "landscape", category: "Food & Beverage", services: "Brand Film" },
+			{ brand: "CAFE", title: "Cafe Project", desc: "Cafe-focused content designed around food, atmosphere, lifestyle, and visual storytelling for hospitality.", video: "https://video.wixstatic.com/video/4c7a69_18626112b3fe48be90065fd2d94d93dd/720p/mp4/file.mp4", orient: "landscape", category: "Hospitality", services: "Brand Film" },
+			{ brand: "HOICHOI", title: "Hoichoi", desc: "A leading Bengali-language streaming entertainment platform known for original series, films, and digital entertainment.", video: "https://video.wixstatic.com/video/4c7a69_bf4f28780ad642aeb01cb61516c362e3/1080p/mp4/file.mp4", orient: "landscape", category: "Entertainment", services: "Campaign Film" },
+			{ brand: "SAT PROFESSOR", title: "SAT Professor", desc: "An education-focused brand associated with SAT preparation, turning educational messaging into engaging, accessible content.", video: "https://video.wixstatic.com/video/4c7a69_4aceff66cfd24ababafb1f6e47495261/1080p/mp4/file.mp4", orient: "landscape", category: "Education", services: "Content Creation" },
+			{ brand: "TRADECFD", title: "TradeCFD", desc: "A financial trading-oriented brand demonstrating how performance-focused messaging translates into engaging digital content.", video: "https://video.wixstatic.com/video/4c7a69_2a2f300c4ea4418291a3633bf79a8ccd/720p/mp4/file.mp4", orient: "landscape", category: "Finance", services: "Ad Film" },
+			{ brand: "PROJECT", title: "Client Campaign 1", desc: "Additional client campaign video showcasing creative direction and brand storytelling.", video: "https://video.wixstatic.com/video/4c7a69_0abcdc24eaed4b3e95a67da99aa1a2b0/1080p/mp4/file.mp4", orient: "portrait", category: "Brand Campaign", services: "Content Creation" },
+			{ brand: "PROJECT", title: "Client Campaign 2", desc: "Additional client campaign video with dynamic visual approach and engaging content.", video: "https://video.wixstatic.com/video/4c7a69_c46cfd63cd96443badd9a27a0665fdff/1080p/mp4/file.mp4", orient: "portrait", category: "Brand Campaign", services: "Ad Film" },
+			{ brand: "PROJECT", title: "Client Campaign 3", desc: "Additional client campaign video demonstrating creative content production.", video: "https://video.wixstatic.com/video/4c7a69_b378be38f16a4a48885fc3ef997da7c6/720p/mp4/file.mp4", orient: "landscape", category: "Brand Campaign", services: "Brand Film" },
+			{ brand: "PROJECT", title: "Client Campaign 4", desc: "Additional client campaign video with compelling visual narrative.", video: "https://video.wixstatic.com/video/4c7a69_52ab300a0f5d4f3eb2e022531b7f5f26/720p/mp4/file.mp4", orient: "landscape", category: "Brand Campaign", services: "Content Creation" }
 		];
 
 		const params = new URLSearchParams(window.location.search);
@@ -366,17 +375,15 @@
 		const title = params.get('title') || 'Nike';
 		const desc = params.get('desc') || '';
 		const videoUrl = params.get('video') || '';
+		const orient = params.get('orient') || 'landscape';
 		const currentIndex = parseInt(params.get('index') || '0', 10);
 
-		// Find the project in our full list
 		const currentProject = allProjects[currentIndex] || {
-			brand, title, desc, video: videoUrl, category: "Brand Campaign", services: "Brand Film"
+			brand, title, desc, video: videoUrl, orient, category: "Brand Campaign", services: "Brand Film"
 		};
 
-		// Update page title
 		document.title = `${currentProject.title} — REVOLVYN`;
 
-		// Populate page
 		document.getElementById('brandTag').textContent = currentProject.brand;
 		document.getElementById('projectTitle').textContent = currentProject.title;
 		document.getElementById('projectDesc').textContent = currentProject.desc;
@@ -384,7 +391,14 @@
 		document.getElementById('detailCategory').textContent = currentProject.category;
 		document.getElementById('detailServices').textContent = currentProject.services;
 
-		// Set video source
+		// Set video orientation mode
+		const videoHero = document.getElementById('videoHero');
+		if (currentProject.orient === 'portrait') {
+			videoHero.classList.add('portrait-mode');
+		} else {
+			videoHero.classList.add('landscape-mode');
+		}
+
 		const mainVideo = document.getElementById('mainVideo');
 		mainVideo.src = currentProject.video;
 		mainVideo.addEventListener('canplay', () => {
@@ -392,7 +406,6 @@
 			mainVideo.play().catch(() => {});
 		}, { once: true });
 
-		// Play/pause toggle
 		let isPlaying = false;
 		const playOverlay = document.getElementById('playOverlay');
 		function togglePlay() {
@@ -408,7 +421,6 @@
 			}
 		}
 
-		// Navigation
 		const prevIndex = (currentIndex - 1 + allProjects.length) % allProjects.length;
 		const nextIndex = (currentIndex + 1) % allProjects.length;
 		const prevProject = allProjects[prevIndex];
@@ -419,11 +431,13 @@
 
 		const prevParams = new URLSearchParams({
 			brand: prevProject.brand, title: prevProject.title,
-			desc: prevProject.desc, video: prevProject.video, index: String(prevIndex)
+			desc: prevProject.desc, video: prevProject.video,
+			orient: prevProject.orient, index: String(prevIndex)
 		}).toString();
 		const nextParams = new URLSearchParams({
 			brand: nextProject.brand, title: nextProject.title,
-			desc: nextProject.desc, video: nextProject.video, index: String(nextIndex)
+			desc: nextProject.desc, video: nextProject.video,
+			orient: nextProject.orient, index: String(nextIndex)
 		}).toString();
 
 		document.getElementById('prevLink').onclick = (e) => {
@@ -435,7 +449,6 @@
 			smoothNavigate('video.html?' + nextParams);
 		};
 
-		// Reveal animations
 		const revealObserver = new IntersectionObserver((entries) => {
 			entries.forEach(entry => {
 				if (entry.isIntersecting) {
