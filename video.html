@@ -66,7 +66,7 @@
 		}
 		.nav-mobile-overlay a:hover { color: rgba(230, 245, 120, 0.95); }
 		@media (max-width: 768px) {
-			.nav-float { padding: 16px 20px; }
+			.nav-float { padding: 14px 16px; }
 			.nav-links { display: none; }
 			.nav-hamburger { display: flex; }
 			.nav-mobile-overlay { display: flex; }
@@ -277,15 +277,33 @@
 		}
 
 		@media (max-width: 768px) {
-			.video-player-section { height: 60vh; min-height: 320px; }
-			.video-player-section.portrait-mode { height: 75vh; min-height: 400px; }
-			.video-player-section.portrait-mode video { max-width: 260px; border-radius: 12px; }
-			.video-player-section.landscape-mode video { border-radius: 8px; }
-			.brand-overlay { padding: 90px 20px 20px; }
-			.video-controls { padding: 12px 20px 16px; }
-			.info-section { padding: 40px 20px 20px; }
-			.details-grid { grid-template-columns: 1fr; gap: 24px; }
-			.project-nav { padding: 0 20px 60px; flex-direction: column; gap: 24px; }
+			.video-player-section { height: 55vh; min-height: 280px; }
+			.video-player-section.portrait-mode { height: 70vh; min-height: 360px; }
+			.video-player-section.portrait-mode video { max-width: 220px; border-radius: 10px; }
+			.video-player-section.landscape-mode video { border-radius: 6px; }
+			.brand-overlay { padding: 80px 16px 16px; }
+			.brand-tag { font-size: 9px; padding: 5px 12px; margin-bottom: 8px; }
+			.brand-title { font-size: 20px; }
+			.brand-desc { font-size: 12px; margin-top: 6px; }
+			.video-controls { padding: 10px 16px 14px; gap: 10px; }
+			.ctrl-btn svg { width: 16px; height: 16px; }
+			.time-display { font-size: 10px; min-width: 60px; }
+			.info-section { padding: 32px 16px 16px; }
+			.info-header h2 { font-size: 20px; }
+			.details-grid { grid-template-columns: 1fr; gap: 20px; }
+			.detail-item h4 { font-size: 9px; }
+			.detail-item p { font-size: 12px; }
+			.back-btn { top: 70px; left: 16px; font-size: 10px; }
+			.project-nav { padding: 0 16px 48px; flex-direction: column; gap: 16px; }
+			.project-nav a { padding: 12px 24px; font-size: 10px; }
+		}
+		@media (max-width: 480px) {
+			.video-player-section { height: 50vh; min-height: 240px; }
+			.video-player-section.portrait-mode { height: 65vh; min-height: 320px; }
+			.video-player-section.portrait-mode video { max-width: 180px; }
+			.brand-overlay { padding: 72px 12px 12px; }
+			.brand-title { font-size: 18px; }
+			.info-header h2 { font-size: 18px; }
 		}
 	</style>
 </head>

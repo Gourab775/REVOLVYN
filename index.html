@@ -707,12 +707,26 @@
 			color: var(--color-accent, rgba(230, 245, 120, 0.95));
 		}
 
+		@media (max-width: 1024px) {
+			.section { padding: 80px 32px; }
+			.section-label { margin-bottom: 28px; }
+			.site-footer-inner { gap: 32px; }
+		}
 		@media (max-width: 768px) {
-			.nav-float { padding: 0 20px; top: 16px; }
+			.nav-float { padding: 0 16px; top: 14px; }
 			.nav-links { display: none; }
 			.nav-hamburger { display: flex; }
 			.nav-mobile-overlay { display: flex; }
-			.section { padding: 60px 20px; }
+			.section { padding: 48px 16px; }
+			.section-label { margin-bottom: 20px; }
+			.section-label::before, .section-label::after { display: none; }
+			.site-footer { padding: 40px 16px 24px; }
+			.site-footer-inner { grid-template-columns: 1fr; gap: 28px; }
+			.sf-bottom { flex-direction: column; gap: 12px; text-align: center; }
+		}
+		@media (max-width: 480px) {
+			.section { padding: 36px 14px; }
+			.site-footer { padding: 32px 14px 20px; }
 		}
 
 		.progress-bar {
@@ -881,8 +895,7 @@
 		<div class="site-footer-inner">
 			<div class="sf-brand">
 				<div class="sf-brand-name">REVOLVYN</div>
-				<p class="sf-brand-desc">From bold ideas to meaningful experiences, we turn creativity into impact.
-Because the best work doesn’t just get seen — it gets remembered, felt, and shared..</p>
+				<p class="sf-brand-desc">From bold ideas to meaningful experiences, we turn creativity into impact.</p>
 			</div>
 			<div class="sf-col">
 				<div class="sf-col-title">Explore</div>

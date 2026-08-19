@@ -171,16 +171,34 @@
 			color: rgba(230, 245, 120, 0.95);
 		}
 
+		@media (max-width: 1024px) {
+			.collage-grid { gap: 6px; }
+		}
 		@media (max-width: 768px) {
 			.portfolio-hero { height: 35vh; min-height: 240px; }
-			.collage-section { padding: 0 8px 48px; }
+			.portfolio-hero h1 { font-size: clamp(32px, 10vw, 50px); }
+			.portfolio-hero p { font-size: 12px; letter-spacing: 2px; }
+			.collage-section { padding: 0 6px 40px; }
 			.collage-grid {
 				grid-template-columns: repeat(2, 1fr);
-				gap: 5px;
+				gap: 4px;
 			}
 			.collage-item { border-radius: 6px; }
 			.collage-overlay { padding: 10px; }
-			.collage-overlay .brand-name { font-size: 13px; }
+			.collage-overlay .brand-name { font-size: 12px; }
+			.collage-overlay .view-hint { font-size: 8px; }
+			.portfolio-cta { padding: 32px 16px 80px; }
+			.portfolio-cta a { padding: 12px 28px; font-size: 10px; }
+			.nav-float { padding: 14px 16px; }
+		}
+		@media (max-width: 480px) {
+			.collage-grid {
+				grid-template-columns: 1fr 1fr;
+				gap: 3px;
+			}
+			.collage-overlay .brand-name { font-size: 11px; }
+			.collage-overlay { padding: 8px; }
+			.portfolio-hero { height: 30vh; min-height: 200px; }
 		}
 	</style>
 </head>
