@@ -17,7 +17,7 @@
 		.page-transition {
 			position: fixed; inset: 0; background: #000; z-index: 9999;
 			pointer-events: none; opacity: 0;
-			transition: opacity 0.4s ease;
+			transition: opacity 0.2s ease;
 		}
 		.page-transition.active { opacity: 1; }
 		.nav-float {
@@ -96,14 +96,14 @@
 		}
 
 		.brands-grid {
-			display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-			gap: 24px; margin-bottom: 60px;
+			display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+			gap: 20px; margin-bottom: 60px;
 		}
 		.brand-card {
 			background: rgba(20, 30, 10, 0.3); border: 1px solid rgba(140, 180, 120, 0.08);
-			border-radius: 12px; padding: 32px; display: flex; flex-direction: column;
-			align-items: center; justify-content: center; gap: 16px;
-			min-height: 160px; transition: all 0.4s;
+			border-radius: 12px; padding: 28px 20px; display: flex; flex-direction: column;
+			align-items: center; justify-content: center; gap: 14px;
+			min-height: 140px; transition: all 0.4s;
 			opacity: 0; transform: translateY(20px);
 		}
 		.brand-card.revealed { opacity: 1; transform: translateY(0); }
@@ -112,14 +112,14 @@
 			background: rgba(20, 30, 10, 0.5);
 		}
 		.brand-card img {
-			max-width: 140px; max-height: 60px; object-fit: contain;
+			max-width: 120px; max-height: 50px; object-fit: contain;
 			filter: brightness(0.8) contrast(1.1);
 			transition: filter 0.3s;
 		}
 		.brand-card:hover img { filter: brightness(1) contrast(1); }
 		.brand-card-name {
-			font-size: 12px; letter-spacing: 1px; color: rgba(215, 230, 190, 0.4);
-			text-transform: uppercase;
+			font-size: 11px; letter-spacing: 1px; color: rgba(215, 230, 190, 0.4);
+			text-transform: uppercase; text-align: center;
 		}
 
 		.brands-stats {
@@ -221,11 +221,31 @@
 
 		<div class="section-label" data-reveal>Our Partners</div>
 		<div class="brands-grid">
-			<div class="brand-card" data-reveal data-delay="1"><img src="brand%20logos/Untitled%20design%20(1)-Photoroom.png" alt="Brand"><div class="brand-card-name">Brand Partner</div></div>
-			<div class="brand-card" data-reveal data-delay="2"><img src="brand%20logos/Untitled%20design%20(2)-Photoroom.png" alt="Brand"><div class="brand-card-name">Brand Partner</div></div>
-			<div class="brand-card" data-reveal data-delay="1"><img src="brand%20logos/Untitled%20design%20(6)-Photoroom.png" alt="Brand"><div class="brand-card-name">Brand Partner</div></div>
-			<div class="brand-card" data-reveal data-delay="2"><img src="brand%20logos/Untitled%20design%20(8)-Photoroom.png" alt="Brand"><div class="brand-card-name">Brand Partner</div></div>
-			<div class="brand-card" data-reveal data-delay="1"><img src="brand%20logos/Untitled%20design%20(10)-Photoroom.png" alt="Brand"><div class="brand-card-name">Brand Partner</div></div>
+			<div class="brand-card" data-reveal data-delay="1"><img src="https://static.wixstatic.com/media/4c7a69_7ea8b5be9c4e44ad890fcc334cb36797~mv2.png" alt="WiseLife"><div class="brand-card-name">WiseLife</div></div>
+			<div class="brand-card" data-reveal data-delay="2"><img src="https://static.wixstatic.com/media/4c7a69_6d3151b4f3cd4c4c835d8539017d06f2~mv2.png" alt="Vedapure"><div class="brand-card-name">Vedapure</div></div>
+			<div class="brand-card" data-reveal data-delay="1"><img src="https://static.wixstatic.com/media/4c7a69_d3927bbf54a74c50ae557d06e4708ae0~mv2.png" alt="Vedamm"><div class="brand-card-name">Vedamm</div></div>
+			<div class="brand-card" data-reveal data-delay="2"><img src="https://static.wixstatic.com/media/4c7a69_21cecca8bcba479aa695fef5a897b132~mv2.png" alt="Varco"><div class="brand-card-name">Varco</div></div>
+			<div class="brand-card" data-reveal data-delay="1"><img src="https://static.wixstatic.com/media/4c7a69_86fefa5f583948bda0e923a33b054995~mv2.png" alt="Vanesa"><div class="brand-card-name">Vanesa</div></div>
+			<div class="brand-card" data-reveal data-delay="2"><img src="https://static.wixstatic.com/media/4c7a69_35b7301f889541afbbf1f855d3b8910a~mv2.png" alt="Trend AI"><div class="brand-card-name">Trend AI</div></div>
+			<div class="brand-card" data-reveal data-delay="1"><img src="https://static.wixstatic.com/media/4c7a69_cbdfbae2c5d148f2ad2934db0ff80a3f~mv2.png" alt="Tramontina"><div class="brand-card-name">Tramontina</div></div>
+			<div class="brand-card" data-reveal data-delay="2"><img src="https://static.wixstatic.com/media/4c7a69_e3c82f0f61014da7a5d661c27d33e3df~mv2.png" alt="Sonepar"><div class="brand-card-name">Sonepar</div></div>
+			<div class="brand-card" data-reveal data-delay="1"><img src="https://static.wixstatic.com/media/4c7a69_f1013d2f004c4f4c945b6bd3a1f3b711~mv2.png" alt="QuenchLabs"><div class="brand-card-name">QuenchLabs</div></div>
+			<div class="brand-card" data-reveal data-delay="2"><img src="https://static.wixstatic.com/media/4c7a69_a2502236eaa64d6e8662a2f28f86abf5~mv2.png" alt="Prestige"><div class="brand-card-name">Prestige</div></div>
+			<div class="brand-card" data-reveal data-delay="1"><img src="https://static.wixstatic.com/media/4c7a69_da2b55f3a23a43158256a5122ad6f26d~mv2.png" alt="Protyze"><div class="brand-card-name">Protyze</div></div>
+			<div class="brand-card" data-reveal data-delay="2"><img src="https://static.wixstatic.com/media/4c7a69_43ad35b1897b49678a6a55e6336e2e55~mv2.png" alt="Optm"><div class="brand-card-name">Optm</div></div>
+			<div class="brand-card" data-reveal data-delay="1"><img src="https://static.wixstatic.com/media/4c7a69_1e696572a9be49b19be65d92db691063~mv2.png" alt="Lovable"><div class="brand-card-name">Lovable</div></div>
+			<div class="brand-card" data-reveal data-delay="2"><img src="https://static.wixstatic.com/media/4c7a69_69348ca00ad1417b8e13c0d57295f52c~mv2.png" alt="Invigo"><div class="brand-card-name">Invigo</div></div>
+			<div class="brand-card" data-reveal data-delay="1"><img src="https://static.wixstatic.com/media/4c7a69_ddd08654ce1148c7baf95b33dfb30919~mv2.png" alt="Indulekha"><div class="brand-card-name">Indulekha</div></div>
+			<div class="brand-card" data-reveal data-delay="2"><img src="https://static.wixstatic.com/media/4c7a69_b607b62fa56b4d8594c1d32750eebe0b~mv2.png" alt="iiiEM"><div class="brand-card-name">iiiEM</div></div>
+			<div class="brand-card" data-reveal data-delay="1"><img src="https://static.wixstatic.com/media/4c7a69_67f051b043154afc8a0b3d26b98c6261~mv2.png" alt="iPlug"><div class="brand-card-name">iPlug</div></div>
+			<div class="brand-card" data-reveal data-delay="2"><img src="https://static.wixstatic.com/media/4c7a69_b2f961c81e7a461a86564cfdfb3208ca~mv2.png" alt="Hoichoi"><div class="brand-card-name">Hoichoi</div></div>
+			<div class="brand-card" data-reveal data-delay="1"><img src="https://static.wixstatic.com/media/4c7a69_1df0daca4e424363b7d109ff654116e5~mv2.png" alt="Flipkart"><div class="brand-card-name">Flipkart</div></div>
+			<div class="brand-card" data-reveal data-delay="2"><img src="https://static.wixstatic.com/media/4c7a69_823eca1d31ae4bf7ab2885dadcb33829~mv2.png" alt="ElevenLabs"><div class="brand-card-name">ElevenLabs</div></div>
+			<div class="brand-card" data-reveal data-delay="1"><img src="https://static.wixstatic.com/media/4c7a69_5f454bc912234530b974235ea1ccef18~mv2.png" alt="Cosnet"><div class="brand-card-name">Cosnet</div></div>
+			<div class="brand-card" data-reveal data-delay="2"><img src="https://static.wixstatic.com/media/4c7a69_116cb49e7bbd4784b67f8f6b446c5da1~mv2.png" alt="Comet"><div class="brand-card-name">Comet</div></div>
+			<div class="brand-card" data-reveal data-delay="1"><img src="https://static.wixstatic.com/media/4c7a69_dcf00c3e7d5140819065d4bf9a71f3d7~mv2.png" alt="Carbamide Forte"><div class="brand-card-name">Carbamide Forte</div></div>
+			<div class="brand-card" data-reveal data-delay="2"><img src="https://static.wixstatic.com/media/4c7a69_301ce4999d6d4c9db3bb106ab086e7c1~mv2.png" alt="Bellasot"><div class="brand-card-name">Bellasot</div></div>
+			<div class="brand-card" data-reveal data-delay="1"><img src="https://static.wixstatic.com/media/4c7a69_2fdac3972eee4aa4ad12890727216b6d~mv2.png" alt="Cisco"><div class="brand-card-name">Cisco</div></div>
 		</div>
 	</div>
 
@@ -252,7 +272,7 @@
 			if (e && e.preventDefault) e.preventDefault();
 			if (!url && typeof e === 'string') url = e;
 			transition.classList.add('active');
-			setTimeout(() => { window.location.href = url; }, 400);
+			setTimeout(() => { window.location.href = url; }, 200);
 		}
 		const navHamburger = document.getElementById('navHamburger');
 		const navMobileOverlay = document.getElementById('navMobileOverlay');

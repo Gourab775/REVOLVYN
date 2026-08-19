@@ -17,7 +17,7 @@
 		.page-transition {
 			position: fixed; inset: 0; background: #000; z-index: 9999;
 			pointer-events: none; opacity: 0;
-			transition: opacity 0.4s ease;
+			transition: opacity 0.2s ease;
 		}
 		.page-transition.active { opacity: 1; }
 		.nav-float { position: fixed; top: 24px; left: 0; right: 0; display: flex; justify-content: space-between; align-items: center; padding: 0 40px; z-index: 100; pointer-events: none; }
@@ -182,7 +182,7 @@
 			if (e && e.preventDefault) e.preventDefault();
 			if (!url && typeof e === 'string') url = e;
 			transition.classList.add('active');
-			setTimeout(() => { window.location.href = url; }, 400);
+			setTimeout(() => { window.location.href = url; }, 200);
 		}
 		const navHamburger = document.getElementById('navHamburger');
 		const navMobileOverlay = document.getElementById('navMobileOverlay');

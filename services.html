@@ -17,7 +17,7 @@
 		.page-transition {
 			position: fixed; inset: 0; background: #000; z-index: 9999;
 			pointer-events: none; opacity: 0;
-			transition: opacity 0.4s ease;
+			transition: opacity 0.2s ease;
 		}
 		.page-transition.active { opacity: 1; }
 		.nav-float { position: fixed; top: 24px; left: 0; right: 0; display: flex; justify-content: space-between; align-items: center; padding: 0 40px; z-index: 100; pointer-events: none; }
@@ -60,6 +60,41 @@
 		.service-card li::before { content: '→ '; color: rgba(180, 220, 100, 0.5); }
 
 		.process-section { padding: 60px 0; border-top: 1px solid rgba(140, 180, 120, 0.08); }
+		.services-full-grid { display: flex; flex-direction: column; gap: 40px; margin-bottom: 80px; }
+		.service-full-card {
+			background: rgba(20, 30, 10, 0.3); border: 1px solid rgba(140, 180, 120, 0.08);
+			border-radius: 12px; padding: 48px; transition: all 0.4s;
+			opacity: 0; transform: translateY(20px);
+		}
+		.service-full-card.revealed { opacity: 1; transform: translateY(0); }
+		.service-full-card:hover { border-color: rgba(140, 180, 120, 0.2); background: rgba(20, 30, 10, 0.5); }
+		.service-full-num {
+			font-family: 'Playfair Display', serif; font-size: 14px;
+			color: rgba(230, 245, 120, 0.5); margin-bottom: 12px; letter-spacing: 2px;
+		}
+		.service-full-card h3 {
+			font-family: 'Playfair Display', serif; font-size: 28px;
+			color: rgba(248, 252, 240, 0.9); margin-bottom: 24px;
+		}
+		.service-sub-packages { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+		.sub-package {
+			background: rgba(10, 18, 8, 0.4); border: 1px solid rgba(140, 180, 120, 0.06);
+			border-radius: 10px; padding: 28px;
+		}
+		.sub-package h4 {
+			font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase;
+			color: rgba(230, 245, 120, 0.8); margin-bottom: 16px; font-weight: 600;
+		}
+		.sub-package ul { list-style: none; }
+		.sub-package li {
+			font-size: 13px; color: rgba(215, 230, 190, 0.55); padding: 5px 0;
+			border-bottom: 1px solid rgba(140, 180, 120, 0.04); line-height: 1.5;
+		}
+		.sub-package li::before { content: '→ '; color: rgba(180, 220, 100, 0.4); font-size: 11px; }
+		.sub-package .note {
+			margin-top: 12px; font-size: 11px; color: rgba(210, 230, 160, 0.4);
+			font-style: italic;
+		}
 		.process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; margin-top: 40px; }
 		.process-step { text-align: center; opacity: 0; transform: translateY(20px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
 		.process-step.revealed { opacity: 1; transform: translateY(0); }
@@ -116,26 +151,209 @@
 
 	<div class="page-content">
 		<div class="section-label" data-reveal>Our Services</div>
-		<div class="services-grid">
-			<div class="service-card" data-reveal data-delay="1">
-				<h3>Cinematic Content</h3>
-				<p>High-quality video production that tells your brand story with cinematic precision and emotional depth.</p>
-				<ul><li>Brand Films</li><li>Product Videos</li><li>Social Media Content</li><li>YouTube Production</li></ul>
+		<div class="services-full-grid">
+			<!-- 1. Growth Consulting -->
+			<div class="service-full-card" data-reveal>
+				<div class="service-full-num">01</div>
+				<h3>Growth Consulting</h3>
+				<div class="service-sub-packages">
+					<div class="sub-package">
+						<h4>Growth Consultant</h4>
+						<ul>
+							<li>Full marketing strategy</li>
+							<li>Content strategy</li>
+							<li>Paid advertising strategy</li>
+							<li>Conversion strategy</li>
+							<li>Campaign planning</li>
+							<li>Competitor intelligence</li>
+							<li>Weekly consultation</li>
+						</ul>
+					</div>
+				</div>
 			</div>
-			<div class="service-card" data-reveal data-delay="2">
-				<h3>Performance Ads</h3>
-				<p>Data-driven advertising campaigns that convert. We optimize every rupee for maximum ROI.</p>
-				<ul><li>Google Ads</li><li>Meta Ads</li><li>YouTube Ads</li><li>Retargeting Campaigns</li></ul>
+
+			<!-- 2. Performance Marketing -->
+			<div class="service-full-card" data-reveal>
+				<div class="service-full-num">02</div>
+				<h3>Performance Marketing</h3>
+				<div class="service-sub-packages">
+					<div class="sub-package">
+						<h4>Full-Stack Performance</h4>
+						<ul>
+							<li>Meta Ads</li>
+							<li>Retargeting</li>
+							<li>Full-funnel strategy</li>
+							<li>Creative testing</li>
+							<li>Landing-page recommendations</li>
+							<li>Conversion optimization</li>
+							<li>Audience segmentation</li>
+							<li>Campaign scaling</li>
+							<li>Advanced analytics</li>
+							<li>Weekly reporting</li>
+						</ul>
+						<div class="note">Ad spend separate.</div>
+					</div>
+				</div>
 			</div>
-			<div class="service-card" data-reveal data-delay="1">
-				<h3>Influencer Marketing</h3>
-				<p>Connecting brands with 110+ YouTubers and creators for authentic, high-reach campaigns.</p>
-				<ul><li>Creator Partnerships</li><li>Campaign Strategy</li><li>Performance Tracking</li><li>Brief Management</li></ul>
+
+			<!-- 3. Website + SEO -->
+			<div class="service-full-card" data-reveal>
+				<div class="service-full-num">03</div>
+				<h3>Website + SEO</h3>
+				<div class="service-sub-packages">
+					<div class="sub-package">
+						<h4>Growth Website</h4>
+						<ul>
+							<li>Custom website</li>
+							<li>Advanced UI/UX</li>
+							<li>Conversion-focused architecture</li>
+							<li>Landing pages</li>
+							<li>Advanced forms</li>
+							<li>Integrations</li>
+							<li>Technical SEO</li>
+							<li>Analytics</li>
+							<li>Conversion tracking</li>
+							<li>Speed optimization</li>
+						</ul>
+					</div>
+					<div class="sub-package">
+						<h4>SEO Scale</h4>
+						<ul>
+							<li>Advanced technical SEO</li>
+							<li>Content strategy</li>
+							<li>Multiple content pieces</li>
+							<li>Competitor research</li>
+							<li>Local SEO</li>
+							<li>Content optimization</li>
+							<li>Conversion optimization</li>
+						</ul>
+					</div>
+				</div>
 			</div>
-			<div class="service-card" data-reveal data-delay="2">
-				<h3>SEO & Strategy</h3>
-				<p>Organic growth through technical SEO, content strategy, and data-backed decision making.</p>
-				<ul><li>Technical SEO</li><li>Content Strategy</li><li>Analytics & Reporting</li><li>Brand Positioning</li></ul>
+
+			<!-- 4. Content Production -->
+			<div class="service-full-card" data-reveal>
+				<div class="service-full-num">04</div>
+				<h3>Content Production</h3>
+				<div class="service-sub-packages">
+					<div class="sub-package">
+						<h4>Content Scale</h4>
+						<ul>
+							<li>35–40+ videos/month</li>
+							<li>Full content strategy</li>
+							<li>Creative direction</li>
+							<li>Multiple shoot days</li>
+							<li>Scripts</li>
+							<li>Production</li>
+							<li>Editing</li>
+							<li>Advanced motion graphics</li>
+							<li>Color grading</li>
+							<li>Captions</li>
+							<li>Content performance analysis</li>
+							<li>Monthly creative strategy</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<!-- 5. Social Media Management -->
+			<div class="service-full-card" data-reveal>
+				<div class="service-full-num">05</div>
+				<h3>Social Media Management</h3>
+				<div class="service-sub-packages">
+					<div class="sub-package">
+						<h4>Social Scale</h4>
+						<ul>
+							<li>Full social strategy</li>
+							<li>Content planning</li>
+							<li>Reels</li>
+							<li>Carousels</li>
+							<li>Stories</li>
+							<li>Copywriting</li>
+							<li>Trend research</li>
+							<li>Competitor analysis</li>
+							<li>Community management</li>
+							<li>Performance analysis</li>
+							<li>Monthly reporting</li>
+							<li>Creative direction</li>
+							<li>Platform-specific strategy</li>
+						</ul>
+						<div class="note">Content shooting remains separate.</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- 6. Influencer & Creator Marketing -->
+			<div class="service-full-card" data-reveal>
+				<div class="service-full-num">06</div>
+				<h3>Influencer & Creator Marketing</h3>
+				<div class="service-sub-packages">
+					<div class="sub-package">
+						<h4>Creator Campaign</h4>
+						<ul>
+							<li>20 creator videos</li>
+							<li>Creator strategy</li>
+							<li>Creator selection</li>
+							<li>Multiple creators from Revolvyn's network</li>
+							<li>Concepts + scripts</li>
+							<li>Creator coordination</li>
+							<li>Editing</li>
+							<li>Captions</li>
+							<li>Content organization</li>
+							<li>Monthly performance review</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<!-- 7. AI Content & Creative Automation -->
+			<div class="service-full-card" data-reveal>
+				<div class="service-full-num">07</div>
+				<h3>AI Content & Creative Automation</h3>
+				<div class="service-sub-packages">
+					<div class="sub-package">
+						<h4>AI UGC</h4>
+						<ul><li>10 AI UGC videos</li></ul>
+					</div>
+					<div class="sub-package">
+						<h4>AI Product Ads</h4>
+						<ul><li>10 AI product creatives</li></ul>
+					</div>
+					<div class="sub-package">
+						<h4>AI Image Generation</h4>
+						<ul>
+							<li>AI-generated campaign and product imagery</li>
+							<li>Custom visual concepts</li>
+							<li>Brand-specific image generation</li>
+						</ul>
+					</div>
+					<div class="sub-package">
+						<h4>AI Voiceover</h4>
+						<ul><li>AI voiceover production</li></ul>
+					</div>
+				</div>
+			</div>
+
+			<!-- 8. Bundle -->
+			<div class="service-full-card" data-reveal>
+				<div class="service-full-num">08</div>
+				<h3>Bundle</h3>
+				<div class="service-sub-packages">
+					<div class="sub-package">
+						<h4>Content + Social + Performance + SEO</h4>
+						<ul>
+							<li>30 videos</li>
+							<li>Social management</li>
+							<li>Meta Ads</li>
+							<li>Retargeting</li>
+							<li>SEO</li>
+							<li>Content strategy</li>
+							<li>Monthly analytics</li>
+							<li>Growth consultation</li>
+						</ul>
+						<div class="note">Ad spend separate.</div>
+					</div>
+				</div>
 			</div>
 		</div>
 
@@ -173,7 +391,7 @@
 			if (e && e.preventDefault) e.preventDefault();
 			if (!url && typeof e === 'string') url = e;
 			transition.classList.add('active');
-			setTimeout(() => { window.location.href = url; }, 400);
+			setTimeout(() => { window.location.href = url; }, 200);
 		}
 		const navHamburger = document.getElementById('navHamburger');
 		const navMobileOverlay = document.getElementById('navMobileOverlay');

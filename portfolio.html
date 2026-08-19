@@ -16,7 +16,7 @@
 
 		.page-transition {
 			position: fixed; inset: 0; background: #000; z-index: 9999;
-			pointer-events: none; opacity: 0; transition: opacity 0.4s ease;
+			pointer-events: none; opacity: 0; transition: opacity 0.2s ease;
 		}
 		.page-transition.active { opacity: 1; }
 
@@ -226,7 +226,7 @@
 			if (e && e.preventDefault) e.preventDefault();
 			if (!url && typeof e === 'string') url = e;
 			transition.classList.add('active');
-			setTimeout(() => { window.location.href = url; }, 400);
+			setTimeout(() => { window.location.href = url; }, 200);
 		}
 
 		const navHamburger = document.getElementById('navHamburger');
