@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
@@ -344,7 +344,7 @@
 
 		.brands-track {
 			display: flex;
-			gap: 24px;
+			gap: 12px;
 			align-items: center;
 			animation: marqueeScroll 30s linear infinite;
 			width: max-content;
@@ -364,9 +364,9 @@
 			align-items: center;
 			justify-content: center;
 			flex: 0 0 auto;
-			min-width: 340px;
-			height: 220px;
-			padding: 28px 52px;
+			min-width: 160px;
+			height: 110px;
+			padding: 16px 28px;
 			opacity: 0.8;
 			transition: opacity 0.3s;
 		}
@@ -609,7 +609,7 @@
 
 		.sf-socials a:hover { color: var(--color-accent, rgba(230, 245, 120, 0.9)); }
 
-		/* -- Nav (floating) -- */
+		/* ── Nav (floating) ── */
 		.nav-float {
 			position: fixed;
 			top: 24px;
@@ -824,7 +824,7 @@
 
 		<section class="section manifesto" data-stage="1">
 			<span class="manifesto-label" data-reveal>Who We Are</span>
-			<h2 data-reveal data-delay="1"><em class="brand-name">REVOLVYN</em> is a next-gen digital marketing agency built for creators and brands. We work with 110+ YouTubers and 320+ brands, creating 4,500+ ads and campaigns. From influencer marketing to content, performance, SEO, and cinematic films�we do it all. We create, connect, and convert.</h2>
+			<h2 data-reveal data-delay="1"><em class="brand-name">REVOLVYN</em> is a next-gen digital marketing agency built for creators and brands. We work with 110+ YouTubers and 320+ brands, creating 4,500+ ads and campaigns. From influencer marketing to content, performance, SEO, and cinematic films. we do it all. We create, connect, and convert.</h2>
 		</section>
 
 		<section class="section pillars" data-stage="2">
@@ -854,7 +854,7 @@
 					<video autoplay muted loop playsinline preload="auto" src="https://video.wixstatic.com/video/4c7a69_f41b341b60e34a8193adb23bb5b7f217/480p/mp4/file.mp4"></video>
 				</div>
 			</div>
-			<a href="portfolio.html" class="portfolio-view-more" data-reveal data-delay="2">View More ?</a>
+			<a href="portfolio.html" class="portfolio-view-more" data-reveal data-delay="2">View More →</a>
 		</section>
 
 		<section class="section stats-section" data-stage="3">
@@ -894,19 +894,19 @@
 					</div>
 				</div>
 			</div>
-			<a href="brands.html" class="brands-more-btn" data-reveal data-delay="2">More Brands ?</a>
+			<a href="brands.html" class="brands-more-btn" data-reveal data-delay="2">More Brands →</a>
 		</section>
 
 		<section class="section quote-section" data-stage="4">
 			<blockquote data-reveal>"Some ideas are meant to be seen.
 Ours are meant to be felt."</blockquote>
-			<span class="quote-attr" data-reveal data-delay="1">� Swapnil Raymandal, Founder</span>
+			<span class="quote-attr" data-reveal data-delay="1"> — Swapnil Raymandal, Founder</span>
 		</section>
 
 		<section class="section cta-section" data-stage="5">
 			<h2 data-reveal>Step into<br>the <em>Journey</em></h2>
 			<!-- <p class="cta-sub" data-reveal data-delay="1">Join a growing collective of builders, dreamers, and stewards crafting a world worth inheriting.</p> -->
-			<a href="contact.html" class="cta-btn" data-reveal data-delay="2">Contact Us ?</a>
+			<a href="contact.html" class="cta-btn" data-reveal data-delay="2">Contact Us →</a>
 		</section>
 
 		<section class="section footer" data-stage="6">
@@ -930,20 +930,23 @@ Ours are meant to be felt."</blockquote>
 				<div class="sf-col-title">Resources</div>
 				<a href="privacy.html">Privacy Policy</a>
 				<a href="refund.html">Refund Policy</a>
+				<!-- <a href="research.html">Research</a> -->
+				<!-- <a href="blog.html">Blog</a> -->
 			</div>
 			<div class="sf-col">
 				<div class="sf-col-title">Connect</div>
 				<a href="contact.html">Contact</a>
+				<!-- <a href="newsletter.html">Newsletter</a> -->
 				<a href="partnerships.html">Partnerships</a>
 				<a href="careers.html">Careers</a>
 			</div>
 		</div>
 		<div class="sf-bottom">
-			<span class="sf-copy">� 2026 REVOLVYN. All futures reserved.</span>
+			<span class="sf-copy">© 2026 REVOLVYN. All futures reserved.</span>
 			<div class="sf-socials">
-				<a href="https://www.instagram.com/revolvynmedia/" target="_blank" rel="noopener">Instagram</a>
-				<a href="https://www.facebook.com/profile.php?id=61583216723894" target="_blank" rel="noopener">Facebook</a>
-				<a href="https://www.youtube.com/@REVOLVYNMEDIA" target="_blank" rel="noopener">YouTube</a>
+				<a href="javascript:void(0)">Instagram</a>
+				<a href="javascript:void(0)">Facebook</a>
+				<a href="javascript:void(0)">YouTube</a>
 			</div>
 		</div>
 	</footer>
@@ -965,7 +968,7 @@ Ours are meant to be felt."</blockquote>
 		const BLADE_BASE_HEX = '#0e1e04';
 		const BLADE_TIP_HEX = '#c8b840';
 
-		// --- Sky Gradient --------------------------------------------------
+		// ─── Sky Gradient ──────────────────────────────────────────────────
 		const skyColors = {
 			top:     new THREE.Color('#000000'),
 			midHigh: new THREE.Color('#000000'),
@@ -993,7 +996,7 @@ Ours are meant to be felt."</blockquote>
 			return tex;
 		}
 
-		// --- Scene ---------------------------------------------------------
+		// ─── Scene ─────────────────────────────────────────────────────────
 		const scene = new THREE.Scene();
 		scene.background = buildSkyTexture();
 		scene.fog = new THREE.FogExp2('#000000', 0.035);
@@ -1012,12 +1015,12 @@ Ours are meant to be felt."</blockquote>
 		document.body.appendChild(renderer.domElement);
 		await renderer.init();
 
-		// --- GPU Buffers ----------------------------------------------------
+		// ─── GPU Buffers ────────────────────────────────────────────────────
 		const bladeData = instancedArray(BLADE_COUNT, 'vec4');
 		const bendState = instancedArray(BLADE_COUNT, 'vec4');
 		const bladeBound = instancedArray(BLADE_COUNT, 'float');
 
-		// --- Uniforms -------------------------------------------------------
+		// ─── Uniforms ───────────────────────────────────────────────────────
 		const mouseWorld = uniform(new THREE.Vector3(99999, 0, 99999));
 		const mouseRadius = uniform(6.1);
 		const mouseStrength = uniform(4.0);
@@ -1055,7 +1058,7 @@ Ours are meant to be felt."</blockquote>
 		const greenTipColor = uniform(new THREE.Color('#4a7a14'));
 		const midColor = uniform(new THREE.Color('#2d4e0e'));
 
-		// --- DoF Uniforms --------------------------------------------------
+		// ─── DoF Uniforms ──────────────────────────────────────────────────
 		const focusDistanceU = uniform(31.83);
 		const focalLengthU = uniform(10.0);
 		const bokehScaleU = uniform(12.5);
@@ -1067,7 +1070,7 @@ Ours are meant to be felt."</blockquote>
 
 		const noise2D = Fn(([x, z]) => mx_noise_float(vec3(x, float(0), z)).mul(0.5).add(0.5));
 
-		// --- Compute Init --------------------------------------------------
+		// ─── Compute Init ──────────────────────────────────────────────────
 		const computeInit = Fn(() => {
 			const blade = bladeData.element(instanceIndex);
 			const col = instanceIndex.mod(283);
@@ -1090,7 +1093,7 @@ Ours are meant to be felt."</blockquote>
 			bladeBound.element(instanceIndex).assign(select(boundary.lessThan(0.05), float(0), boundary));
 		})().compute(BLADE_COUNT);
 
-		// --- Compute Update ------------------------------------------------
+		// ─── Compute Update ────────────────────────────────────────────────
 		const computeUpdate = Fn(() => {
 			const blade = bladeData.element(instanceIndex);
 			const bend = bendState.element(instanceIndex);
@@ -1143,7 +1146,7 @@ Ours are meant to be felt."</blockquote>
 			bend.w.assign(mix(bend.w, totalPushZ, lm));
 		})().compute(BLADE_COUNT);
 
-		// --- Blade Geometry ------------------------------------------------
+		// ─── Blade Geometry ────────────────────────────────────────────────
 		function createBladeGeometry() {
 			const segs = 5, W = 0.055, H = 1.0;
 			const verts = [], norms = [], uvArr = [], idx = [];
@@ -1162,7 +1165,7 @@ Ours are meant to be felt."</blockquote>
 			return geo;
 		}
 
-		// --- Grass Material ------------------------------------------------
+		// ─── Grass Material ────────────────────────────────────────────────
 		const grassMat = new THREE.MeshBasicNodeMaterial({ side: THREE.DoubleSide, fog: true });
 
 		grassMat.positionNode = Fn(() => {
@@ -1221,7 +1224,7 @@ Ours are meant to be felt."</blockquote>
 		})();
 		grassMat.transparent = true;
 
-		// --- Instances -----------------------------------------------------
+		// ─── Instances ─────────────────────────────────────────────────────
 		const bladeGeo = createBladeGeometry();
 		const grass = new THREE.InstancedMesh(bladeGeo, grassMat, BLADE_COUNT);
 		grass.frustumCulled = false;
@@ -1230,7 +1233,7 @@ Ours are meant to be felt."</blockquote>
 		for (let i = 0; i < BLADE_COUNT; i++) grass.setMatrixAt(i, dummy.matrix);
 		grass.instanceMatrix.needsUpdate = true;
 
-		// --- Ground --------------------------------------------------------
+		// ─── Ground ────────────────────────────────────────────────────────
 		const groundMat = new THREE.MeshBasicNodeMaterial();
 		groundMat.colorNode = Fn(() => {
 			const wx = positionWorld.x, wz = positionWorld.z;
@@ -1244,13 +1247,13 @@ Ours are meant to be felt."</blockquote>
 		ground.rotation.x = -Math.PI / 2;
 		scene.add(ground);
 
-		// --- Lighting ------------------------------------------------------
+		// ─── Lighting ──────────────────────────────────────────────────────
 		scene.add(new THREE.AmbientLight(0xffffff, 0.6));
 		const dirLight = new THREE.DirectionalLight(0xfff4e0, 1.5);
 		dirLight.position.set(5, 10, 7);
 		scene.add(dirLight);
 
-		// --- Post Processing (DoF) -----------------------------------------
+		// ─── Post Processing (DoF) ─────────────────────────────────────────
 		const postProcessing = new THREE.PostProcessing(renderer);
 		const scenePass = pass(scene, camera);
 		scenePass.setMRT(mrt({
@@ -1274,7 +1277,7 @@ Ours are meant to be felt."</blockquote>
 			postProcessing.needsUpdate = true;
 		}
 
-		// --- Mouse ---------------------------------------------------------
+		// ─── Mouse ─────────────────────────────────────────────────────────
 		const raycaster = new THREE.Raycaster();
 		const mouseNDC = new THREE.Vector2();
 		const grassPlane = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
@@ -1307,13 +1310,13 @@ Ours are meant to be felt."</blockquote>
 			}, 200);
 		});
 
-		// --- Wind Button ---------------------------------------------------
+		// ─── Wind Button ───────────────────────────────────────────────────
 		let windBurst = 0;
 		let _baseWindSpeed = 1.3;
 		let _baseWindAmp = 0.21;
 		let globalDofEnabled = true;
 
-		// --- Scroll-Driven Camera (one keyframe per section) ---------------
+		// ─── Scroll-Driven Camera (one keyframe per section) ───────────────
 		// [scrollProgress, posX, posY, posZ, lookX, lookY, lookZ]
 		const stageNames = ['Hero', 'Manifesto', 'Portfolio', 'Stats', 'Quote', 'CTA', 'Footer'];
 
@@ -1350,23 +1353,23 @@ Ours are meant to be felt."</blockquote>
 			// Camera Sphere
 			camSphereRadius:   { def: 15.0, min: 1,  max: 15, step: 0.1, label: 'Cam Radius',   group: 'Camera Sphere', noDirect: true },
 			camSphereStrength: { def: 5.9,  min: 0,  max: 6,  step: 0.1, label: 'Cam Strength',  group: 'Camera Sphere', noDirect: true },
-			// Scene Colors � blade base
+			// Scene Colors — blade base
 			bladeBaseR: { def: 0.055, min: 0, max: 1, step: 0.01, label: 'Base Red',     group: 'Scene Colors', isColor: 'bladeBaseColor', ch: 'r' },
 			bladeBaseG: { def: 0.118, min: 0, max: 1, step: 0.01, label: 'Base Green',   group: 'Scene Colors', isColor: 'bladeBaseColor', ch: 'g' },
 			bladeBaseB: { def: 0.016, min: 0, max: 1, step: 0.01, label: 'Base Blue',    group: 'Scene Colors', isColor: 'bladeBaseColor', ch: 'b' },
-			// Scene Colors � blade tip
+			// Scene Colors — blade tip
 			bladeTipR:  { def: 0.784, min: 0, max: 1, step: 0.01, label: 'Tip Red',      group: 'Scene Colors', isColor: 'bladeTipColor', ch: 'r' },
 			bladeTipG:  { def: 0.722, min: 0, max: 1, step: 0.01, label: 'Tip Green',    group: 'Scene Colors', isColor: 'bladeTipColor', ch: 'g' },
 			bladeTipB:  { def: 0.251, min: 0, max: 1, step: 0.01, label: 'Tip Blue',     group: 'Scene Colors', isColor: 'bladeTipColor', ch: 'b' },
-			// Scene Colors � golden tip
+			// Scene Colors — golden tip
 			goldenTipR: { def: 0.831, min: 0, max: 1, step: 0.01, label: 'Gold Tip R',   group: 'Scene Colors', isColor: 'goldenTipColor', ch: 'r' },
 			goldenTipG: { def: 0.722, min: 0, max: 1, step: 0.01, label: 'Gold Tip G',   group: 'Scene Colors', isColor: 'goldenTipColor', ch: 'g' },
 			goldenTipB: { def: 0.220, min: 0, max: 1, step: 0.01, label: 'Gold Tip B',   group: 'Scene Colors', isColor: 'goldenTipColor', ch: 'b' },
-			// Scene Colors � green tip
+			// Scene Colors — green tip
 			greenTipR:  { def: 0.290, min: 0, max: 1, step: 0.01, label: 'Green Tip R',  group: 'Scene Colors', isColor: 'greenTipColor', ch: 'r' },
 			greenTipG:  { def: 0.478, min: 0, max: 1, step: 0.01, label: 'Green Tip G',  group: 'Scene Colors', isColor: 'greenTipColor', ch: 'g' },
 			greenTipB:  { def: 0.078, min: 0, max: 1, step: 0.01, label: 'Green Tip B',  group: 'Scene Colors', isColor: 'greenTipColor', ch: 'b' },
-			// Scene Colors � mid tone
+			// Scene Colors — mid tone
 			midR:       { def: 0.176, min: 0, max: 1, step: 0.01, label: 'Mid Tone R',   group: 'Scene Colors', isColor: 'midColor', ch: 'r' },
 			midG:       { def: 0.306, min: 0, max: 1, step: 0.01, label: 'Mid Tone G',   group: 'Scene Colors', isColor: 'midColor', ch: 'g' },
 			midB:       { def: 0.055, min: 0, max: 1, step: 0.01, label: 'Mid Tone B',   group: 'Scene Colors', isColor: 'midColor', ch: 'b' },
@@ -1386,7 +1389,7 @@ Ours are meant to be felt."</blockquote>
 			midColor: midColor,
 		};
 
-		// Build default params object � reads current uniform values for colors
+		// Build default params object — reads current uniform values for colors
 		function getDefaultParams() {
 			const p = {};
 			stageParamKeys.forEach(k => {
@@ -1544,11 +1547,11 @@ Ours are meant to be felt."</blockquote>
 		window.addEventListener('scroll', () => { _scrollDirty = true; }, { passive: true });
 		window.addEventListener('touchmove', () => { _scrollDirty = true; }, { passive: true });
 
-		// --- Reveal on Scroll ----------------------------------------------
+		// ─── Reveal on Scroll ──────────────────────────────────────────────
 		const progressBar = document.getElementById('progressBar');
 		const navFloat = document.getElementById('navFloat');
 
-		// Use IntersectionObserver for reveals � no per-scroll layout thrashing
+		// Use IntersectionObserver for reveals — no per-scroll layout thrashing
 		const revealObserver = new IntersectionObserver((entries) => {
 			entries.forEach(entry => {
 				if (entry.isIntersecting) {
@@ -1562,7 +1565,7 @@ Ours are meant to be felt."</blockquote>
 
 		document.querySelectorAll('[data-reveal]').forEach(el => revealObserver.observe(el));
 
-		// --- Video Play/Pause on Visibility ---------------------------------
+		// ─── Video Play/Pause on Visibility ─────────────────────────────────
 		const videoObserver = new IntersectionObserver((entries) => {
 			entries.forEach(entry => {
 				const video = entry.target;
@@ -1586,7 +1589,7 @@ Ours are meant to be felt."</blockquote>
 			}
 		}, 800);
 
-		// --- Nav Link Click ? Scroll to Section ----------------------------
+		// ─── Nav Link Click → Scroll to Section ────────────────────────────
 		document.querySelector('.nav-logo').addEventListener('click', (e) => {
 			e.preventDefault();
 			const hero = document.querySelector('.section[data-stage="0"]');
@@ -1606,7 +1609,7 @@ Ours are meant to be felt."</blockquote>
 			});
 		});
 
-		// --- Mobile Hamburger Menu -----------------------------------------
+		// ─── Mobile Hamburger Menu ─────────────────────────────────────────
 		const navHamburger = document.getElementById('navHamburger');
 		const navMobileOverlay = document.getElementById('navMobileOverlay');
 
@@ -1628,7 +1631,7 @@ Ours are meant to be felt."</blockquote>
 			});
 		});
 
-		// --- Boot ----------------------------------------------------------
+		// ─── Boot ──────────────────────────────────────────────────────────
 		await renderer.computeAsync(computeInit);
 
 		// Pre-warm the pipeline by rendering a couple of frames before showing
@@ -1697,7 +1700,7 @@ Ours are meant to be felt."</blockquote>
 			_scrollHint.style.opacity = Math.max(0, 1 - currentScrollT * 15);
 		}
 
-			// Camera sphere � always push grass away from camera base
+			// Camera sphere — always push grass away from camera base
 			camSphereWorld.value.set(camera.position.x, 0, camera.position.z);
 
 			// Apply interpolated per-stage params to uniforms
@@ -1736,7 +1739,7 @@ Ours are meant to be felt."</blockquote>
 				greenTipColor.value.setRGB(p.greenTipR, p.greenTipG, p.greenTipB);
 				midColor.value.setRGB(p.midR, p.midG, p.midB);
 				bladeColorVariation.value = p.colorVar;
-				// Camera Sphere � blend per-stage values with proximity scaling
+				// Camera Sphere — blend per-stage values with proximity scaling
 				const baseCamR = p.camSphereRadius;
 				const baseCamS = p.camSphereStrength;
 				camSphereRadius.value = baseCamR;
@@ -1755,7 +1758,7 @@ Ours are meant to be felt."</blockquote>
 			windSpeed.value = _baseWindSpeed;
 			windAmplitude.value = _baseWindAmp;
 
-			// Wind burst � smoothly ramp up speed & amplitude, then ease back down
+			// Wind burst — smoothly ramp up speed & amplitude, then ease back down
 			if (windBurst > 0) {
 				windBurst -= dt * 0.6;
 				const burstT = Math.max(0, windBurst / 4.0);
