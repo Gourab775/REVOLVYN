@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-	<title>REVOLVYN — Digital Oasis</title>
+	<title>REVOLVYN</title>
 	<style>
 		@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
 
@@ -20,13 +20,6 @@
 			-ms-overflow-style: none;
 		}
 		html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; }
-		/* Page transition overlay */
-		.page-transition {
-			position: fixed; inset: 0; background: #000; z-index: 9999;
-			pointer-events: none; opacity: 0;
-			transition: opacity 0.4s ease;
-		}
-		.page-transition.active { opacity: 1; }
 
 		canvas {
 			position: fixed;
@@ -761,17 +754,16 @@
 </head>
 
 <body>
-	<div class="page-transition" id="pageTransition"></div>
 	<div class="progress-bar" id="progressBar"></div>
 
 	<nav class="nav-float" id="navFloat">
 		<div class="nav-logo" onclick="window.location.href='index.html'" style="cursor:pointer">REVOLVYN</div>
 		<div class="nav-links">
 			<a href="javascript:void(0)" data-nav="1">About Us</a>
-			<a href="portfolio.html" onclick="smoothNavigate(event, 'portfolio.html')">Portfolio</a>
-			<a href="brands.html" onclick="smoothNavigate(event, 'brands.html')">Brands</a>
-			<a href="services.html" onclick="smoothNavigate(event, 'services.html')">Services</a>
-			<a href="contact.html" onclick="smoothNavigate(event, 'contact.html')">Contact Us</a>
+			<a href="javascript:void(0)" data-nav="2">Portfolio</a>
+			<a href="javascript:void(0)" data-nav="3">Brands</a>
+			<a href="services.html">Services</a>
+			<a href="contact.html">Contact Us</a>
 		</div>
 		<button class="nav-hamburger" id="navHamburger" aria-label="Menu">
 			<span></span><span></span><span></span>
@@ -779,10 +771,10 @@
 	</nav>
 	<div class="nav-mobile-overlay" id="navMobileOverlay">
 		<a href="javascript:void(0)" data-nav-mobile="1">About Us</a>
-		<a href="portfolio.html" onclick="smoothNavigate(event, 'portfolio.html')">Portfolio</a>
-		<a href="brands.html" onclick="smoothNavigate(event, 'brands.html')">Brands</a>
-		<a href="services.html" onclick="smoothNavigate(event, 'services.html')">Services</a>
-		<a href="contact.html" onclick="smoothNavigate(event, 'contact.html')">Contact Us</a>
+		<a href="javascript:void(0)" data-nav-mobile="2">Portfolio</a>
+		<a href="javascript:void(0)" data-nav-mobile="3">Brands</a>
+		<a href="services.html">Services</a>
+		<a href="contact.html">Contact Us</a>
 	</div>
 
 	<div id="scroll-container">
@@ -808,26 +800,28 @@
 			</div>
 			<div class="portfolio-grid">
 				<div class="portfolio-item" data-reveal data-delay="1">
-					<video autoplay muted loop playsinline preload="metadata" src="https://video.wixstatic.com/video/4c7a69_e0893a64f65d45c288100d58ed3ac6e7/720p/mp4/file.mp4"></video>
+					<video autoplay muted loop playsinline preload="metadata" src="https://video.wixstatic.com/video/4c7a69_167a3dc6c3074605b15aaba99ebca941/360p/mp4/file.mp4"></video>
 				</div>
 				<div class="portfolio-item" data-reveal data-delay="2">
-					<video autoplay muted loop playsinline preload="metadata" src="https://video.wixstatic.com/video/4c7a69_14a8db37650e4e048c74550cdc0850bd/360p/mp4/file.mp4"></video>
+					<video autoplay muted loop playsinline preload="metadata" src="https://video.wixstatic.com/video/4c7a69_ae60f198c15a4dabbec575bb07569699/720p/mp4/file.mp4"></video>
 				</div>
 				<div class="portfolio-item" data-reveal data-delay="3">
-					<video autoplay muted loop playsinline preload="metadata" src="https://video.wixstatic.com/video/4c7a69_a66586e5154d4a4ba6f5ce1e11b80694/720p/mp4/file.mp4"></video>
+					<video autoplay muted loop playsinline preload="metadata" src="https://video.wixstatic.com/video/4c7a69_79283b4698b040f89bffa697139f5979/360p/mp4/file.mp4"></video>
 				</div>
 				<div class="portfolio-item" data-reveal data-delay="1">
-					<video autoplay muted loop playsinline preload="metadata" src="https://video.wixstatic.com/video/4c7a69_6e02f73ac2854749902a919538d625f4/720p/mp4/file.mp4"></video>
+					<video autoplay muted loop playsinline preload="metadata" src="https://video.wixstatic.com/video/4c7a69_8132559f018f4549b1d5cffb2826f487/720p/mp4/file.mp4"></video>
 				</div>
 				<div class="portfolio-item" data-reveal data-delay="2">
-					<video autoplay muted loop playsinline preload="metadata" src="https://video.wixstatic.com/video/4c7a69_0e60df56daa74e448177aac81ff654ce/720p/mp4/file.mp4"></video>
+					<video autoplay muted loop playsinline preload="metadata" src="https://video.wixstatic.com/video/4c7a69_141b2d08cb6748bb987c19f0b683e40f/360p/mp4/file.mp4"></video>
 				</div>
 				<div class="portfolio-item" data-reveal data-delay="3">
-					<video autoplay muted loop playsinline preload="metadata" src="https://video.wixstatic.com/video/4c7a69_13620f51b0ed46c5914c8523b4a77218/720p/mp4/file.mp4"></video>
+					<video autoplay muted loop playsinline preload="metadata" src="https://video.wixstatic.com/video/4c7a69_00298a65656a42ef930838200a3dc570/720p/mp4/file.mp4"></video>
 				</div>
-				<div class="portfolio-placeholder"></div>
+				<div class="portfolio-item" data-reveal data-delay="3">
+					<video autoplay muted loop playsinline preload="metadata" src="https://video.wixstatic.com/video/4c7a69_3a6051a870504c6eaf51a3547ca471ce/1080p/mp4/file.mp4"></video>
+				</div>
 			</div>
-			<a href="portfolio.html" class="portfolio-view-more" data-reveal data-delay="2">View More →</a>
+			<a href="javascript:void(0)" class="portfolio-view-more" data-reveal data-delay="2">View More →</a>
 		</section>
 
 		<section class="section stats-section" data-stage="3">
@@ -850,7 +844,7 @@
 				</div>
 				<div class="brand-logo-placeholder"></div>
 			</div>
-			<a href="brands.html" class="brands-more-btn" data-reveal data-delay="2">More Brands →</a>
+			<a href="javascript:void(0)" class="brands-more-btn" data-reveal data-delay="2">More Brands →</a>
 		</section>
 
 		<section class="section quote-section" data-stage="4">
@@ -861,7 +855,7 @@
 		<section class="section cta-section" data-stage="5">
 			<h2 data-reveal>Step into<br>the <em>Journey</em></h2>
 			<!-- <p class="cta-sub" data-reveal data-delay="1">Join a growing collective of builders, dreamers, and stewards crafting a world worth inheriting.</p> -->
-			<a href="contact.html" class="cta-btn" data-reveal data-delay="2">Contact Us →</a>
+			<a href="javascript:void(0)" class="cta-btn" data-reveal data-delay="2">Contact Us →</a>
 		</section>
 
 		<section class="section footer" data-stage="6">
@@ -875,35 +869,35 @@
 				<p class="sf-brand-desc">From bold ideas to meaningful experiences, we turn creativity into impact.
 Because the best work doesn’t just get seen — it gets remembered, felt, and shared..</p>
 			</div>
-		<div class="sf-col">
-			<div class="sf-col-title">Explore</div>
-			<a href="index.html">About Us</a>
-			<a href="portfolio.html">Portfolio</a>
-			<a href="brands.html">Brands</a>
-			<a href="services.html">Services</a>
-		</div>
-		<div class="sf-col">
-			<div class="sf-col-title">Resources</div>
-			<a href="#">Privacy Policy</a>
-			<a href="#">Refund Policy</a>
-			<a href="#">Research</a>
-			<a href="#">Blog</a>
-		</div>
-		<div class="sf-col">
-			<div class="sf-col-title">Connect</div>
-			<a href="contact.html">Contact</a>
-			<a href="#">Newsletter</a>
-			<a href="#">Partnerships</a>
-			<a href="#">Careers</a>
-		</div>
+			<div class="sf-col">
+				<div class="sf-col-title">Explore</div>
+				<a href="javascript:void(0)">About Us</a>
+				<a href="javascript:void(0)">Portfolio</a>
+				<a href="javascript:void(0)">Brands</a>
+				<a href="javascript:void(0)">Community</a>
+			</div>
+			<div class="sf-col">
+				<div class="sf-col-title">Resources</div>
+				<a href="javascript:void(0)">Privacy Policy</a>
+				<a href="javascript:void(0)">Refund Policy</a>
+				<a href="javascript:void(0)">Research</a>
+				<a href="javascript:void(0)">Blog</a>
+			</div>
+			<div class="sf-col">
+				<div class="sf-col-title">Connect</div>
+				<a href="javascript:void(0)">Contact</a>
+				<a href="javascript:void(0)">Newsletter</a>
+				<a href="javascript:void(0)">Partnerships</a>
+				<a href="javascript:void(0)">Careers</a>
+			</div>
 		</div>
 		<div class="sf-bottom">
 			<span class="sf-copy">© 2026 REVOLVYN. All futures reserved.</span>
-		<div class="sf-socials">
-			<a href="#">Instagram</a>
-			<a href="#">Facebook</a>
-			<a href="#">YouTube</a>
-		</div>
+			<div class="sf-socials">
+				<a href="javascript:void(0)">Instagram</a>
+				<a href="javascript:void(0)">Facebook</a>
+				<a href="javascript:void(0)">YouTube</a>
+			</div>
 		</div>
 	</footer>
 
@@ -916,14 +910,6 @@ Because the best work doesn’t just get seen — it gets remembered, felt, and 
 			pass, mrt, output, transformedNormalView,
 		} from 'three/tsl';
 		import { dof } from 'three/addons/tsl/display/DepthOfFieldNode.js';
-
-		const transition = document.getElementById('pageTransition');
-		function smoothNavigate(e, url) {
-			if (e && e.preventDefault) e.preventDefault();
-			if (!url && typeof e === 'string') url = e;
-			transition.classList.add('active');
-			setTimeout(() => { window.location.href = url; }, 400);
-		}
 
 		const BLADE_COUNT = 120000;
 		const FIELD_SIZE = 30;
