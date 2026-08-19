@@ -424,7 +424,7 @@
 			{ brand: "MISA", title: "Misa", desc: "A contemporary lifestyle and beauty-oriented brand positioned around refined aesthetics and modern lifestyle storytelling.", video: "https://video.wixstatic.com/video/4c7a69_18626112b3fe48be90065fd2d94d93dd/720p/mp4/file.mp4", orient: "landscape", category: "Beauty", services: "Content Creation" },
 			{ brand: "HELLSKIN", title: "Hellskin", desc: "A bold, modern beauty and skincare brand with contemporary, expressive visual direction and product-led storytelling.", video: "https://video.wixstatic.com/video/4c7a69_ab5372c0df9d40f0acac2dc6f1791108/1080p/mp4/file.mp4", orient: "portrait", category: "Skincare", services: "Ad Film" },
 			{ brand: "GENRAGE", title: "Genrage", desc: "A contemporary youth and lifestyle-focused brand highlighting energetic creative direction and culture-driven storytelling.", video: "https://video.wixstatic.com/video/4c7a69_422c79f20d984ac3a13abaed654f6738/1080p/mp4/file.mp4", orient: "portrait", category: "Youth Culture", services: "Brand Campaign" },
-			{ brand: "VANESA", title: "Vanesa", desc: "A contemporary beauty and lifestyle brand positioned around polished visual storytelling and beauty aesthetics.", video: "https://video.wixstatic.com/video/4c7a69_3a6051a870504c6eaf51a3547ca471ce/1080p/mp4/file.mp4", orient: "portrait", category: "Beauty", services: "Brand Film" },
+			{ brand: "SAT Professor", title: "SAT Professor", desc: "A contemporary beauty and lifestyle brand positioned around polished visual storytelling and beauty aesthetics.", video: "https://video.wixstatic.com/video/4c7a69_3a6051a870504c6eaf51a3547ca471ce/1080p/mp4/file.mp4", orient: "portrait", category: "Beauty", services: "Brand Film" },
 			{ brand: "VANESA", title: "Vanesa", desc: "A contemporary beauty and lifestyle brand positioned around polished visual storytelling and beauty aesthetics.", video: "https://video.wixstatic.com/video/4c7a69_4aceff66cfd24ababafb1f6e47495261/1080p/mp4/file.mp4", orient: "portrait", category: "Beauty", services: "Brand Film" },
 			{ brand: "HOICHOI", title: "Hoichoi", desc: "A leading Bengali-language streaming entertainment platform known for original series, films, and digital entertainment.", video: "https://video.wixstatic.com/video/4c7a69_04fe62bfdee4460da9398f023d851bfa/720p/mp4/file.mp4", orient: "landscape", category: "Entertainment", services: "Campaign Film" },
 			{ brand: "TRADECFD", title: "TradeCFD", desc: "A financial trading-oriented brand demonstrating how performance-focused messaging translates into engaging digital content.", video: "https://video.wixstatic.com/video/4c7a69_bf4f28780ad642aeb01cb61516c362e3/1080p/mp4/file.mp4", orient: "landscape", category: "Finance", services: "Ad Film" },
@@ -481,7 +481,7 @@
 			mainVideo.play().catch(() => {});
 			isPlaying = true;
 			playIcon.style.display = 'none';
-		.pauseIcon.style.display = 'block';
+		pauseIcon.style.display = 'block';
 		}, { once: true });
 
 		mainVideo.addEventListener('timeupdate', () => {
@@ -490,7 +490,7 @@
 				progressFill.style.width = pct + '%';
 				timeDisplay.textContent = formatTime(mainVideo.currentTime) + ' / ' + formatTime(mainVideo.duration);
 			}
-		});
+		})
 
 		function formatTime(s) {
 			const m = Math.floor(s / 60);
