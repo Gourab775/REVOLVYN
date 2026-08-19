@@ -337,38 +337,44 @@
 		.brands-grid {
 			display: flex;
 			flex-wrap: nowrap;
-			gap: 24px;
-			justify-content: center;
+			gap: 0;
 			align-items: center;
 			width: 100%;
-			padding: 0 20px;
-			overflow-x: auto;
+			overflow: hidden;
+			position: relative;
+		}
+
+		.brands-track {
+			display: flex;
+			gap: 48px;
+			align-items: center;
+			animation: marqueeScroll 30s linear infinite;
+			width: max-content;
+		}
+
+		@keyframes marqueeScroll {
+			0% { transform: translateX(0); }
+			100% { transform: translateX(-50%); }
+		}
+
+		.brands-track:hover {
+			animation-play-state: paused;
 		}
 
 		.brand-logo-item {
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			flex: 1 1 120px;
-			min-width: 100px;
-			height: clamp(100px, 22vw, 200px);
-			padding: 12px;
-			background: transparent;
-			opacity: 0;
-			transform: translateY(20px);
-			animation: logoFloat 4s ease-in-out infinite;
-			contain: layout style;
+			flex: 0 0 auto;
+			min-width: 120px;
+			height: 80px;
+			padding: 12px 20px;
+			opacity: 0.7;
+			transition: opacity 0.3s;
 		}
 
-		.brand-logo-item:nth-child(2) { animation-delay: 0.5s; }
-		.brand-logo-item:nth-child(3) { animation-delay: 1s; }
-		.brand-logo-item:nth-child(4) { animation-delay: 1.5s; }
-		.brand-logo-item:nth-child(5) { animation-delay: 2s; }
-		.brand-logo-item:nth-child(6) { animation-delay: 2.5s; }
-
-		@keyframes logoFloat {
-			0%, 100% { transform: translateY(0); }
-			50% { transform: translateY(-8px); }
+		.brand-logo-item:hover {
+			opacity: 1;
 		}
 
 		.brand-logo-item img {
@@ -377,7 +383,7 @@
 			width: auto;
 			height: auto;
 			object-fit: contain;
-			filter: brightness(0.95) contrast(1.05);
+			filter: brightness(0.9) contrast(1.05);
 			transition: filter 0.3s, transform 0.3s;
 		}
 
@@ -856,22 +862,39 @@
 		<section class="section stats-section" data-stage="3">
 			<span class="stats-label" data-reveal>Brands We Work With</span>
 			<div class="brands-grid">
-				<div class="brand-logo-item" data-reveal data-delay="1">
-					<img src="brand logos/Untitled design (1)-Photoroom.png" alt="Brand 1">
+				<div class="brands-track">
+					<div class="brand-logo-item">
+						<img src="brand logos/Untitled design (1)-Photoroom.png" alt="Brand 1">
+					</div>
+					<div class="brand-logo-item">
+						<img src="brand logos/Untitled design (2)-Photoroom.png" alt="Brand 2">
+					</div>
+					<div class="brand-logo-item">
+						<img src="brand logos/Untitled design (6)-Photoroom.png" alt="Brand 3">
+					</div>
+					<div class="brand-logo-item">
+						<img src="brand logos/Untitled design (8)-Photoroom.png" alt="Brand 4">
+					</div>
+					<div class="brand-logo-item">
+						<img src="brand logos/Untitled design (10)-Photoroom.png" alt="Brand 5">
+					</div>
+					<!-- Duplicate set for seamless loop -->
+					<div class="brand-logo-item">
+						<img src="brand logos/Untitled design (1)-Photoroom.png" alt="Brand 1">
+					</div>
+					<div class="brand-logo-item">
+						<img src="brand logos/Untitled design (2)-Photoroom.png" alt="Brand 2">
+					</div>
+					<div class="brand-logo-item">
+						<img src="brand logos/Untitled design (6)-Photoroom.png" alt="Brand 3">
+					</div>
+					<div class="brand-logo-item">
+						<img src="brand logos/Untitled design (8)-Photoroom.png" alt="Brand 4">
+					</div>
+					<div class="brand-logo-item">
+						<img src="brand logos/Untitled design (10)-Photoroom.png" alt="Brand 5">
+					</div>
 				</div>
-				<div class="brand-logo-item" data-reveal data-delay="2">
-					<img src="brand logos/Untitled design (2)-Photoroom.png" alt="Brand 2">
-				</div>
-				<div class="brand-logo-item" data-reveal data-delay="1">
-					<img src="brand logos/Untitled design (6)-Photoroom.png" alt="Brand 3">
-				</div>
-				<div class="brand-logo-item" data-reveal data-delay="2">
-					<img src="brand logos/Untitled design (8)-Photoroom.png" alt="Brand 4">
-				</div>
-				<div class="brand-logo-item" data-reveal data-delay="1">
-					<img src="brand logos/Untitled design (10)-Photoroom.png" alt="Brand 5">
-				</div>
-				<div class="brand-logo-placeholder"></div>
 			</div>
 			<a href="brands.html" class="brands-more-btn" data-reveal data-delay="2">More Brands →</a>
 		</section>
@@ -884,7 +907,7 @@
 		<section class="section cta-section" data-stage="5">
 			<h2 data-reveal>Step into<br>the <em>Journey</em></h2>
 			<!-- <p class="cta-sub" data-reveal data-delay="1">Join a growing collective of builders, dreamers, and stewards crafting a world worth inheriting.</p> -->
-			<a href="javascript:void(0)" class="cta-btn" data-reveal data-delay="2">Contact Us →</a>
+			<a href="contact.html" class="cta-btn" data-reveal data-delay="2">Contact Us →</a>
 		</section>
 
 		<section class="section footer" data-stage="6">
@@ -899,24 +922,24 @@
 			</div>
 			<div class="sf-col">
 				<div class="sf-col-title">Explore</div>
-				<a href="javascript:void(0)">About Us</a>
-				<a href="javascript:void(0)">Portfolio</a>
-				<a href="javascript:void(0)">Brands</a>
-				<a href="javascript:void(0)">Community</a>
+				<a href="index.html">About Us</a>
+				<a href="portfolio.html">Portfolio</a>
+				<a href="brands.html">Brands</a>
+				<a href="community.html">Community</a>
 			</div>
 			<div class="sf-col">
 				<div class="sf-col-title">Resources</div>
-				<a href="javascript:void(0)">Privacy Policy</a>
-				<a href="javascript:void(0)">Refund Policy</a>
-				<a href="javascript:void(0)">Research</a>
-				<a href="javascript:void(0)">Blog</a>
+				<a href="privacy.html">Privacy Policy</a>
+				<a href="refund.html">Refund Policy</a>
+				<a href="research.html">Research</a>
+				<a href="blog.html">Blog</a>
 			</div>
 			<div class="sf-col">
 				<div class="sf-col-title">Connect</div>
-				<a href="javascript:void(0)">Contact</a>
-				<a href="javascript:void(0)">Newsletter</a>
-				<a href="javascript:void(0)">Partnerships</a>
-				<a href="javascript:void(0)">Careers</a>
+				<a href="contact.html">Contact</a>
+				<a href="newsletter.html">Newsletter</a>
+				<a href="partnerships.html">Partnerships</a>
+				<a href="careers.html">Careers</a>
 			</div>
 		</div>
 		<div class="sf-bottom">
