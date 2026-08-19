@@ -900,7 +900,7 @@
 		<section class="section quote-section" data-stage="4">
 			<blockquote data-reveal>"Some ideas are meant to be seen.
 <em>Ours</em> are meant to be felt."</blockquote>
-			<span class="quote-attr" data-reveal data-delay="1"> — Swapnil Raymandal, Founder</span>
+			<span class="quote-attr" data-reveal data-delay="1"> ï¿½ Swapnil Raymandal, Founder</span>
 		</section>
 
 		<section class="section cta-section" data-stage="5">
@@ -942,12 +942,13 @@
 			</div>
 		</div>
 		<div class="sf-bottom">
-			<span class="sf-copy">© 2026 REVOLVYN. All futures reserved.</span>
+			<span class="sf-copy">Â© 2026 REVOLVYN. All futures reserved.</span>
 			<div class="sf-socials">
-				<a href="javascript:void(0)">Instagram</a>
-				<a href="javascript:void(0)">Facebook</a>
-				<a href="javascript:void(0)">YouTube</a>
+				<a href="https://www.instagram.com/revolvynmedia?igsi=bmFlaHFyMG92eDNk" target="_blank" rel="noopener">Instagram</a>
+				<a href="https://www.facebook.com/share/1F5rfL4tPS/?mibextid=LQQJ4d" target="_blank" rel="noopener">Facebook</a>
+				<a href="https://www.youtube.com/@REVOLVYNMEDIA" target="_blank" rel="noopener">YouTube</a>
 			</div>
+		</div>
 		</div>
 	</footer>
 
@@ -1353,23 +1354,23 @@
 			// Camera Sphere
 			camSphereRadius:   { def: 15.0, min: 1,  max: 15, step: 0.1, label: 'Cam Radius',   group: 'Camera Sphere', noDirect: true },
 			camSphereStrength: { def: 5.9,  min: 0,  max: 6,  step: 0.1, label: 'Cam Strength',  group: 'Camera Sphere', noDirect: true },
-			// Scene Colors — blade base
+			// Scene Colors ï¿½ blade base
 			bladeBaseR: { def: 0.055, min: 0, max: 1, step: 0.01, label: 'Base Red',     group: 'Scene Colors', isColor: 'bladeBaseColor', ch: 'r' },
 			bladeBaseG: { def: 0.118, min: 0, max: 1, step: 0.01, label: 'Base Green',   group: 'Scene Colors', isColor: 'bladeBaseColor', ch: 'g' },
 			bladeBaseB: { def: 0.016, min: 0, max: 1, step: 0.01, label: 'Base Blue',    group: 'Scene Colors', isColor: 'bladeBaseColor', ch: 'b' },
-			// Scene Colors — blade tip
+			// Scene Colors ï¿½ blade tip
 			bladeTipR:  { def: 0.784, min: 0, max: 1, step: 0.01, label: 'Tip Red',      group: 'Scene Colors', isColor: 'bladeTipColor', ch: 'r' },
 			bladeTipG:  { def: 0.722, min: 0, max: 1, step: 0.01, label: 'Tip Green',    group: 'Scene Colors', isColor: 'bladeTipColor', ch: 'g' },
 			bladeTipB:  { def: 0.251, min: 0, max: 1, step: 0.01, label: 'Tip Blue',     group: 'Scene Colors', isColor: 'bladeTipColor', ch: 'b' },
-			// Scene Colors — golden tip
+			// Scene Colors ï¿½ golden tip
 			goldenTipR: { def: 0.831, min: 0, max: 1, step: 0.01, label: 'Gold Tip R',   group: 'Scene Colors', isColor: 'goldenTipColor', ch: 'r' },
 			goldenTipG: { def: 0.722, min: 0, max: 1, step: 0.01, label: 'Gold Tip G',   group: 'Scene Colors', isColor: 'goldenTipColor', ch: 'g' },
 			goldenTipB: { def: 0.220, min: 0, max: 1, step: 0.01, label: 'Gold Tip B',   group: 'Scene Colors', isColor: 'goldenTipColor', ch: 'b' },
-			// Scene Colors — green tip
+			// Scene Colors ï¿½ green tip
 			greenTipR:  { def: 0.290, min: 0, max: 1, step: 0.01, label: 'Green Tip R',  group: 'Scene Colors', isColor: 'greenTipColor', ch: 'r' },
 			greenTipG:  { def: 0.478, min: 0, max: 1, step: 0.01, label: 'Green Tip G',  group: 'Scene Colors', isColor: 'greenTipColor', ch: 'g' },
 			greenTipB:  { def: 0.078, min: 0, max: 1, step: 0.01, label: 'Green Tip B',  group: 'Scene Colors', isColor: 'greenTipColor', ch: 'b' },
-			// Scene Colors — mid tone
+			// Scene Colors ï¿½ mid tone
 			midR:       { def: 0.176, min: 0, max: 1, step: 0.01, label: 'Mid Tone R',   group: 'Scene Colors', isColor: 'midColor', ch: 'r' },
 			midG:       { def: 0.306, min: 0, max: 1, step: 0.01, label: 'Mid Tone G',   group: 'Scene Colors', isColor: 'midColor', ch: 'g' },
 			midB:       { def: 0.055, min: 0, max: 1, step: 0.01, label: 'Mid Tone B',   group: 'Scene Colors', isColor: 'midColor', ch: 'b' },
@@ -1389,7 +1390,7 @@
 			midColor: midColor,
 		};
 
-		// Build default params object — reads current uniform values for colors
+		// Build default params object ï¿½ reads current uniform values for colors
 		function getDefaultParams() {
 			const p = {};
 			stageParamKeys.forEach(k => {
@@ -1551,7 +1552,7 @@
 		const progressBar = document.getElementById('progressBar');
 		const navFloat = document.getElementById('navFloat');
 
-		// Use IntersectionObserver for reveals — no per-scroll layout thrashing
+		// Use IntersectionObserver for reveals ï¿½ no per-scroll layout thrashing
 		const revealObserver = new IntersectionObserver((entries) => {
 			entries.forEach(entry => {
 				if (entry.isIntersecting) {
@@ -1700,7 +1701,7 @@
 			_scrollHint.style.opacity = Math.max(0, 1 - currentScrollT * 15);
 		}
 
-			// Camera sphere — always push grass away from camera base
+			// Camera sphere ï¿½ always push grass away from camera base
 			camSphereWorld.value.set(camera.position.x, 0, camera.position.z);
 
 			// Apply interpolated per-stage params to uniforms
@@ -1739,7 +1740,7 @@
 				greenTipColor.value.setRGB(p.greenTipR, p.greenTipG, p.greenTipB);
 				midColor.value.setRGB(p.midR, p.midG, p.midB);
 				bladeColorVariation.value = p.colorVar;
-				// Camera Sphere — blend per-stage values with proximity scaling
+				// Camera Sphere ï¿½ blend per-stage values with proximity scaling
 				const baseCamR = p.camSphereRadius;
 				const baseCamS = p.camSphereStrength;
 				camSphereRadius.value = baseCamR;
@@ -1758,7 +1759,7 @@
 			windSpeed.value = _baseWindSpeed;
 			windAmplitude.value = _baseWindAmp;
 
-			// Wind burst — smoothly ramp up speed & amplitude, then ease back down
+			// Wind burst ï¿½ smoothly ramp up speed & amplitude, then ease back down
 			if (windBurst > 0) {
 				windBurst -= dt * 0.6;
 				const burstT = Math.max(0, windBurst / 4.0);
