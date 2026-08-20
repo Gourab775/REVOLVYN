@@ -97,41 +97,26 @@
 			margin: 24px auto 0;
 		}
 
-		/* Single collage grid - 12 columns */
+		/* Single collage grid - masonry columns */
 		.collage-section {
 			padding: 0 24px 60px;
 			max-width: 1400px; margin: 0 auto;
 		}
 		.collage-grid {
-			display: grid;
-			grid-template-columns: repeat(12, 1fr);
-			gap: 8px;
+			column-count: 3;
+			column-gap: 8px;
 		}
 
 		.collage-item {
 			position: relative; overflow: hidden; cursor: pointer;
 			opacity: 0; transform: translateY(20px);
 			background: #0a0c08; border-radius: 8px;
+			break-inside: avoid;
+			margin-bottom: 8px;
 			transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
 						transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 		}
 		.collage-item.revealed { opacity: 1; transform: translateY(0); }
-
-		.collage-serial {
-			position: absolute;
-			top: 6px;
-			left: 6px;
-			background: rgba(0, 0, 0, 0.6);
-			color: rgba(230, 245, 120, 0.8);
-			font-size: 9px;
-			font-weight: 600;
-			letter-spacing: 1px;
-			padding: 2px 6px;
-			border-radius: 4px;
-			z-index: 3;
-			pointer-events: none;
-			font-family: 'Inter', sans-serif;
-		}
 
 		.collage-item video {
 			width: 100%; height: 100%; object-fit: cover;
@@ -188,7 +173,8 @@
 		}
 
 		@media (max-width: 1024px) {
-			.collage-grid { gap: 6px; }
+			.collage-grid { column-count: 3; column-gap: 6px; }
+			.collage-item { margin-bottom: 6px; }
 		}
 		@media (max-width: 768px) {
 			.portfolio-hero { height: 35vh; min-height: 240px; }
@@ -196,10 +182,10 @@
 			.portfolio-hero p { font-size: 12px; letter-spacing: 2px; }
 			.collage-section { padding: 0 6px 40px; }
 			.collage-grid {
-				grid-template-columns: repeat(2, 1fr);
-				gap: 4px;
+				column-count: 2;
+				column-gap: 4px;
 			}
-			.collage-item { border-radius: 6px; }
+			.collage-item { border-radius: 6px; margin-bottom: 4px; }
 			.collage-overlay { padding: 10px; }
 			.collage-overlay .brand-name { font-size: 12px; }
 			.collage-overlay .view-hint { font-size: 8px; }
@@ -209,9 +195,10 @@
 		}
 		@media (max-width: 480px) {
 			.collage-grid {
-				grid-template-columns: 1fr 1fr;
-				gap: 3px;
+				column-count: 2;
+				column-gap: 3px;
 			}
+			.collage-item { margin-bottom: 3px; border-radius: 5px; }
 			.collage-overlay .brand-name { font-size: 11px; }
 			.collage-overlay { padding: 8px; }
 			.portfolio-hero { height: 30vh; min-height: 200px; }
@@ -337,45 +324,6 @@
 		// Sort by order for initial display
 		projects.sort((a, b) => a.order - b.order);
 
-		// Fixed layout: 12-col grid, manually assign each item's span + aspect
-		// Pattern repeats every 6 items: [span6-16:9, span6-16:9, span4-1x1, span4-1x1, span4-1x1, span12-21:9]
-		const layout = [
-			{ col: "span 6", ratio: "16/9" },   // 1
-			{ col: "span 6", ratio: "16/9" },   // 2
-			{ col: "span 4", ratio: "1" },       // 3
-			{ col: "span 4", ratio: "1" },       // 4
-			{ col: "span 4", ratio: "1" },       // 5
-			{ col: "span 12", ratio: "21/9" },   // 6
-			{ col: "span 6", ratio: "16/9" },   // 7
-			{ col: "span 6", ratio: "16/9" },   // 8
-			{ col: "span 4", ratio: "1" },       // 9
-			{ col: "span 4", ratio: "1" },       // 10
-			{ col: "span 4", ratio: "1" },       // 11
-			{ col: "span 12", ratio: "21/9" },   // 12
-			{ col: "span 6", ratio: "16/9" },   // 13
-			{ col: "span 6", ratio: "16/9" },   // 14
-			{ col: "span 4", ratio: "1" },       // 15
-			{ col: "span 4", ratio: "1" },       // 16
-			{ col: "span 4", ratio: "1" },       // 17
-			{ col: "span 12", ratio: "21/9" },   // 18
-			{ col: "span 6", ratio: "16/9" },   // 19
-			{ col: "span 6", ratio: "16/9" },   // 20
-			{ col: "span 4", ratio: "1" },       // 21
-			{ col: "span 4", ratio: "1" },       // 22
-			{ col: "span 4", ratio: "1" },       // 23
-			{ col: "span 12", ratio: "21/9" },   // 24
-			{ col: "span 6", ratio: "16/9" },   // 25
-			{ col: "span 6", ratio: "16/9" },   // 26
-			{ col: "span 4", ratio: "1" },       // 27
-			{ col: "span 4", ratio: "1" },       // 28
-			{ col: "span 4", ratio: "1" },       // 29
-			{ col: "span 12", ratio: "21/9" },   // 30
-			{ col: "span 6", ratio: "16/9" },   // 31
-			{ col: "span 6", ratio: "16/9" },   // 32
-			{ col: "span 4", ratio: "1" },       // 33
-			{ col: "span 4", ratio: "1" },       // 34
-		];
-
 		const grid = document.getElementById('collageGrid');
 
 		projects.forEach((project, i) => {
@@ -384,11 +332,6 @@
 			item.setAttribute('data-reveal', '');
 			item.setAttribute('data-delay', String(Math.min(i % 10, 6)));
 			item.setAttribute('data-order', String(project.order));
-
-			// Apply fixed layout
-			const l = layout[i];
-			item.style.gridColumn = l.col;
-			item.style.aspectRatio = l.ratio;
 
 			const params = new URLSearchParams({
 				brand: project.brand,
@@ -401,13 +344,11 @@
 
 			item.onclick = () => smoothNavigate('video.html?' + params);
 
-			const preload = i < 4 ? 'auto' : 'none';
-			const srcAttr = i < 4 ? `src="${project.video}"` : '';
-			const dataSrcAttr = i >= 4 ? `data-src="${project.video}"` : '';
+			const preload = i < 6 ? 'auto' : 'none';
+			const srcAttr = i < 6 ? `src="${project.video}"` : '';
+			const dataSrcAttr = i >= 6 ? `data-src="${project.video}"` : '';
 
-			const serialNum = String(project.order).padStart(2, '0');
 			item.innerHTML = `
-				<span class="collage-serial">#${serialNum}</span>
 				<video muted loop playsinline preload="${preload}" ${srcAttr} ${dataSrcAttr}></video>
 				<div class="collage-overlay">
 					<div class="brand-name">${project.brand}</div>
@@ -418,12 +359,12 @@
 		});
 
 		// Mark preloaded videos
-		document.querySelectorAll('.collage-item:nth-child(-n+4) video').forEach(v => {
+		document.querySelectorAll('.collage-item:nth-child(-n+6) video').forEach(v => {
 			if (v.readyState >= 2) v.classList.add('loaded');
 			else v.addEventListener('canplay', () => v.classList.add('loaded'), { once: true });
 		});
 
-		// Lazy load
+		// Lazy load videos
 		const videoObserver = new IntersectionObserver((entries) => {
 			entries.forEach(entry => {
 				if (entry.isIntersecting) {
@@ -439,7 +380,7 @@
 					videoObserver.unobserve(video);
 				}
 			});
-		}, { rootMargin: '600px 0px', threshold: 0.01 });
+		}, { rootMargin: '400px 0px', threshold: 0.01 });
 
 		// Reveal items
 		const revealObserver = new IntersectionObserver((entries) => {
@@ -460,7 +401,7 @@
 			if (video) videoObserver.observe(video);
 		});
 
-		// Pause videos not in viewport
+		// Pause videos not in viewport for performance
 		const pauseObserver = new IntersectionObserver((entries) => {
 			entries.forEach(entry => {
 				const video = entry.target.querySelector('video');
@@ -479,10 +420,10 @@
 		<div class="site-footer-inner">
 			<div class="sf-brand"><div class="sf-brand-name">REVOLVYN</div><p class="sf-brand-desc">From bold ideas to meaningful experiences, we turn creativity into impact.</p></div>
 			<div class="sf-col"><div class="sf-col-title">Explore</div><a href="index.html">About Us</a><a href="portfolio.html">Portfolio</a><a href="brands.html">Brands</a><a href="services.html">Services</a></div>
-			<div class="sf-col"><div class="sf-col-title">Resources</div><a href="privacy.html">Privacy Policy</a><a href="refund.html">Refund Policy</a><a href="research.html">Research</a><a href="blog.html">Blog</a></div>
-			<div class="sf-col"><div class="sf-col-title">Connect</div><a href="contact.html">Contact</a><a href="newsletter.html">Newsletter</a><a href="partnerships.html">Partnerships</a><a href="careers.html">Careers</a></div>
+			<div class="sf-col"><div class="sf-col-title">Resources</div><a href="privacy.html">Privacy Policy</a><a href="refund.html">Refund Policy</a></div>
+			<div class="sf-col"><div class="sf-col-title">Connect</div><a href="contact.html">Contact</a><a href="partnerships.html">Partnerships</a><a href="careers.html">Careers</a></div>
 		</div>
-		<div class="sf-bottom"><span class="sf-copy">© 2026 REVOLVYN. All futures reserved.</span><div class="sf-socials"><a href="https://www.instagram.com/revolvynmedia?igsi=bmFlaHFyMG92eDNk" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/share/1F5rfL4tPS/?mibextid=LQQJ4d" target="_blank" rel="noopener">Facebook</a><a href="https://www.youtube.com/@REVOLVYNMEDIA" target="_blank" rel="noopener">YouTube</a></div></div>
+		<div class="sf-bottom"><span class="sf-copy">&copy; 2026 REVOLVYN. All futures reserved.</span><div class="sf-socials"><a href="https://www.instagram.com/revolvynmedia?igsi=bmFlaHFyMG92eDNk" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/share/1F5rfL4tPS/?mibextid=LQQJ4d" target="_blank" rel="noopener">Facebook</a><a href="https://www.youtube.com/@REVOLVYNMEDIA" target="_blank" rel="noopener">YouTube</a></div></div>
 	</footer>
 </body>
 </html>
