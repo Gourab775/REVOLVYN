@@ -105,11 +105,25 @@
 			align-items: center; justify-content: center; gap: 14px;
 			min-height: 140px; transition: all 0.4s;
 			opacity: 0; transform: translateY(20px);
+			position: relative;
 		}
 		.brand-card.revealed { opacity: 1; transform: translateY(0); }
 		.brand-card:hover {
 			border-color: rgba(140, 180, 120, 0.2);
 			background: rgba(20, 30, 10, 0.5);
+		}
+		.brand-serial {
+			position: absolute;
+			top: 8px;
+			left: 8px;
+			background: rgba(0, 0, 0, 0.5);
+			color: rgba(230, 245, 120, 0.7);
+			font-size: 8px;
+			font-weight: 600;
+			letter-spacing: 1px;
+			padding: 2px 5px;
+			border-radius: 3px;
+			font-family: 'Inter', sans-serif;
 		}
 		.brand-card img {
 			max-width: 180px; max-height: 80px; object-fit: contain;
@@ -298,6 +312,15 @@
 		navMobileOverlay.querySelectorAll('a').forEach(a => { a.addEventListener('click', () => { navHamburger.classList.remove('open'); navMobileOverlay.classList.remove('open'); }); });
 		const revealObserver = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.style.transitionDelay = `${(entry.target.dataset.delay || 0) * 0.15}s`; entry.target.classList.add('revealed'); revealObserver.unobserve(entry.target); } }); }, { threshold: 0.1 });
 		document.querySelectorAll('[data-reveal]').forEach(el => revealObserver.observe(el));
+
+		// Add serial numbers to brand cards
+		document.querySelectorAll('.brand-card').forEach((card, i) => {
+			card.setAttribute('data-order', String(i + 1));
+			const serial = document.createElement('span');
+			serial.className = 'brand-serial';
+			serial.textContent = '#' + String(i + 1).padStart(2, '0');
+			card.prepend(serial);
+		});
 	</script>
 </body>
 </html>

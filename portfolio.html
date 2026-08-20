@@ -117,6 +117,22 @@
 		}
 		.collage-item.revealed { opacity: 1; transform: translateY(0); }
 
+		.collage-serial {
+			position: absolute;
+			top: 6px;
+			left: 6px;
+			background: rgba(0, 0, 0, 0.6);
+			color: rgba(230, 245, 120, 0.8);
+			font-size: 9px;
+			font-weight: 600;
+			letter-spacing: 1px;
+			padding: 2px 6px;
+			border-radius: 4px;
+			z-index: 3;
+			pointer-events: none;
+			font-family: 'Inter', sans-serif;
+		}
+
 		.collage-item video {
 			width: 100%; height: 100%; object-fit: cover;
 			opacity: 0; transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
@@ -279,42 +295,50 @@
 			});
 		});
 
-		// All 29 projects - brand names matched from brand_video_mapping_final.txt
+		// All projects - from brand_video_links_corrected.txt + existing portfolio
+		// data-order: change number to reposition items. Serial #01-34
 		const projects = [
-			{ brand: "EATFESTO", desc: "EatFesto is a food and dining-focused brand.", video: "https://video.wixstatic.com/video/4c7a69_0abcdc24eaed4b3e95a67da99aa1a2b0/1080p/mp4/file.mp4", orient: "portrait" },
-			{ brand: "EATFESTO", desc: "EatFesto is a food and dining-focused brand.", video: "https://video.wixstatic.com/video/4c7a69_c46cfd63cd96443badd9a27a0665fdff/1080p/mp4/file.mp4", orient: "portrait" },
-			{ brand: "TEZZO", desc: "Tezzo is a modern lifestyle-oriented brand.", video: "https://video.wixstatic.com/video/4c7a69_50273e50f63d448e818bd9122e3fc5e1/720p/mp4/file.mp4", orient: "landscape" },
-			{ brand: "NIKE", desc: "Nike is a globally recognized sportswear and lifestyle brand.", video: "https://video.wixstatic.com/video/4c7a69_e9c69930b4f74394a7a24aaa079c9e50/720p/mp4/file.mp4", orient: "landscape" },
-			{ brand: "NIKE", desc: "Nike is a globally recognized sportswear and lifestyle brand.", video: "https://video.wixstatic.com/video/4c7a69_b378be38f16a4a48885fc3ef997da7c6/720p/mp4/file.mp4", orient: "landscape" },
-			{ brand: "NIKE", desc: "Nike is a globally recognized sportswear and lifestyle brand.", video: "https://video.wixstatic.com/video/4c7a69_52ab300a0f5d4f3eb2e022531b7f5f26/720p/mp4/file.mp4", orient: "landscape" },
-			{ brand: "PROSKIRE", desc: "Proskire is a performance and lifestyle-focused brand.", video: "https://video.wixstatic.com/video/4c7a69_e0893a64f65d45c288100d58ed3ac6e7/720p/mp4/file.mp4", orient: "landscape" },
-			{ brand: "RELANCE", desc: "Relance is a contemporary consumer brand.", video: "https://video.wixstatic.com/video/4c7a69_ae60f198c15a4dabbec575bb07569699/720p/mp4/file.mp4", orient: "landscape" },
-			{ brand: "KERASTASE", desc: "Kérastase is a premium professional haircare brand.", video: "https://video.wixstatic.com/video/4c7a69_85112fcc1b354ceba8e9b7400194de5a/720p/mp4/file.mp4", orient: "landscape" },
-			{ brand: "MEDICINE MAMA", desc: "Medicine Mama is a natural beauty and skincare brand.", video: "https://video.wixstatic.com/video/4c7a69_6e02f73ac2854749902a919538d625f4/720p/mp4/file.mp4", orient: "landscape" },
-			{ brand: "KORA ORGANIC", desc: "KORA Organics is a skincare and wellness brand.", video: "https://video.wixstatic.com/video/4c7a69_dc3f7913414e4dbe8f3bc3cdd7f07116/480p/mp4/file.mp4", orient: "portrait" },
-			{ brand: "DIOR", desc: "Dior is a globally renowned luxury fashion and beauty house.", video: "https://video.wixstatic.com/video/4c7a69_f41b341b60e34a8193adb23bb5b7f217/480p/mp4/file.mp4", orient: "portrait" },
-			{ brand: "CARATLANE", desc: "CaratLane is a modern jewelry brand.", video: "https://video.wixstatic.com/video/4c7a69_14a8db37650e4e048c74550cdc0850bd/360p/mp4/file.mp4", orient: "portrait" },
-			{ brand: "INSTA360", desc: "Insta360 is an action camera and imaging technology brand.", video: "https://video.wixstatic.com/video/4c7a69_13620f51b0ed46c5914c8523b4a77218/720p/mp4/file.mp4", orient: "portrait" },
-			{ brand: "NOTHING", desc: "Nothing is a consumer technology brand.", video: "https://video.wixstatic.com/video/4c7a69_a9f35c5bc14746b1af9e2afae93f07e3/360p/mp4/file.mp4", orient: "portrait" },
-			{ brand: "CAFE", desc: "Cafe-focused content designed around food, atmosphere, and lifestyle.", video: "https://video.wixstatic.com/video/4c7a69_0e60df56daa74e448177aac81ff654ce/720p/mp4/file.mp4", orient: "landscape" },
-			{ brand: "CAFE", desc: "Cafe-focused content designed around food, atmosphere, and lifestyle.", video: "https://video.wixstatic.com/video/4c7a69_498dc7119da64efc845ed771d89eb7e6/720p/mp4/file.mp4", orient: "landscape" },
-			{ brand: "CAFE", desc: "Cafe-focused content designed around food, atmosphere, and lifestyle.", video: "https://video.wixstatic.com/video/4c7a69_c76738c35e5a4911887b00f07fb6a36d/720p/mp4/file.mp4", orient: "landscape" },
-			{ brand: "MISA", desc: "Misa is a contemporary lifestyle and beauty-oriented brand.", video: "https://video.wixstatic.com/video/4c7a69_18626112b3fe48be90065fd2d94d93dd/720p/mp4/file.mp4", orient: "landscape" },
-			{ brand: "HELLSKIN", desc: "Hellskin is a bold, modern beauty and skincare brand.", video: "https://video.wixstatic.com/video/4c7a69_ab5372c0df9d40f0acac2dc6f1791108/1080p/mp4/file.mp4", orient: "portrait" },
-			{ brand: "GENRAGE", desc: "Genrage is a contemporary youth and lifestyle-focused brand.", video: "https://video.wixstatic.com/video/4c7a69_422c79f20d984ac3a13abaed654f6738/1080p/mp4/file.mp4", orient: "portrait" },
-			{ brand: "SAT Professor", desc: "SAT Professor is a premium motion graphics with kinetic typography, character animation to communicate SAT preparation", video: "https://video.wixstatic.com/video/4c7a69_3a6051a870504c6eaf51a3547ca471ce/1080p/mp4/file.mp4", orient: "portrait" },
-			{ brand: "VANESA", desc: "Vanesa is a contemporary beauty and lifestyle brand.", video: "https://video.wixstatic.com/video/4c7a69_4aceff66cfd24ababafb1f6e47495261/1080p/mp4/file.mp4", orient: "portrait" },
-			{ brand: "HOICHOI", desc: "Hoichoi is a leading Bengali-language streaming entertainment platform.", video: "https://video.wixstatic.com/video/4c7a69_04fe62bfdee4460da9398f023d851bfa/720p/mp4/file.mp4", orient: "landscape" },
-			{ brand: "TRADECFD", desc: "TradeCFD is a financial trading-oriented brand.", video: "https://video.wixstatic.com/video/4c7a69_bf4f28780ad642aeb01cb61516c362e3/1080p/mp4/file.mp4", orient: "landscape" },
-			{ brand: "BYTBOTS", desc: "BytBots is a technology and digital-focused brand.", video: "https://video.wixstatic.com/video/4c7a69_2a2f300c4ea4418291a3633bf79a8ccd/720p/mp4/file.mp4", orient: "landscape" },
-			{ brand: "INDULEKHA", desc: "Indulekha is a beauty and haircare brand.", video: "https://video.wixstatic.com/video/4c7a69_729787cbdd9d43b5874bcfa720b60ef6/1080p/mp4/file.mp4", orient: "landscape" },
-			{ brand: "ARMANI", desc: "Giorgio Armani is a globally recognized luxury fashion and lifestyle house.", video: "https://video.wixstatic.com/video/4c7a69_920b8839a3fa4fa6bf1917ca8a44b414/720p/mp4/file.mp4", orient: "landscape" },
-			{ brand: "ARMANI", desc: "Giorgio Armani is a globally recognized luxury fashion and lifestyle house.", video: "https://video.wixstatic.com/video/4c7a69_a66586e5154d4a4ba6f5ce1e11b80694/720p/mp4/file.mp4", orient: "landscape" }
+			{ brand: "ELEVENLABS", desc: "ElevenLabs is an AI voice technology brand.", video: "https://video.wixstatic.com/video/4c7a69_14df8fc89d244a96b8926669d3d7db8d/360p/mp4/file.mp4", orient: "landscape", order: 1 },
+			{ brand: "ELEVENLABS", desc: "ElevenLabs is an AI voice technology brand.", video: "https://video.wixstatic.com/video/4c7a69_d70cd22e3f424a88a11add0aaa8715e0/360p/mp4/file.mp4", orient: "landscape", order: 2 },
+			{ brand: "ELEVENLABS", desc: "ElevenLabs is an AI voice technology brand.", video: "https://video.wixstatic.com/video/4c7a69_686d4b3aa59148239d4a71b3de795c6c/360p/mp4/file.mp4", orient: "landscape", order: 3 },
+			{ brand: "ELEVENLABS", desc: "ElevenLabs is an AI voice technology brand.", video: "https://video.wixstatic.com/video/4c7a69_23f184027c3549bd99bb139ab1069ccf/360p/mp4/file.mp4", orient: "landscape", order: 4 },
+			{ brand: "ELEVENLABS", desc: "ElevenLabs is an AI voice technology brand.", video: "https://video.wixstatic.com/video/4c7a69_0b31155196524c02b137c09a4adc76f3/360p/mp4/file.mp4", orient: "landscape", order: 5 },
+			{ brand: "FLEXER AI", desc: "Flexer AI is an AI-powered automation brand.", video: "https://video.wixstatic.com/video/4c7a69_222842af6e0041df96c38a0f441f9bea/360p/mp4/file.mp4", orient: "landscape", order: 6 },
+			{ brand: "LOVABLE", desc: "Lovable is a digital creation and app-building platform.", video: "https://video.wixstatic.com/video/4c7a69_5668e652a6884cd8836549b78cf45743/360p/mp4/file.mp4", orient: "landscape", order: 7 },
+			{ brand: "OG USERNAMES", desc: "OG Usernames is a digital identity and username brand.", video: "https://video.wixstatic.com/video/4c7a69_79283b4698b040f89bffa697139f5979/360p/mp4/file.mp4", orient: "portrait", order: 8 },
+			{ brand: "TRIVX", desc: "Trivx is a technology and innovation brand.", video: "https://video.wixstatic.com/video/4c7a69_141b2d08cb6748bb987c19f0b683e40f/360p/mp4/file.mp4", orient: "landscape", order: 9 },
+			{ brand: "SONEPAR", desc: "Sonepar Automation Expo is an industrial automation brand.", video: "https://video.wixstatic.com/video/4c7a69_1e1da840cb98495a85faf9d92e5b7cb8/1080p/mp4/file.mp4", orient: "landscape", order: 10 },
+			{ brand: "MARK VIBE", desc: "Mark Vibe is a creative and lifestyle brand.", video: "https://video.wixstatic.com/video/4c7a69_1c35e20217e14a8db126397e5e2029e8/1080p/mp4/file.mp4", orient: "landscape", order: 11 },
+			{ brand: "CRISPANA", desc: "Crispana is a food and lifestyle brand.", video: "https://video.wixstatic.com/video/4c7a69_95ce005d31f74d3bb9dbc36e126d5556/1080p/mp4/file.mp4", orient: "landscape", order: 12 },
+			{ brand: "MR NUTTS OATS", desc: "Mr Nutts Oats is a health food and breakfast brand.", video: "https://video.wixstatic.com/video/4c7a69_cca1cedb933341988f871a0cdbba540b/1080p/mp4/file.mp4", orient: "landscape", order: 13 },
+			{ brand: "MR NUTTS OATS", desc: "Mr Nutts Oats is a health food and breakfast brand.", video: "https://video.wixstatic.com/video/4c7a69_deb755ab4ad04c829c94225ee5df4860/1080p/mp4/file.mp4", orient: "landscape", order: 14 },
+			{ brand: "OXINKLE", desc: "Oxinkle is a modern consumer brand.", video: "https://video.wixstatic.com/video/4c7a69_6e96bd03ea484471b4b8e5df3ec24506/1080p/mp4/file.mp4", orient: "landscape", order: 15 },
+			{ brand: "DALEN BELTS", desc: "Dalen Belts is a fashion accessories brand.", video: "https://video.wixstatic.com/video/4c7a69_a17b296ca1544a43bbc4e618676526f6/1080p/mp4/file.mp4", orient: "landscape", order: 16 },
+			{ brand: "CRISPANA", desc: "Crispana is a food and lifestyle brand.", video: "https://video.wixstatic.com/video/4c7a69_bf6bc2180a9f4cebaa869ab4b2e2b8a4/720p/mp4/file.mp4", orient: "landscape", order: 17 },
+			{ brand: "EATFESTO", desc: "EatFesto is a food and dining-focused brand.", video: "https://video.wixstatic.com/video/4c7a69_0abcdc24eaed4b3e95a67da99aa1a2b0/1080p/mp4/file.mp4", orient: "portrait", order: 18 },
+			{ brand: "EATFESTO", desc: "EatFesto is a food and dining-focused brand.", video: "https://video.wixstatic.com/video/4c7a69_c46cfd63cd96443badd9a27a0665fdff/1080p/mp4/file.mp4", orient: "portrait", order: 19 },
+			{ brand: "TEZZO", desc: "Tezzo is a modern lifestyle-oriented brand.", video: "https://video.wixstatic.com/video/4c7a69_50273e50f63d448e818bd9122e3fc5e1/720p/mp4/file.mp4", orient: "landscape", order: 20 },
+			{ brand: "NIKE", desc: "Nike is a globally recognized sportswear and lifestyle brand.", video: "https://video.wixstatic.com/video/4c7a69_e9c69930b4f74394a7a24aaa079c9e50/720p/mp4/file.mp4", orient: "landscape", order: 21 },
+			{ brand: "NIKE", desc: "Nike is a globally recognized sportswear and lifestyle brand.", video: "https://video.wixstatic.com/video/4c7a69_b378be38f16a4a48885fc3ef997da7c6/720p/mp4/file.mp4", orient: "landscape", order: 22 },
+			{ brand: "NIKE", desc: "Nike is a globally recognized sportswear and lifestyle brand.", video: "https://video.wixstatic.com/video/4c7a69_52ab300a0f5d4f3eb2e022531b7f5f26/720p/mp4/file.mp4", orient: "landscape", order: 23 },
+			{ brand: "PROSKIRE", desc: "Proskire is a performance and lifestyle-focused brand.", video: "https://video.wixstatic.com/video/4c7a69_e0893a64f65d45c288100d58ed3ac6e7/720p/mp4/file.mp4", orient: "landscape", order: 24 },
+			{ brand: "RELANCE", desc: "Relance is a contemporary consumer brand.", video: "https://video.wixstatic.com/video/4c7a69_ae60f198c15a4dabbec575bb07569699/720p/mp4/file.mp4", orient: "landscape", order: 25 },
+			{ brand: "KERASTASE", desc: "Kerastase is a premium professional haircare brand.", video: "https://video.wixstatic.com/video/4c7a69_85112fcc1b354ceba8e9b7400194de5a/720p/mp4/file.mp4", orient: "landscape", order: 26 },
+			{ brand: "MEDICINE MAMA", desc: "Medicine Mama is a natural beauty and skincare brand.", video: "https://video.wixstatic.com/video/4c7a69_6e02f73ac2854749902a919538d625f4/720p/mp4/file.mp4", orient: "landscape", order: 27 },
+			{ brand: "KORA ORGANIC", desc: "KORA Organics is a skincare and wellness brand.", video: "https://video.wixstatic.com/video/4c7a69_dc3f7913414e4dbe8f3bc3cdd7f07116/480p/mp4/file.mp4", orient: "portrait", order: 28 },
+			{ brand: "DIOR", desc: "Dior is a globally renowned luxury fashion and beauty house.", video: "https://video.wixstatic.com/video/4c7a69_f41b341b60e34a8193adb23bb5b7f217/480p/mp4/file.mp4", orient: "portrait", order: 29 },
+			{ brand: "CARATLANE", desc: "CaratLane is a modern jewelry brand.", video: "https://video.wixstatic.com/video/4c7a69_14a8db37650e4e048c74550cdc0850bd/360p/mp4/file.mp4", orient: "portrait", order: 30 },
+			{ brand: "INSTA360", desc: "Insta360 is an action camera and imaging technology brand.", video: "https://video.wixstatic.com/video/4c7a69_13620f51b0ed46c5914c8523b4a77218/720p/mp4/file.mp4", orient: "portrait", order: 31 },
+			{ brand: "NOTHING", desc: "Nothing is a consumer technology brand.", video: "https://video.wixstatic.com/video/4c7a69_a9f35c5bc14746b1af9e2afae93f07e3/360p/mp4/file.mp4", orient: "portrait", order: 32 },
+			{ brand: "CAFE", desc: "Cafe-focused content designed around food, atmosphere, and lifestyle.", video: "https://video.wixstatic.com/video/4c7a69_0e60df56daa74e448177aac81ff654ce/720p/mp4/file.mp4", orient: "landscape", order: 33 },
+			{ brand: "CAFE", desc: "Cafe-focused content designed around food, atmosphere, and lifestyle.", video: "https://video.wixstatic.com/video/4c7a69_498dc7119da64efc845ed771d89eb7e6/720p/mp4/file.mp4", orient: "landscape", order: 34 },
 		];
+
+		// Sort by order for initial display
+		projects.sort((a, b) => a.order - b.order);
 
 		// Fixed layout: 12-col grid, manually assign each item's span + aspect
 		// Pattern repeats every 6 items: [span6-16:9, span6-16:9, span4-1x1, span4-1x1, span4-1x1, span12-21:9]
-		// 29 items = 4 full cycles (24) + 5 remaining
 		const layout = [
 			{ col: "span 6", ratio: "16/9" },   // 1
 			{ col: "span 6", ratio: "16/9" },   // 2
@@ -344,7 +368,12 @@
 			{ col: "span 6", ratio: "16/9" },   // 26
 			{ col: "span 4", ratio: "1" },       // 27
 			{ col: "span 4", ratio: "1" },       // 28
-			{ col: "span 4", ratio: "1" }        // 29
+			{ col: "span 4", ratio: "1" },       // 29
+			{ col: "span 12", ratio: "21/9" },   // 30
+			{ col: "span 6", ratio: "16/9" },   // 31
+			{ col: "span 6", ratio: "16/9" },   // 32
+			{ col: "span 4", ratio: "1" },       // 33
+			{ col: "span 4", ratio: "1" },       // 34
 		];
 
 		const grid = document.getElementById('collageGrid');
@@ -354,6 +383,7 @@
 			item.className = 'collage-item';
 			item.setAttribute('data-reveal', '');
 			item.setAttribute('data-delay', String(Math.min(i % 10, 6)));
+			item.setAttribute('data-order', String(project.order));
 
 			// Apply fixed layout
 			const l = layout[i];
@@ -375,7 +405,9 @@
 			const srcAttr = i < 4 ? `src="${project.video}"` : '';
 			const dataSrcAttr = i >= 4 ? `data-src="${project.video}"` : '';
 
+			const serialNum = String(project.order).padStart(2, '0');
 			item.innerHTML = `
+				<span class="collage-serial">#${serialNum}</span>
 				<video muted loop playsinline preload="${preload}" ${srcAttr} ${dataSrcAttr}></video>
 				<div class="collage-overlay">
 					<div class="brand-name">${project.brand}</div>
