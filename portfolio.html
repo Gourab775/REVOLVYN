@@ -347,9 +347,9 @@
 
 			item.onclick = () => smoothNavigate('video.html?' + params);
 
-			const preload = i < 4 ? 'auto' : 'none';
-			const srcAttr = i < 4 ? `src="${project.video}"` : '';
-			const dataSrcAttr = i >= 4 ? `data-src="${project.video}"` : '';
+			const preload = i < 6 ? 'auto' : 'none';
+			const srcAttr = i < 6 ? `src="${project.video}"` : '';
+			const dataSrcAttr = i >= 6 ? `data-src="${project.video}"` : '';
 
 			item.innerHTML = `
 				<video muted loop playsinline preload="${preload}" ${srcAttr} ${dataSrcAttr}></video>
@@ -361,18 +361,8 @@
 			grid.appendChild(item);
 		});
 
-		// After creating items, mark last ones to fill bottom row
-		const items = grid.querySelectorAll('.collage-item');
-		const cols = window.innerWidth <= 768 ? 2 : window.innerWidth <= 1024 ? 2 : 3;
-		const totalItems = items.length;
-		const remainder = totalItems % cols;
-		if (remainder > 0) {
-			for (let i = totalItems - remainder; i < totalItems; i++) {
-				items[i].style.gridColumn = 'span ' + cols;
-			}
-		}
 		// Mark preloaded videos
-		document.querySelectorAll('.collage-item:nth-child(-n+4) video').forEach(v => {
+		document.querySelectorAll('.collage-item:nth-child(-n+6) video').forEach(v => {
 			if (v.readyState >= 2) v.classList.add('loaded');
 			else v.addEventListener('canplay', () => v.classList.add('loaded'), { once: true });
 		});
@@ -392,26 +382,33 @@
 					videoObserver.unobserve(video);
 				}
 			});
-		}, { rootMargin: '300px 0px', threshold: 0.01 });
+		}, { rootMargin: '500px 0px', threshold: 0.01 });
 
 		// Reveal items
 		const revealObserver = new IntersectionObserver((entries) => {
 			entries.forEach(entry => {
 				if (entry.isIntersecting) {
-					const delay = (entry.target.dataset.delay || 0) * 60;
+					const delay = (entry.target.dataset.delay || 0) * 50;
 					setTimeout(() => {
 						entry.target.classList.add('revealed');
 					}, delay);
 					revealObserver.unobserve(entry.target);
 				}
 			});
-		}, { threshold: 0.05, rootMargin: '50px 0px' });
+		}, { threshold: 0, rootMargin: '0px 0px 2000px 0px' });
 
 		document.querySelectorAll('.collage-item').forEach(item => {
 			revealObserver.observe(item);
 			const video = item.querySelector('video');
 			if (video) videoObserver.observe(video);
 		});
+
+		// Fallback: reveal any remaining hidden items after 3s
+		setTimeout(() => {
+			document.querySelectorAll('.collage-item:not(.revealed)').forEach(item => {
+				item.classList.add('revealed');
+			});
+		}, 3000);
 
 		// Pause videos not in viewport for performance
 		const pauseObserver = new IntersectionObserver((entries) => {
