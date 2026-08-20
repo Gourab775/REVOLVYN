@@ -97,31 +97,29 @@
 			margin: 24px auto 0;
 		}
 
-		/* Collage grid - no gaps, bigger items */
+		/* Collage masonry - no gaps, mixed portrait/landscape */
 		.collage-section {
 			padding: 0 40px 60px;
 			max-width: 1400px; margin: 0 auto;
 		}
 		.collage-grid {
-			display: grid;
-			grid-template-columns: repeat(3, 1fr);
-			grid-auto-flow: dense;
-			gap: 10px;
+			column-count: 3;
+			column-gap: 10px;
 		}
 
 		.collage-item {
 			position: relative; overflow: hidden; cursor: pointer;
 			opacity: 0; transform: translateY(20px);
 			background: #0a0c08; border-radius: 8px;
-			aspect-ratio: 16/9;
+			break-inside: avoid;
+			margin-bottom: 10px;
 			will-change: transform, opacity;
-			contain: layout style paint;
 			transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
 						transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 		}
 		.collage-item.revealed { opacity: 1; transform: translateY(0); }
-		.collage-item.span-wide { grid-column: span 2; }
-		.collage-item.tall { aspect-ratio: 9/14; grid-row: span 2; }
+		.collage-item.landscape { aspect-ratio: 16/9; }
+		.collage-item.portrait { aspect-ratio: 9/14; }
 
 		.collage-item video {
 			width: 100%; height: 100%; object-fit: cover;
@@ -178,7 +176,8 @@
 		}
 
 		@media (max-width: 1024px) {
-			.collage-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+			.collage-grid { column-count: 2; column-gap: 8px; }
+			.collage-item { margin-bottom: 8px; }
 			.collage-section { padding: 0 20px 50px; }
 		}
 		@media (max-width: 768px) {
@@ -186,8 +185,8 @@
 			.portfolio-hero h1 { font-size: clamp(32px, 10vw, 50px); }
 			.portfolio-hero p { font-size: 12px; letter-spacing: 2px; }
 			.collage-section { padding: 0 6px 40px; }
-			.collage-grid { grid-template-columns: repeat(2, 1fr); gap: 4px; }
-			.collage-item { border-radius: 6px; }
+			.collage-grid { column-count: 2; column-gap: 4px; }
+			.collage-item { border-radius: 6px; margin-bottom: 4px; }
 			.collage-overlay { padding: 10px; }
 			.collage-overlay .brand-name { font-size: 12px; }
 			.collage-overlay .view-hint { font-size: 8px; }
@@ -196,8 +195,8 @@
 			.nav-float { padding: 14px 16px; }
 		}
 		@media (max-width: 480px) {
-			.collage-grid { gap: 3px; }
-			.collage-item { border-radius: 5px; }
+			.collage-grid { column-gap: 3px; }
+			.collage-item { margin-bottom: 3px; border-radius: 5px; }
 			.collage-overlay .brand-name { font-size: 11px; }
 			.collage-overlay { padding: 8px; }
 			.portfolio-hero { height: 30vh; min-height: 200px; }
@@ -332,7 +331,7 @@
 
 		projects.forEach((project, i) => {
 			const item = document.createElement('div');
-			item.className = 'collage-item';
+			item.className = 'collage-item ' + (project.orient === 'portrait' ? 'portrait' : 'landscape');
 			item.setAttribute('data-reveal', '');
 			item.setAttribute('data-delay', String(Math.min(i % 10, 6)));
 			item.setAttribute('data-order', String(project.order));
