@@ -184,22 +184,25 @@
 			.portfolio-hero { height: 35vh; min-height: 240px; }
 			.portfolio-hero h1 { font-size: clamp(32px, 10vw, 50px); }
 			.portfolio-hero p { font-size: 12px; letter-spacing: 2px; }
-			.collage-section { padding: 0 6px 40px; }
-			.collage-grid { column-count: 2; column-gap: 4px; }
-			.collage-item { border-radius: 6px; margin-bottom: 4px; }
-			.collage-overlay { padding: 10px; }
+			.collage-section { padding: 0 4px 20px; }
+			.collage-grid { column-count: 1; column-gap: 0; }
+			.collage-item { border-radius: 4px; margin-bottom: 4px; break-inside: avoid; }
+			.collage-item.landscape { aspect-ratio: 16/9; }
+			.collage-item.portrait { aspect-ratio: 9/14; max-height: 70vh; }
+			.collage-overlay { padding: 8px; }
 			.collage-overlay .brand-name { font-size: 12px; }
 			.collage-overlay .view-hint { font-size: 8px; }
-			.portfolio-cta { padding: 32px 16px 80px; }
+			.portfolio-cta { padding: 16px 16px 40px; }
 			.portfolio-cta a { padding: 12px 28px; font-size: 10px; }
 			.nav-float { padding: 14px 16px; }
 		}
 		@media (max-width: 480px) {
-			.collage-grid { column-gap: 3px; }
-			.collage-item { margin-bottom: 3px; border-radius: 5px; }
+			.collage-item { margin-bottom: 3px; border-radius: 3px; }
+			.collage-item.portrait { max-height: 65vh; }
 			.collage-overlay .brand-name { font-size: 11px; }
-			.collage-overlay { padding: 8px; }
+			.collage-overlay { padding: 6px; }
 			.portfolio-hero { height: 30vh; min-height: 200px; }
+			.portfolio-cta { padding: 12px 16px 32px; }
 		}
 		@media (prefers-reduced-motion: reduce) {
 			.collage-item { transition: opacity 0.2s; transform: none; }
