@@ -274,6 +274,17 @@
 			border-color: rgba(180, 220, 100, 0.5);
 			color: rgba(230, 245, 120, 0.95);
 		}
+		@media (max-width: 768px) {
+			.project-cta {
+				position: fixed; bottom: 0; left: 0; right: 0;
+				z-index: 50; padding: 16px;
+				background: linear-gradient(to top, rgba(0,0,0,0.95) 60%, transparent 100%);
+			}
+			.project-cta a {
+				padding: 12px 32px; font-size: 10px;
+				background: rgba(0,0,0,0.7);
+			}
+		}
 
 		/* Responsive */
 		@media (max-width: 1024px) {
@@ -285,12 +296,12 @@
 			.video-layout { flex-direction: column; overflow-y: auto; overflow-x: hidden; }
 			.video-panel {
 				flex: none; width: 100%; height: auto;
-				position: relative; margin-top: 100px;
+				position: relative; margin-top: 130px;
 				aspect-ratio: 16/9;
 			}
 			.video-panel.portrait-mode {
 				aspect-ratio: 9/16; max-height: 55vh;
-				margin-top: 100px;
+				margin-top: 130px;
 			}
 			.video-panel.portrait-mode video {
 				max-width: 200px; border-radius: 12px;
@@ -315,11 +326,10 @@
 			.ctrl-btn svg { width: 14px; height: 14px; }
 			.time-display { font-size: 10px; min-width: 60px; }
 			.back-btn { top: 70px; left: 16px; font-size: 10px; }
-			.project-cta { position: relative; z-index: 2; }
 		}
 		@media (max-width: 480px) {
-			.video-panel { margin-top: 90px; }
-			.video-panel.portrait-mode { max-height: 50vh; margin-top: 90px; }
+			.video-panel { margin-top: 120px; }
+			.video-panel.portrait-mode { max-height: 50vh; margin-top: 120px; }
 			.video-panel.portrait-mode video { max-width: 160px; }
 			.info-panel { padding: 20px 14px 16px; }
 			.brand-title { font-size: 18px; margin-bottom: 8px; }
