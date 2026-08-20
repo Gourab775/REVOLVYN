@@ -121,6 +121,7 @@
 		}
 		.collage-item.revealed { opacity: 1; transform: translateY(0); }
 		.collage-item.span-wide { grid-column: span 2; }
+		.collage-item.tall { aspect-ratio: 9/16; grid-row: span 2; }
 		.collage-item.span-tall { grid-row: span 2; aspect-ratio: auto; }
 
 		.collage-item video {
@@ -331,7 +332,7 @@
 
 		projects.forEach((project, i) => {
 			const item = document.createElement('div');
-			item.className = 'collage-item';
+			item.className = 'collage-item' + (project.orient === 'portrait' ? ' tall' : '');
 			item.setAttribute('data-reveal', '');
 			item.setAttribute('data-delay', String(Math.min(i % 10, 6)));
 			item.setAttribute('data-order', String(project.order));
@@ -347,9 +348,9 @@
 
 			item.onclick = () => smoothNavigate('video.html?' + params);
 
-			const preload = i < 6 ? 'auto' : 'none';
-			const srcAttr = i < 6 ? `src="${project.video}"` : '';
-			const dataSrcAttr = i >= 6 ? `data-src="${project.video}"` : '';
+			const preload = i < 4 ? 'auto' : 'none';
+			const srcAttr = i < 4 ? `src="${project.video}"` : '';
+			const dataSrcAttr = i >= 4 ? `data-src="${project.video}"` : '';
 
 			item.innerHTML = `
 				<video muted loop playsinline preload="${preload}" ${srcAttr} ${dataSrcAttr}></video>
@@ -373,7 +374,7 @@
 			}
 		}
 		// Mark preloaded videos
-		document.querySelectorAll('.collage-item:nth-child(-n+6) video').forEach(v => {
+		document.querySelectorAll('.collage-item:nth-child(-n+4) video').forEach(v => {
 			if (v.readyState >= 2) v.classList.add('loaded');
 			else v.addEventListener('canplay', () => v.classList.add('loaded'), { once: true });
 		});
@@ -389,12 +390,11 @@
 							video.classList.add('loaded');
 							video.play().catch(() => {});
 						}, { once: true });
-						setTimeout(() => { video.classList.add('loaded'); }, 2000);
 					}
 					videoObserver.unobserve(video);
 				}
 			});
-		}, { rootMargin: '400px 0px', threshold: 0.01 });
+		}, { rootMargin: '300px 0px', threshold: 0.01 });
 
 		// Reveal items
 		const revealObserver = new IntersectionObserver((entries) => {

@@ -433,38 +433,6 @@
 			});
 		});
 
-		const allProjects = [
-			{ brand: "EATFESTO", title: "EatFesto", desc: "A food and dining-focused brand. Visual showcase of food, lifestyle, and appetite-driven brand storytelling.", video: "https://video.wixstatic.com/video/4c7a69_0abcdc24eaed4b3e95a67da99aa1a2b0/1080p/mp4/file.mp4", orient: "portrait", category: "Food & Beverage", services: "Brand Film" },
-			{ brand: "EATFESTO", title: "EatFesto", desc: "A food and dining-focused brand. Visual showcase of food, lifestyle, and appetite-driven brand storytelling.", video: "https://video.wixstatic.com/video/4c7a69_c46cfd63cd96443badd9a27a0665fdff/1080p/mp4/file.mp4", orient: "portrait", category: "Food & Beverage", services: "Brand Film" },
-			{ brand: "TEZZO", title: "Tezzo", desc: "A modern lifestyle-oriented brand showcasing a contemporary visual approach designed around strong branding.", video: "https://video.wixstatic.com/video/4c7a69_50273e50f63d448e818bd9122e3fc5e1/720p/mp4/file.mp4", orient: "landscape", category: "Lifestyle", services: "Brand Story" },
-			{ brand: "NIKE", title: "Nike", desc: "Globally recognized sportswear and lifestyle brand known for performance, innovation, and culture-driven storytelling.", video: "https://video.wixstatic.com/video/4c7a69_e9c69930b4f74394a7a24aaa079c9e50/720p/mp4/file.mp4", orient: "landscape", category: "Sportswear", services: "Ad Film" },
-			{ brand: "NIKE", title: "Nike", desc: "Globally recognized sportswear and lifestyle brand known for performance, innovation, and culture-driven storytelling.", video: "https://video.wixstatic.com/video/4c7a69_b378be38f16a4a48885fc3ef997da7c6/720p/mp4/file.mp4", orient: "landscape", category: "Sportswear", services: "Ad Film" },
-			{ brand: "NIKE", title: "Nike", desc: "Globally recognized sportswear and lifestyle brand known for performance, innovation, and culture-driven storytelling.", video: "https://video.wixstatic.com/video/4c7a69_52ab300a0f5d4f3eb2e022531b7f5f26/720p/mp4/file.mp4", orient: "landscape", category: "Sportswear", services: "Ad Film" },
-			{ brand: "PROSKIRE", title: "Proskire", desc: "A performance and lifestyle-focused brand highlighting dynamic visual style suited to active, modern audiences.", video: "https://video.wixstatic.com/video/4c7a69_e0893a64f65d45c288100d58ed3ac6e7/720p/mp4/file.mp4", orient: "landscape", category: "Performance", services: "Content Creation" },
-			{ brand: "RELANCE", title: "Relance", desc: "A contemporary consumer brand with a focus on modern visual communication and lifestyle-led storytelling.", video: "https://video.wixstatic.com/video/4c7a69_ae60f198c15a4dabbec575bb07569699/720p/mp4/file.mp4", orient: "landscape", category: "Consumer Brand", services: "Brand Campaign" },
-			{ brand: "KERASTASE", title: "Kérastase", desc: "A premium professional haircare brand known for luxury beauty, advanced haircare, and sophisticated brand communication.", video: "https://video.wixstatic.com/video/4c7a69_85112fcc1b354ceba8e9b7400194de5a/720p/mp4/file.mp4", orient: "landscape", category: "Beauty", services: "Premium Film" },
-			{ brand: "MEDICINE MAMA", title: "Medicine Mama", desc: "A natural beauty and skincare brand focused on plant-based, wellness-oriented personal care and clean beauty.", video: "https://video.wixstatic.com/video/4c7a69_6e02f73ac2854749902a919538d625f4/720p/mp4/file.mp4", orient: "landscape", category: "Skincare", services: "Brand Story" },
-			{ brand: "KORA ORGANIC", title: "KORA Organics", desc: "A skincare and wellness brand founded around clean, organic beauty and mindful self-care.", video: "https://video.wixstatic.com/video/4c7a69_dc3f7913414e4dbe8f3bc3cdd7f07116/480p/mp4/file.mp4", orient: "portrait", category: "Organic Beauty", services: "Content Creation" },
-			{ brand: "DIOR", title: "Dior", desc: "A globally renowned luxury fashion and beauty house recognized for elegance, craftsmanship, and iconic visual identity.", video: "https://video.wixstatic.com/video/4c7a69_f41b341b60e34a8193adb23bb5b7f217/480p/mp4/file.mp4", orient: "portrait", category: "Luxury Fashion", services: "Ad Film" },
-			{ brand: "CARATLANE", title: "CaratLane", desc: "A modern jewelry brand known for making fine jewelry accessible through contemporary designs and digital-first storytelling.", video: "https://video.wixstatic.com/video/4c7a69_14a8db37650e4e048c74550cdc0850bd/360p/mp4/file.mp4", orient: "portrait", category: "Jewelry", services: "Brand Film" },
-			{ brand: "INSTA360", title: "Insta360", desc: "An action camera and imaging technology brand known for immersive 360-degree cameras and creative capture.", video: "https://video.wixstatic.com/video/4c7a69_13620f51b0ed46c5914c8523b4a77218/720p/mp4/file.mp4", orient: "portrait", category: "Technology", services: "Product Launch" },
-			{ brand: "NOTHING", title: "Nothing Phone", desc: "A consumer technology brand recognized for distinctive industrial design, transparent aesthetics, and culture-driven approach.", video: "https://video.wixstatic.com/video/4c7a69_a9f35c5bc14746b1af9e2afae93f07e3/360p/mp4/file.mp4", orient: "portrait", category: "Technology", services: "Campaign Film" },
-			{ brand: "CAFE", title: "Cafe Project", desc: "Cafe-focused content designed around food, atmosphere, lifestyle, and visual storytelling for hospitality.", video: "https://video.wixstatic.com/video/4c7a69_0e60df56daa74e448177aac81ff654ce/720p/mp4/file.mp4", orient: "landscape", category: "Hospitality", services: "Brand Film" },
-			{ brand: "CAFE", title: "Cafe Project", desc: "Cafe-focused content designed around food, atmosphere, lifestyle, and visual storytelling for hospitality.", video: "https://video.wixstatic.com/video/4c7a69_498dc7119da64efc845ed771d89eb7e6/720p/mp4/file.mp4", orient: "landscape", category: "Hospitality", services: "Brand Film" },
-			{ brand: "CAFE", title: "Cafe Project", desc: "Cafe-focused content designed around food, atmosphere, lifestyle, and visual storytelling for hospitality.", video: "https://video.wixstatic.com/video/4c7a69_c76738c35e5a4911887b00f07fb6a36d/720p/mp4/file.mp4", orient: "landscape", category: "Hospitality", services: "Brand Film" },
-			{ brand: "MISA", title: "Misa", desc: "A contemporary lifestyle and beauty-oriented brand positioned around refined aesthetics and modern lifestyle storytelling.", video: "https://video.wixstatic.com/video/4c7a69_18626112b3fe48be90065fd2d94d93dd/720p/mp4/file.mp4", orient: "landscape", category: "Beauty", services: "Content Creation" },
-			{ brand: "HELLSKIN", title: "Hellskin", desc: "A bold, modern beauty and skincare brand with contemporary, expressive visual direction and product-led storytelling.", video: "https://video.wixstatic.com/video/4c7a69_ab5372c0df9d40f0acac2dc6f1791108/1080p/mp4/file.mp4", orient: "portrait", category: "Skincare", services: "Ad Film" },
-			{ brand: "GENRAGE", title: "Genrage", desc: "A contemporary youth and lifestyle-focused brand highlighting energetic creative direction and culture-driven storytelling.", video: "https://video.wixstatic.com/video/4c7a69_422c79f20d984ac3a13abaed654f6738/1080p/mp4/file.mp4", orient: "portrait", category: "Youth Culture", services: "Brand Campaign" },
-			{ brand: "SAT Professor", title: "SAT Professor", desc: "A contemporary beauty and lifestyle brand positioned around polished visual storytelling and beauty aesthetics.", video: "https://video.wixstatic.com/video/4c7a69_3a6051a870504c6eaf51a3547ca471ce/1080p/mp4/file.mp4", orient: "portrait", category: "Beauty", services: "Brand Film" },
-			{ brand: "VANESA", title: "Vanesa", desc: "A contemporary beauty and lifestyle brand positioned around polished visual storytelling and beauty aesthetics.", video: "https://video.wixstatic.com/video/4c7a69_4aceff66cfd24ababafb1f6e47495261/1080p/mp4/file.mp4", orient: "portrait", category: "Beauty", services: "Brand Film" },
-			{ brand: "HOICHOI", title: "Hoichoi", desc: "A leading Bengali-language streaming entertainment platform known for original series, films, and digital entertainment.", video: "https://video.wixstatic.com/video/4c7a69_04fe62bfdee4460da9398f023d851bfa/720p/mp4/file.mp4", orient: "landscape", category: "Entertainment", services: "Campaign Film" },
-			{ brand: "TRADECFD", title: "TradeCFD", desc: "A financial trading-oriented brand demonstrating how performance-focused messaging translates into engaging digital content.", video: "https://video.wixstatic.com/video/4c7a69_bf4f28780ad642aeb01cb61516c362e3/1080p/mp4/file.mp4", orient: "landscape", category: "Finance", services: "Ad Film" },
-			{ brand: "BYTBOTS", title: "BytBots", desc: "A technology and digital-focused brand highlighting modern tech communication and visually engaging content.", video: "https://video.wixstatic.com/video/4c7a69_2a2f300c4ea4418291a3633bf79a8ccd/720p/mp4/file.mp4", orient: "landscape", category: "Technology", services: "Content Creation" },
-			{ brand: "INDULEKHA", title: "Indulekha", desc: "A beauty and haircare brand known for traditional Indian-inspired wellness and personal-care products.", video: "https://video.wixstatic.com/video/4c7a69_729787cbdd9d43b5874bcfa720b60ef6/1080p/mp4/file.mp4", orient: "landscape", category: "Haircare", services: "Brand Story" },
-			{ brand: "ARMANI", title: "Giorgio Armani", desc: "A globally recognized luxury fashion and lifestyle house known for refined design, understated elegance, and premium craftsmanship.", video: "https://video.wixstatic.com/video/4c7a69_920b8839a3fa4fa6bf1917ca8a44b414/720p/mp4/file.mp4", orient: "landscape", category: "Luxury Fashion", services: "Premium Film" },
-			{ brand: "ARMANI", title: "Giorgio Armani", desc: "A globally recognized luxury fashion and lifestyle house known for refined design, understated elegance, and premium craftsmanship.", video: "https://video.wixstatic.com/video/4c7a69_a66586e5154d4a4ba6f5ce1e11b80694/720p/mp4/file.mp4", orient: "landscape", category: "Luxury Fashion", services: "Premium Film" }
-		];
-
 		const params = new URLSearchParams(window.location.search);
 		const brand = params.get('brand') || 'NIKE';
 		const title = params.get('title') || 'Nike';
@@ -473,8 +441,10 @@
 		const orient = params.get('orient') || 'landscape';
 		const currentIndex = parseInt(params.get('index') || '0', 10);
 
-		const currentProject = allProjects[currentIndex] || {
-			brand, title, desc, video: videoUrl, orient, category: "Brand Campaign", services: "Brand Film"
+		const currentProject = {
+			brand, title, desc, video: videoUrl, orient,
+			category: params.get('category') || 'Brand Campaign',
+			services: params.get('services') || 'Brand Film'
 		};
 
 		document.title = `${currentProject.title} — REVOLVYN`;
@@ -568,33 +538,12 @@
 			}
 		}
 
-		const prevIndex = (currentIndex - 1 + allProjects.length) % allProjects.length;
-		const nextIndex = (currentIndex + 1) % allProjects.length;
-		const prevProject = allProjects[prevIndex];
-		const nextProject = allProjects[nextIndex];
-
-		document.getElementById('prevBrand').textContent = prevProject.brand;
-		document.getElementById('nextBrand').textContent = nextProject.brand;
-
-		const prevParams = new URLSearchParams({
-			brand: prevProject.brand, title: prevProject.title,
-			desc: prevProject.desc, video: prevProject.video,
-			orient: prevProject.orient, index: String(prevIndex)
-		}).toString();
-		const nextParams = new URLSearchParams({
-			brand: nextProject.brand, title: nextProject.title,
-			desc: nextProject.desc, video: nextProject.video,
-			orient: nextProject.orient, index: String(nextIndex)
-		}).toString();
-
 		document.getElementById('prevLink').onclick = (e) => {
 			e.preventDefault();
-			smoothNavigate('video.html?' + prevParams);
+			smoothNavigate('portfolio.html');
 		};
-		document.getElementById('nextLink').onclick = (e) => {
-			e.preventDefault();
-			smoothNavigate('video.html?' + nextParams);
-		};
+		document.getElementById('prevBrand').textContent = 'Portfolio';
+		document.getElementById('nextLink').style.display = 'none';
 
 		const revealObserver = new IntersectionObserver((entries) => {
 			entries.forEach(entry => {
