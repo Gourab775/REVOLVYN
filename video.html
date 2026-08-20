@@ -292,50 +292,75 @@
 			.info-panel { flex: 0 0 48%; padding: 100px 32px 40px; }
 		}
 		@media (max-width: 768px) {
-			html, body { height: 100%; overflow: auto; }
-			.video-layout { flex-direction: column; overflow-y: auto; overflow-x: hidden; }
+			html, body { height: 100%; overflow: hidden; }
+			/* Landscape: column layout */
+			.video-layout { flex-direction: column; overflow: hidden; }
 			.video-panel {
 				flex: none; width: 100%; height: auto;
-				position: relative; margin-top: 130px;
+				position: relative; margin-top: 110px;
 				aspect-ratio: 16/9;
-			}
-			.video-panel.portrait-mode {
-				aspect-ratio: 9/16; max-height: 55vh;
-				margin-top: 130px;
-			}
-			.video-panel.portrait-mode video {
-				max-width: 200px; border-radius: 12px;
 			}
 			.video-panel.landscape-mode video {
 				width: 100%; height: 100%;
 				object-fit: contain; border-radius: 0;
 			}
 			.info-panel {
-				flex: none; width: 100%; height: auto;
-				padding: 24px 16px 16px;
-				overflow-y: visible;
+				flex: 1; width: 100%; height: auto;
+				padding: 16px 16px 60px;
+				overflow-y: auto;
 			}
-			.brand-title { font-size: 22px; margin-bottom: 12px; }
-			.info-description { font-size: 13px; margin-bottom: 16px; }
-			.details-list { gap: 10px; padding: 12px 0; margin-bottom: 16px; }
+			/* Portrait: side-by-side layout so everything fits on screen */
+			.video-layout.portrait-layout {
+				flex-direction: row;
+			}
+			.video-layout.portrait-layout .video-panel {
+				flex: 0 0 40%; margin-top: 0;
+				height: 100vh; aspect-ratio: auto;
+				position: relative;
+				display: flex; align-items: center; justify-content: center;
+			}
+			.video-layout.portrait-layout .video-panel video {
+				max-width: 100%; max-height: 70vh;
+				border-radius: 10px;
+			}
+			.video-layout.portrait-layout .info-panel {
+				flex: 0 0 60%; padding: 80px 14px 60px;
+				overflow-y: auto;
+			}
+			.brand-tag { margin-bottom: 8px; }
+			.brand-title { font-size: 18px; margin-bottom: 8px; }
+			.info-divider { margin: 0 0 12px; }
+			.info-description { font-size: 12px; margin-bottom: 12px; }
+			.details-list { gap: 6px; padding: 8px 0; margin-bottom: 10px; }
 			.detail-row { opacity: 1; transform: none; }
-			.detail-value { font-size: 13px; }
-			.project-nav { padding-top: 12px; }
-			.nav-link .nav-brand { font-size: 12px; }
-			.video-controls { padding: 10px 16px 14px; gap: 8px; }
+			.detail-label { font-size: 9px; }
+			.detail-value { font-size: 12px; }
+			.project-nav { padding-top: 8px; flex-direction: column; gap: 8px; }
+			.nav-link .nav-brand { font-size: 11px; }
+			.video-controls { padding: 8px 12px 10px; gap: 6px; }
 			.ctrl-btn svg { width: 14px; height: 14px; }
-			.time-display { font-size: 10px; min-width: 60px; }
+			.time-display { font-size: 9px; min-width: 50px; }
 			.back-btn { top: 70px; left: 16px; font-size: 10px; }
+			.project-cta {
+				position: fixed; bottom: 0; left: 0; right: 0;
+				z-index: 50; padding: 12px 16px;
+				background: linear-gradient(to top, rgba(0,0,0,0.95) 60%, transparent 100%);
+			}
+			.project-cta a {
+				padding: 10px 28px; font-size: 9px;
+				background: rgba(0,0,0,0.7);
+			}
 		}
 		@media (max-width: 480px) {
-			.video-panel { margin-top: 120px; }
-			.video-panel.portrait-mode { max-height: 50vh; margin-top: 120px; }
-			.video-panel.portrait-mode video { max-width: 160px; }
-			.info-panel { padding: 20px 14px 16px; }
-			.brand-title { font-size: 18px; margin-bottom: 8px; }
-			.info-description { font-size: 12px; margin-bottom: 12px; }
-			.details-list { gap: 8px; padding: 10px 0; margin-bottom: 12px; }
-			.project-nav { padding-top: 10px; }
+			.video-layout.portrait-layout .video-panel {
+				flex: 0 0 35%;
+			}
+			.video-layout.portrait-layout .info-panel {
+				padding: 70px 10px 60px;
+			}
+			.brand-title { font-size: 16px; }
+			.info-description { font-size: 11px; }
+			.detail-value { font-size: 11px; }
 		}
 		@media (prefers-reduced-motion: reduce) {
 			.detail-row { transition: opacity 0.2s; transform: none; }
@@ -513,8 +538,10 @@
 		document.getElementById('detailServices').textContent = currentProject.services;
 
 		const videoPanel = document.getElementById('videoPanel');
+		const videoLayout = document.querySelector('.video-layout');
 		if (currentProject.orient === 'portrait') {
 			videoPanel.classList.add('portrait-mode');
+			if (window.innerWidth <= 768) videoLayout.classList.add('portrait-layout');
 		} else {
 			videoPanel.classList.add('landscape-mode');
 		}
