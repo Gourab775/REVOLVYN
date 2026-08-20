@@ -75,6 +75,11 @@
 			transition: all 0.3s; font-weight: 500; background: none; cursor: pointer;
 		}
 		.form-submit:hover { background: rgba(180, 220, 100, 0.1); border-color: rgba(180, 220, 100, 0.5); color: rgba(230, 245, 120, 0.95); }
+		.form-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+		.form-status { margin-top: 16px; padding: 12px 16px; border-radius: 8px; font-size: 13px; line-height: 1.5; display: none; }
+		.form-status.success { display: block; background: rgba(120, 200, 80, 0.1); border: 1px solid rgba(120, 200, 80, 0.3); color: rgba(120, 200, 80, 0.9); }
+		.form-status.error { display: block; background: rgba(200, 80, 80, 0.1); border: 1px solid rgba(200, 80, 80, 0.3); color: rgba(200, 120, 120, 0.9); }
+		.form-status.loading { display: block; background: rgba(180, 220, 100, 0.08); border: 1px solid rgba(180, 220, 100, 0.2); color: rgba(215, 230, 190, 0.6); }
 
 		.map-placeholder {
 			margin-top: 60px; padding: 60px; text-align: center;
@@ -170,13 +175,15 @@
 
 			<div class="contact-form-wrap" data-reveal>
 				<form id="contactForm">
-					<div class="form-group"><label>Your Name</label><input type="text" id="cfName" placeholder="Your Name" required></div>
-					<div class="form-group"><label>Email Address</label><input type="email" id="cfEmail" placeholder="example@gmail.com" required></div>
+				<div class="form-group"><label>Your Name</label><input type="text" id="cfName" placeholder="Your Name" required></div>
+				<div class="form-group"><label>Email Address</label><input type="email" id="cfEmail" placeholder="example@gmail.com" required></div>
+				<div class="form-group"><label>Phone Number</label><input type="tel" id="cfPhone" placeholder="+91 98765 43210" pattern="[+]?[0-9\s\-\(\)]{7,15}" required></div>
 					<div class="form-group"><label>I'm Interested In</label>
 						<select id="cfService" required><option value="">Select a service...</option><option>Growth Consulting</option><option>Performance Marketing(Meta)</option><option>Influencer Marketing</option><option>SEO & Website</option><option>Content Production</option><option>Social Media Management</option><option>AI Content Production</option><option>Full-Service Package</option></select>
 					</div>
 					<div class="form-group"><label>Project Details</label><textarea id="cfMessage" placeholder="Tell us about your project, goals, and timeline..."></textarea></div>
-					<button type="submit" class="form-submit">Send Message →</button>
+					<button type="submit" class="form-submit" id="cfSubmit">Send Message →</button>
+					<div class="form-status" id="cfStatus"></div>
 				</form>
 			</div>
 		</div>
@@ -199,6 +206,10 @@
 		</div>
 	</footer>
 	<script>
+		/* ===== CONFIG — change these two values ===== */
+		const GOOGLE_APPS_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+		/* ============================================ */
+
 		const transition = document.getElementById('pageTransition');
 		function smoothNavigate(e, url) {
 			if (e && e.preventDefault) e.preventDefault();
@@ -213,43 +224,75 @@
 		const revealObserver = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.style.transitionDelay = `${(entry.target.dataset.delay || 0) * 0.15}s`; entry.target.classList.add('revealed'); revealObserver.unobserve(entry.target); } }); }, { threshold: 0.1 });
 		document.querySelectorAll('[data-reveal]').forEach(el => revealObserver.observe(el));
 
-		document.getElementById('contactForm').addEventListener('submit', function(e) {
+		const contactForm = document.getElementById('contactForm');
+		const cfSubmit = document.getElementById('cfSubmit');
+		const cfStatus = document.getElementById('cfStatus');
+		let isSubmitting = false;
+
+		function showStatus(type, msg) {
+			cfStatus.className = 'form-status ' + type;
+			cfStatus.textContent = msg;
+		}
+
+		contactForm.addEventListener('submit', async function(e) {
 			e.preventDefault();
+			if (isSubmitting) return;
+
 			const name = document.getElementById('cfName').value.trim();
 			const email = document.getElementById('cfEmail').value.trim();
+			const phone = document.getElementById('cfPhone').value.trim();
 			const service = document.getElementById('cfService').value;
 			const message = document.getElementById('cfMessage').value.trim();
-			const btn = this.querySelector('button');
 
-			if (!name || !email || !service) return;
+			if (!name || !email || !phone || !service) {
+				showStatus('error', 'Please fill in all required fields.');
+				return;
+			}
 
-			const subject = encodeURIComponent('New Inquiry from ' + name);
-			const body = encodeURIComponent(
-				'Name: ' + name + '\n' +
-				'Email: ' + email + '\n' +
-				'Service: ' + service + '\n' +
-				'Details: ' + (message || 'N/A')
-			);
-			const wpText = encodeURIComponent(
-				'*New Inquiry*\n\n' +
-				'Name: ' + name + '\n' +
-				'Email: ' + email + '\n' +
-				'Service: ' + service + '\n' +
-				'Details: ' + (message || 'N/A')
-			);
+			if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+				showStatus('error', 'Please enter a valid email address.');
+				return;
+			}
 
-			// Open email
-			window.open('mailto:revolvynmedia@gmail.com?subject=' + subject + '&body=' + body, '_blank');
+			if (GOOGLE_APPS_SCRIPT_URL === 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
+				showStatus('error', 'Form is not configured yet. Please contact us directly at revolvynmedia@gmail.com');
+				return;
+			}
 
-			// Open WhatsApp
-			setTimeout(() => {
-				window.open('https://wa.me/919123011730?text=' + wpText, '_blank');
-			}, 500);
+			isSubmitting = true;
+			cfSubmit.disabled = true;
+			cfSubmit.textContent = 'Sending...';
+			showStatus('loading', 'Submitting your message...');
 
-			btn.textContent = 'Message Sent ✓';
-			btn.style.borderColor = 'rgba(120,200,80,0.5)';
-			btn.style.color = 'rgba(120,200,80,0.9)';
-			btn.disabled = true;
+			try {
+				const payload = { name, email, phone, service, message };
+				const controller = new AbortController();
+				const timeoutId = setTimeout(() => controller.abort(), 15000);
+
+				const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
+					method: 'POST',
+					mode: 'no-cors',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify(payload),
+					signal: controller.signal
+				});
+				clearTimeout(timeoutId);
+
+				showStatus('success', 'Message sent successfully! We\'ll get back to you soon.');
+				contactForm.reset();
+				cfSubmit.textContent = 'Send Message →';
+				cfSubmit.disabled = false;
+				isSubmitting = false;
+			} catch (err) {
+				isSubmitting = false;
+				cfSubmit.disabled = false;
+				cfSubmit.textContent = 'Send Message →';
+				if (err.name === 'AbortError') {
+					showStatus('error', 'Request timed out. Please check your connection and try again.');
+				} else {
+					showStatus('error', 'Something went wrong. Please email us directly at revolvynmedia@gmail.com');
+				}
+			}
 		});
 	</script>
 </body>
