@@ -1009,7 +1009,7 @@
 		scene.fog = new THREE.FogExp2('#000000', 0.035);
 
 		const aspectRatio = innerWidth / innerHeight;
-		const mobileFov = 55;
+		const mobileFov = 75;
 		const camera = new THREE.PerspectiveCamera(isMobile ? mobileFov : 38, aspectRatio, 0.1, 100);
 		camera.position.set(0, 8, 18);
 		camera.lookAt(0, 0, 0);
@@ -1696,8 +1696,8 @@
 
 			const cam = lerpCam(currentScrollT);
 			if (isMobile) {
-				cam.py *= 0.6;
-				cam.ly *= 0.6;
+				cam.py *= 0.4;
+				cam.ly *= 0.4;
 			}
 			camera.position.set(cam.px, cam.py, cam.pz);
 			lookTarget.set(cam.lx, cam.ly, cam.lz);
