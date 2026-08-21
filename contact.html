@@ -208,7 +208,7 @@
 	</footer>
 	<script>
 		/* ===== CONFIG — change these two values ===== */
-		const GOOGLE_APPS_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+		const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwoD22hMiNmAnzIFKAbN8MXwvIfB50AIFDgDa8SahQlIkb4FCSecsCiiUAex7b4R4IK5g/exec';
 		/* ============================================ */
 
 		const transition = document.getElementById('pageTransition');
@@ -272,15 +272,28 @@
 
 				const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
 					method: 'POST',
-					mode: 'no-cors',
-					headers: { 'Content-Type': 'application/json' },
+					headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
 					body: JSON.stringify(payload),
 					signal: controller.signal
 				});
 				clearTimeout(timeoutId);
 
-				showStatus('success', 'Message sent successfully! We\'ll get back to you soon.');
-				contactForm.reset();
+				let result;
+				const contentType = response.headers.get('content-type');
+				if (contentType && contentType.includes('application/json')) {
+					result = await response.json();
+				} else {
+					const text = await response.text();
+					try { result = JSON.parse(text); } catch (e) { result = null; }
+				}
+
+				if (response.ok && result && result.success) {
+					showStatus('success', 'Message sent successfully! We\'ll get back to you soon.');
+					contactForm.reset();
+				} else {
+					const errMsg = (result && result.message) ? result.message : 'Submission failed. Please email us directly at revolvynmedia@gmail.com';
+					showStatus('error', errMsg);
+				}
 				cfSubmit.textContent = 'Send Message →';
 				cfSubmit.disabled = false;
 				isSubmitting = false;

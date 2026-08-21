@@ -1006,10 +1006,10 @@
 		// --- Scene ---------------------------------------------------------
 		const scene = new THREE.Scene();
 		scene.background = buildSkyTexture();
-		scene.fog = new THREE.FogExp2('#000000', 0.035);
+		scene.fog = new THREE.FogExp2('#000000', isMobile ? 0.018 : 0.035);
 
 		const aspectRatio = innerWidth / innerHeight;
-		const mobileScale = isMobile ? 0.4 : 1.0;
+		const mobileCamScale = isMobile ? 0.5 : 1.0;
 		const camera = new THREE.PerspectiveCamera(38, aspectRatio, 0.1, 100);
 		camera.position.set(0, 8, 18);
 		camera.lookAt(0, 0, 0);
@@ -1695,8 +1695,8 @@
 			currentScrollT += (targetScrollT - currentScrollT) * Math.min(1, dt * 6);
 
 			const cam = lerpCam(currentScrollT);
-			camera.position.set(cam.px * mobileScale, cam.py * mobileScale, cam.pz * mobileScale);
-			lookTarget.set(cam.lx * mobileScale, cam.ly * mobileScale, cam.lz * mobileScale);
+			camera.position.set(cam.px * mobileCamScale, cam.py * mobileCamScale, cam.pz * mobileCamScale);
+			lookTarget.set(cam.lx * mobileCamScale, cam.ly * mobileCamScale, cam.lz * mobileCamScale);
 			camera.lookAt(lookTarget);
 
 			// Push canvas up when footer is visible (cached element)

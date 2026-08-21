@@ -1,0 +1,99 @@
+- generic [active] [ref=f4e1]:
+  - navigation:
+    - generic [ref=f4e2] [cursor=pointer]: REVOLVYN
+    - generic [ref=f4e3]:
+      - link "About Us" [ref=f4e4] [cursor=pointer]:
+        - /url: index.html
+      - link "Portfolio" [ref=f4e5] [cursor=pointer]:
+        - /url: portfolio.html
+      - link "Brands" [ref=f4e6] [cursor=pointer]:
+        - /url: brands.html
+      - link "Services" [ref=f4e7] [cursor=pointer]:
+        - /url: services.html
+      - link "Contact Us" [ref=f4e8] [cursor=pointer]:
+        - /url: contact.html
+  - generic [ref=f4e9]:
+    - heading "Let's Talk" [level=1] [ref=f4e10]
+    - paragraph [ref=f4e11]: Ready to take your brand to the next level? We'd love to hear from you.
+  - generic [ref=f4e12]:
+    - generic [ref=f4e13]:
+      - generic [ref=f4e14]:
+        - heading "Get in Touch" [level=3] [ref=f4e15]
+        - paragraph [ref=f4e16]: Whether you're a brand looking for cinematic content or a creator ready to scale — we're here to make it happen.
+        - generic [ref=f4e18]:
+          - generic [ref=f4e19]: Email
+          - generic [ref=f4e20]: revolvynmedia@gmail.com
+        - generic [ref=f4e22]:
+          - generic [ref=f4e23]: Phone
+          - generic [ref=f4e24]: +91 91230 11730
+        - generic [ref=f4e26]:
+          - generic [ref=f4e27]: Office
+          - generic [ref=f4e28]: Kolkata, India
+        - generic [ref=f4e30]:
+          - generic [ref=f4e31]: Hours
+          - generic [ref=f4e32]: Mon – Fri, 10:00 AM – 5:00 PM IST
+      - generic [ref=f4e34]:
+        - generic [ref=f4e35]:
+          - generic [ref=f4e36]: Your Name
+          - textbox "Your Name" [ref=f4e37]
+        - generic [ref=f4e38]:
+          - generic [ref=f4e39]: Email Address
+          - textbox "example@gmail.com" [ref=f4e40]
+        - generic [ref=f4e41]:
+          - generic [ref=f4e42]: Phone Number
+          - textbox "+91 99999 99999" [ref=f4e43]
+        - generic [ref=f4e44]:
+          - generic [ref=f4e45]: I'm Interested In
+          - combobox [ref=f4e46] [cursor=pointer]:
+            - option "Select a service..." [selected]
+            - option "Growth Consulting"
+            - option "Performance Marketing(Meta)"
+            - option "Influencer Marketing"
+            - option "SEO & Website"
+            - option "Content Production"
+            - option "Social Media Management"
+            - option "AI Content Production"
+            - option "Full-Service Package"
+        - generic [ref=f4e47]:
+          - generic [ref=f4e48]: Project Details
+          - textbox "Tell us about your project, goals, and timeline..." [ref=f4e49]
+        - button "Send Message →" [ref=f4e50] [cursor=pointer]
+    - paragraph [ref=f4e52]: REVOLVYN Headquarters — Kolkata, India
+  - contentinfo [ref=f4e53]:
+    - generic [ref=f4e54]:
+      - generic [ref=f4e55]:
+        - generic [ref=f4e56]: REVOLVYN
+        - paragraph [ref=f4e57]: From bold ideas to meaningful experiences, we turn creativity into impact.
+      - generic [ref=f4e58]:
+        - generic [ref=f4e59]: Explore
+        - link "About Us" [ref=f4e60] [cursor=pointer]:
+          - /url: index.html
+        - link "Portfolio" [ref=f4e61] [cursor=pointer]:
+          - /url: portfolio.html
+        - link "Brands" [ref=f4e62] [cursor=pointer]:
+          - /url: brands.html
+        - link "Services" [ref=f4e63] [cursor=pointer]:
+          - /url: services.html
+      - generic [ref=f4e64]:
+        - generic [ref=f4e65]: Resources
+        - link "Privacy Policy" [ref=f4e66] [cursor=pointer]:
+          - /url: privacy.html
+        - link "Refund Policy" [ref=f4e67] [cursor=pointer]:
+          - /url: refund.html
+      - generic [ref=f4e68]:
+        - generic [ref=f4e69]: Connect
+        - link "Contact" [ref=f4e70] [cursor=pointer]:
+          - /url: contact.html
+        - link "Partnerships" [ref=f4e71] [cursor=pointer]:
+          - /url: partnerships.html
+        - link "Careers" [ref=f4e72] [cursor=pointer]:
+          - /url: careers.html
+    - generic [ref=f4e73]:
+      - generic [ref=f4e74]: © 2026 REVOLVYN. All futures reserved.
+      - generic [ref=f4e75]:
+        - link "Instagram" [ref=f4e76] [cursor=pointer]:
+          - /url: https://www.instagram.com/revolvynmedia?igsi=bmFlaHFyMG92eDNk
+        - link "Facebook" [ref=f4e77] [cursor=pointer]:
+          - /url: https://www.facebook.com/share/1F5rfL4tPS/?mibextid=LQQJ4d
+        - link "YouTube" [ref=f4e78] [cursor=pointer]:
+          - /url: https://www.youtube.com/@REVOLVYNMEDIA
